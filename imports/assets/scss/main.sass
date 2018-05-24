@@ -1,10 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700)
+
+@import "pages/index.sass"
+
+html
+  font-size: 90%
+
 body
-  @apply .bg-grey-lighter
+  font-family: Raleway, "Helvetica Neue", Arial, Helvetica, sans-serif
+  overflow: hidden
 
 a
   color: inherit
   text-decoration: none
 
+input
+  outline: none
+
 .container
   transition: max-width 0.5s
+
+
+.layout-main
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
+  min-height: 100vh
+  overflow-y: scroll
+
+  background-color: #4a65f1
+
+  &:before
+    content: ""
+    z-index: 0
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+
+    height: 1080px
+
+    background: linear-gradient(#11d4e1, #4a65f1)
+
+  .wrapper
+    position: relative
+    min-height: 100vh
 

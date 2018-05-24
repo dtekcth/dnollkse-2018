@@ -11,7 +11,7 @@
     position: absolute
     top: 50%
     left: 50%
-    transform: translate(-50%)
+    transform: translate(-50%, -50%)
 
 $loaders-list: xl lg md sm xs
 
@@ -24,6 +24,15 @@ $loaders-list: xl lg md sm xs
 
     .spinner
       border-width: config("loaderBorder." + $curr-loader)
+
+.loader
+  @extend %loader
+
+  width: config("loader.md")
+  height: config("loader.md")
+
+  .spinner
+    border-width: config("loaderBorder.md")
 
 @keyframes spin
   0%

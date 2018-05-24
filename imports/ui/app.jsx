@@ -14,6 +14,7 @@ import store from "/imports/store";
 import composeWithTracker from "/imports/helpers/composetracker";
 
 import HomePage from "/imports/ui/pages/home.jsx";
+import TestPage from "/imports/ui/pages/test.jsx";
 import LoginPage from "/imports/ui/pages/login.jsx";
 
 @withRouter
@@ -51,6 +52,7 @@ export default class App extends Component {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/test" component={TestPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/logout" render={this.handleLogout} />
         </Switch>

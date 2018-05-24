@@ -86,7 +86,7 @@ export default class AuthorizedLayout extends Component {
         return this.props.loadingContent;
       
       return (
-        <div className="loader-md centered">
+        <div className="loader centered">
           <div className="spinner"></div>
         </div>
       );

@@ -5,7 +5,7 @@ import cx from "classnames";
 import DashboardLayout from "/imports/ui/layouts/dashboard.jsx";
 import AuthorizedLayout from "/imports/ui/layouts/authorized.jsx";
 
-export default class HomePage extends Component {
+export default class TestPage extends Component {
   render() {
     return (
       <DashboardLayout>
@@ -13,10 +13,8 @@ export default class HomePage extends Component {
           loginRoute="/login"
         >
           <div className="p-4">
-            <h4>This is the homepage!</h4>
+            <h4>This is a test!</h4>
             <p>
-              It's pretty empty here, sorry about that.
-              It'll hopefully get something later, maybe. No promise though.
             </p>
 
             <Link
@@ -26,9 +24,9 @@ export default class HomePage extends Component {
                    "py-1 px-2 mt-2"
                 )
               }
-              to="/test"
+              to="/"
             >
-              Go somewhere useful
+              Go home
             </Link>
           </div>
         </AuthorizedLayout>

@@ -37,34 +37,44 @@ export default class LoginPage extends Component {
 
   render() {
     return (
-      <MainLayout>
+      <MainLayout className="login-page">
         <AuthorizedLayout noLoad fail successRoute="/">
           <div className="flex justify-center">
             <div className="w-full max-w-xs mt-2">
-              <AutoForm
-                onSubmit={this.handleLogin}
-                trimOnSubmit
-                className="bg-white shadow-md rounded p-4"
-              >
-                <input
-                  className="shadow appearance-none border rounded w-full py-1 px-2 text-grey-darker mb-2"
-                  id="username"
-                  placeholder="Username"
-                />
+              <div className="login-box">
+                <h5 className="uppercase block tracking-wide text-center text-white mb-1">Healthworks</h5>
 
-                <input
-                  className="shadow appearance-none border rounded w-full py-1 px-2 text-grey-darker mb-2"
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                />
-                
-                <div className="flex justify-center w-full">
-                  <button className="button bg-blue py-1 px-2 rounded text-white" type="submit">
+                <AutoForm
+                  onSubmit={this.handleLogin}
+                  trimOnSubmit
+                  className="bg-white rounded-sm p-4"
+                >
+                  <div className="bg-grey-lighter rounded-sm px-2 py-1">
+                    <small className="uppercase text-xs text-grey">
+                      Username
+                    </small>
+                    <input
+                      className="appearance-none bg-transparent w-full text-sm text-grey-darker mt-1"
+                      id="username"
+                    />
+                  </div>
+
+                  <div className="bg-grey-lighter rounded-sm mt-1">
+                    <input
+                      className="appearance-none bg-transparent w-full py-1 px-2 text-grey-darker"
+                      id="password"
+                      type="password"
+                      placeholder="••••••••"
+                    />
+                  </div>
+                  
+                  <button
+                    className="button bg-green py-1 px-2 rounded text-white w-full mt-1"
+                    type="submit">
                     Login
                   </button>
-                </div>
-              </AutoForm>
+                </AutoForm>
+              </div>
             </div>
           </div>
         </AuthorizedLayout>

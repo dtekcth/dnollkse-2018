@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Karla:400,700);/**
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);/**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
  *
@@ -704,7 +704,8 @@ button,
 .loader-lg .spinner,
 .loader-md .spinner,
 .loader-sm .spinner,
-.loader-xs .spinner {
+.loader-xs .spinner,
+.loader .spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;
   border-radius: 50%;
@@ -718,12 +719,13 @@ button,
 .centered.loader-lg,
 .centered.loader-md,
 .centered.loader-sm,
-.centered.loader-xs {
+.centered.loader-xs,
+.centered.loader {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .loader-xl {
@@ -768,6 +770,15 @@ button,
 }
 
 .loader-xs .spinner {
+  border-width: 4px;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+}
+
+.loader .spinner {
   border-width: 4px;
 }
 
@@ -5021,8 +5032,21 @@ button,
  * @import "utilities/skew-transforms";
  */
 
+.login-page .login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+html {
+  font-size: 90%;
+}
+
 body {
-  background-color: #f1f5f8;
+  font-family: Raleway, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 a {
@@ -5030,9 +5054,41 @@ a {
   text-decoration: none;
 }
 
+input {
+  outline: none;
+}
+
 .container {
   -webkit-transition: max-width .5s;
   transition: max-width .5s;
+}
+
+.layout-main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  min-height: 100vh;
+  overflow-y: scroll;
+  background-color: #4a65f1;
+}
+
+.layout-main:before {
+  content: "";
+  z-index: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1080px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#11d4e1), to(#4a65f1));
+  background: linear-gradient(#11d4e1, #4a65f1);
+}
+
+.layout-main .wrapper {
+  position: relative;
+  min-height: 100vh;
 }
 
 @media (min-width: 576px) {
