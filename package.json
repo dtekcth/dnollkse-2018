@@ -1,0 +1,45 @@
+{
+  "name": "healthworks-prototype",
+  "private": true,
+  "scripts": {
+    "start": "meteor --settings settings.json --port 2010",
+    "build:dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build:prod": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch:dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "test": "echo \"Error : no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.42",
+    "autobind-decorator": "^2.1.0",
+    "bcrypt": "^2.0.1",
+    "classnames": "^2.2.5",
+    "get-form-data": "^2.0.0",
+    "meteor-node-stubs": "^0.3.2",
+    "purgecss-webpack-plugin": "^1.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-komposer": "^2.0.0",
+    "react-mounter": "^1.2.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.3.1",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "simpl-schema": "^1.5.0",
+    "velocity-animate": "^1.5.1",
+    "velocity-react": "^1.4.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-babel": "^5.1.0",
+    "glob-all": "^3.1.0",
+    "laravel-mix": "^2.1.11",
+    "node-sass": "^4.9.0",
+    "tailwindcss": "^0.5.3"
+  }
+}

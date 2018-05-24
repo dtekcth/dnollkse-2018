@@ -1,0 +1,4 @@
+webpack.mix.js
+tailwind.js
+
+imports/assets/scss/**/*.scss
