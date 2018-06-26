@@ -12,3 +12,11 @@ export const usersUpdate = (users, ready) => {
     ready
   };
 };
+
+export const rolesUpdate = (roles, ready) => {
+  return {
+    type: "ROLES_UPDATE",
+    roles,
+    ready
+  };
+};

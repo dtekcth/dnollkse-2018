@@ -7,13 +7,21 @@
     height: 100%
     animation: spin config("loaderAnimSpeed") linear infinite
 
+  .spinner-white
+    border-color: transparent
+    border-top-color: white
+
+  .spinner-dtek
+    border-color: transparent
+    border-top-color: config("colors.dtek")
+
   &.centered
     position: absolute
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
 
-$loaders-list: xl lg md sm xs
+$loaders-list: 3xs 2xs xs sm base lg xl 2xl 3xl 4xl 5xl
 
 @each $curr-loader in $loaders-list
   .loader-#{$curr-loader}

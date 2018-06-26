@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import cx from "classnames";
 
-import DashboardLayout from "/imports/ui/layouts/dashboard.jsx";
-import AuthorizedLayout from "/imports/ui/layouts/authorized.jsx";
+import AdminLayout from "/imports/ui/layouts/admin";
+import AuthorizedLayout from "/imports/ui/layouts/authorized";
 
-export default class TestPage extends Component {
+class TestPage extends Component {
   render() {
     return (
       <DashboardLayout>
@@ -35,3 +35,4 @@ export default class TestPage extends Component {
   }
 }
 
+export default TestPage;

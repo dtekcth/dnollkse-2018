@@ -1,9 +1,11 @@
+import { Roles } from "meteor/alanning:roles";
+
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { Roles } from "meteor/alanning:roles";
+import Loader from "/imports/ui/components/loader";
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +15,7 @@ const mapStateToProps = (state) => {
 
 @withRouter
 @connect(mapStateToProps)
-export default class AuthorizedLayout extends Component {
+class AuthorizedLayout extends Component {
   static propTypes = {
     roles          : PropTypes.array,
     fail           : PropTypes.bool,
@@ -52,7 +54,7 @@ export default class AuthorizedLayout extends Component {
     const props = this.props;
     const user = props.user;
 
-    if (props.isLoggingIn || props.isLoading) return;
+    if (user.isLoggingIn || user.isLoading) return;
     
     if (!user.userId && props.loginRoute) {
       props.history.push(props.loginRoute);
@@ -86,9 +88,7 @@ export default class AuthorizedLayout extends Component {
         return this.props.loadingContent;
       
       return (
-        <div className="loader centered">
-          <div className="spinner"></div>
-        </div>
+        <Loader centered delay={1000} />
       );
     }
     
@@ -100,3 +100,5 @@ export default class AuthorizedLayout extends Component {
     return this.props.children || this.props.content;
   }
 }
+
+export default AuthorizedLayout;

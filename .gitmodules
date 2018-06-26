@@ -1,0 +1,4 @@
+[submodule "packages/meteor-roles"]
+	path = packages/meteor-roles
+	url = https://github.com/alanning/meteor-roles.git
+	branch = v2.0

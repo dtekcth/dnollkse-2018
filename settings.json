@@ -1,3 +1,8 @@
 {
-  
+  "public": {
+    "fileStoragePath": "/home/metamist/dev/meteor/dnollkse/data",
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "CA-121377087-1"}
+    }
+  }
 }

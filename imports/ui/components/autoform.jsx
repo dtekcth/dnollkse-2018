@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import getFormData, { getNamedFormElementData as getFieldData } from "get-form-data";
 
-export default class AutoForm extends Component {
+class AutoForm extends Component {
   static propTypes = {
     component   : PropTypes.any,
     onChange    : PropTypes.func,
@@ -56,3 +56,5 @@ export default class AutoForm extends Component {
     );
   }
 }
+
+export default AutoForm;

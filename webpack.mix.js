@@ -4,6 +4,7 @@ const mix = require("laravel-mix");
 const tailwindcss = require("tailwindcss");
 const glob = require("glob-all");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
+const colorFunction = require("postcss-color-function");
 
 const PATHS = {
   src    : path.join(__dirname, "src"),
@@ -23,7 +24,10 @@ class TailwindExtractor {
 
 mix.sass("imports/assets/scss/tailwind.scss", "client/stylesheets/bundle.css")
   .options({
-    postCss: [ tailwindcss("tailwind.js") ],
+    postCss: [
+      tailwindcss("tailwind.js"),
+      colorFunction()
+    ],
     processCssUrls: false
   });
 

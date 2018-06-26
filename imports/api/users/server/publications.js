@@ -1,6 +1,8 @@
 import { Meteor } from "meteor/meteor";
+import { Roles } from "meteor/alanning:roles";
 
 let commonFields = {
+  "username": 1,
   "roles": 1,
   "createdAt": 1
 };
@@ -31,4 +33,6 @@ Meteor.publish("users.id", function(id) {
 });
 
 
-
+Meteor.publish("roles.all", function() {
+  return Roles.getAllRoles();
+});

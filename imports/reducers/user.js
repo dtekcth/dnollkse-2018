@@ -28,3 +28,16 @@ export const users = (state = {}, action) => {
     return state;
   }
 };
+
+// Reducer for all meteor roles
+export const roles = (state = {}, action) => {
+  switch (action.type) {
+  case "ROLES_UPDATE":
+    return {
+      list  : action.roles,
+      ready : action.ready
+    };
+  default:
+    return state;
+  }
+};

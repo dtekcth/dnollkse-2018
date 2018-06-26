@@ -1,49 +1,202 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,700)
+@import "fonts.sass"
 
+$react-notifications-font-base-path: "./static/fonts/"
+
+@import "~pretty-checkbox/src/pretty-checkbox.scss"
+@import "~react-notifications/src/notifications.scss"
+
+@import "components/index.sass"
 @import "pages/index.sass"
+
+body
+  overflow-x: hidden
+  font-family: "Museo Sans", "Helvetica Neue", Arial, Helvetica, sans-serif
+
 
 html
   font-size: 90%
 
-body
-  font-family: Raleway, "Helvetica Neue", Arial, Helvetica, sans-serif
-  overflow: hidden
-
 a
   color: inherit
   text-decoration: none
-
-input
   outline: none
 
-.container
-  transition: max-width 0.5s
+*:focus
+  outline: none
 
+button:focus
+  outline: none
 
-.layout-main
+button:disabled
+  @apply .cursor-default
+
+.pretty
+  margin-right: 0
+
+.p-2px
+  padding: 2px
+
+.link-dtek
+  @apply .transition-colors .text-dtek
+
+  &:hover
+    @apply .text-dtek-dark
+
+.label
+  @apply .rounded-full .font-semibold .text-sm
+
+  padding: 0.35rem 0.75rem
+
+.absolutex-center
   position: absolute
-  top: 0
-  right: 0
-  left: 0
-  min-height: 100vh
-  overflow-y: scroll
+  left: 50%
+  transform: translate(-50%)
 
-  background-color: #4a65f1
+.absolutey-center
+  position: absolute
+  top: 50%
+  transform: translate(0, -50%)
 
-  &:before
-    content: ""
-    z-index: 0
-    display: block
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
+.absolute-center
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
 
-    height: 1080px
+.table-reset
+  border-spacing: 0
 
-    background: linear-gradient(#11d4e1, #4a65f1)
+.table-auto
+  table-layout: auto
 
-  .wrapper
+.ellipsis
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+
+.text-justify-word
+  text-align: justify
+  text-justify: inter-word
+
+.text-justify-character
+  text-align: justify
+  text-justify: inner-character
+
+.transition-colors
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s
+
+.transition-shadows
+  transition: box-shadow 0.2s
+
+.layout-main .navbar
+  background-color: rgba(0, 0, 0, 0.65)
+
+  .navitem
     position: relative
-    min-height: 100vh
 
+    &:after
+      content: " "
+
+      display: block
+      width: 100%
+      height: 0
+      background-color: config("colors.dtek")
+
+      transition: height 0.1s
+
+      position: absolute
+      bottom: 0
+
+    &:hover:after
+      height: 4px
+
+  .logo
+    margin-bottom: -2rem
+
+.layout-admin
+  .topbar
+    .topbar-main
+      background-color: #4d5467
+
+      .navitem
+        line-height: 60px
+
+    .topbar-nav
+      background-color: #424858
+
+      .navitem
+        line-height: 48px
+        padding: 0 1rem
+
+        transition: background-color 0.1s
+
+        &:hover
+          background-color: rgba(255, 255, 255, .05) !important
+
+        &.active
+          background-color: rgba(255, 255, 255, .1) !important
+
+
+.#{$pretty--class-name}
+  input:checked ~ .state.p-dtek,
+  &.p-toggle .state.p-dtek
+    label:after
+      background-color: config("colors.dtek") !important
+
+    .icon,
+    .svg
+      color: #fff
+      stroke: #fff
+
+  input:checked ~ .state.p-dtek-o,
+  &.p-toggle .state.p-dtek-o
+    label:before
+      border-color: config("colors.dtek")
+
+    label:after
+      background-color: transparent
+
+    .icon,
+    .svg,
+    svg
+      color: config("colors.dtek")
+      stroke: config("colors.dtek")
+
+  &.p-default:not(.p-fill) input:checked ~ .state.p-dtek-o label
+    &:after
+      background-color: config("colors.dtek") !important
+
+  &.p-switch input:checked ~ .state.p-dtek:before
+    border-color: config("colors.dtek")
+
+  &.p-switch.p-fill input:checked ~ .state.p-dtek:before
+    background-color: config("colors.dtek") !important
+
+  &.p-switch.p-slim input:checked ~ .state.p-dtek:before
+    border-color: color(config("colors.dtek") tint(20%))
+    background-color: color(config("colors.dtek") tint(20%)) !important
+
+
+.role-anim-enter
+  opacity: 0.01
+  transform: translateX(-10px)
+
+.role-anim-enter.role-anim-enter-active
+  opacity: 1
+  transform: translateX(0)
+  transition: opacity 150ms, transform 150ms
+
+.role-anim-exit
+  opacity: 1
+  transform: translateX(0)
+
+.role-anim-exit.role-anim-exit-active 
+  opacity: 0.01
+  transform: translateX(-10px)
+  transition: opacity 150ms, transform 150ms
+
+
+.gallery-list
+  display: grid
+  justify-content: center
+  grid-gap: 5px

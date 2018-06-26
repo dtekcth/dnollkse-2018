@@ -1,0 +1,46 @@
+.richtext
+  @apply .rounded .bg-white
+
+  .toolbar-menu
+    @apply .border-b .border-grey-lighter
+
+    .button
+      @apply .p-1 .inline-block .text-grey
+
+      &[data-active="true"]
+        @apply .text-dtek
+
+  .editor
+    @apply .p-1 .overflow-y-auto
+
+    & > * > * + *
+      margin-top: 0.5rem
+
+    blockquote
+      @apply .border-l-2 .border-grey-light .text-grey-dark .italic .pl-2 .py-1
+
+    code
+      @apply .bg-grey-lighter .inline-block .rounded
+
+      padding: 2px
+
+    ol
+
+.markdown
+  & > * + *
+    margin-top: 0.75rem
+
+  .rounded > p > img
+    @apply .rounded
+
+  .rounded-sm > p > img
+    @apply .rounded-sm
+
+  .rounded-lg > p > img
+    @apply .rounded-lg
+
+.CodeMirror
+  height: 200px
+
+  .editor-preview
+    @extend .markdown

@@ -50,6 +50,7 @@ let colors = {
 
   'white': '#ffffff',
 
+  'black-faded': 'rgba(0, 0, 0, 0.5)',
   'black': '#22292f',
   'black-ash': '#171717',
   'black-shark': '#33363b',
@@ -134,7 +135,11 @@ let colors = {
   'pink': '#f66d9b',
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
-  'pink-lightest': '#ffebef'
+  'pink-lightest': '#ffebef',
+
+  'dtek': '#fa6607',
+  'dtek-dark': '#d24504',
+  'dtek-darker': '#b93104'
 };
 
 module.exports = {
@@ -201,6 +206,9 @@ module.exports = {
   */
 
   fonts: {
+    'geomancy': [
+      'Geomancy-Extra-Bold'
+    ],
     'sans': [
       'Karla',
       '-apple-system',
@@ -264,6 +272,8 @@ module.exports = {
   */
 
   textSizes: {
+    '3xs': '.5rem',     // 8px
+    '2xs': '.625rem',   // 10px
     'xs': '.75rem',     // 12px
     'sm': '.875rem',    // 14px
     'base': '1rem',     // 16px
@@ -392,6 +402,7 @@ module.exports = {
     '0': '0',
     '2': '2px',
     '4': '4px',
+    '6': '6px',
     '8': '8px',
   },
 
@@ -524,6 +535,17 @@ module.exports = {
     '32': '8rem',
     '48': '12rem',
     '64': '16rem',
+    '1/2': '50%',
+    '1/3': '33.33333%',
+    '2/3': '66.66667%',
+    '1/4': '25%',
+    '3/4': '75%',
+    '1/5': '20%',
+    '2/5': '40%',
+    '3/5': '60%',
+    '4/5': '80%',
+    '1/6': '16.66667%',
+    '5/6': '83.33333%',
     'full': '100%',
     'screen': '100vh'
   },
@@ -640,7 +662,7 @@ module.exports = {
     '1': '0.5rem',
     '2': '1rem',
     '3': '1.5rem',
-    '4': '1rem',
+    '4': '2.5rem',
     '5': '4rem',
     '6': '5rem',
     '7': '7.5rem',
@@ -836,9 +858,9 @@ module.exports = {
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
     borderColors: ['responsive', 'hover'],
-    borderRadius: ['responsive'],
-    borderStyle: ['responsive'],
-    borderWidths: ['responsive'],
+    borderRadius: ['responsive', 'hover'],
+    borderStyle: ['responsive', 'hover'],
+    borderWidths: ['responsive', 'hover'],
     cursor: ['responsive'],
     display: ['responsive'],
     flexbox: ['responsive'],
