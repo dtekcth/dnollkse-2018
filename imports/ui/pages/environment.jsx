@@ -77,6 +77,8 @@ class EnvironmentPage extends Component {
       },
       yAxis: [
         {
+          softMin: 20,
+          softMax: 30,
           labels: {
             format: "{value}°C"
           },
@@ -85,6 +87,8 @@ class EnvironmentPage extends Component {
           }
         },
         {
+          softMin: 30,
+          softMax: 60,
           title: {
             text: "Humidity"
           },
