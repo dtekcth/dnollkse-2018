@@ -141,7 +141,10 @@ Settings.schema = new SimpleSchema({
   },
   "documents.$": Settings.docSchema,
 
-  contacts: Settings.contactsSchema,
+  contacts: {
+    type: Settings.contactsSchema,
+    optional: true
+  },
 
   created_at: schemaCreatedAt()
 });

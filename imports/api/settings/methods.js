@@ -17,7 +17,7 @@ export const settingsSetupMethod = new ValidatedMethod({
                              "Need to be signed in to setup website");
     }
 
-    const settings = Settings.findOne("development");
+    const settings = Settings.findOne(process.env.NODE_ENV);
     if (settings && settings.setup) {
       throw new Meteor.Error("settings.methods.setup.alreadySetup",
                              "Website has already been set up");
@@ -25,7 +25,7 @@ export const settingsSetupMethod = new ValidatedMethod({
 
     Roles.addUsersToRoles(this.userId, [ "admin" ]);
 
-    Settings.upsert({ _id: "development" }, {
+    Settings.upsert({ _id: process.env.NODE_ENV }, {
       $set: {
         setup: true
       }
@@ -109,7 +109,7 @@ export const settingsUpdateMethod = new ValidatedMethod({
                              "Contacts must have a name and a value!");
     }
 
-    Settings.upsert({ _id: "development" }, {
+    Settings.upsert({ _id: process.env.NODE_ENV}, {
       $set: {
         committee,
         gcalId,

@@ -9,7 +9,7 @@ Tracker.autorun(() => {
   let settings;
 
   if (handle.ready()) {
-    settings = Settings.findOne({ _id: "development" });
+    settings = Settings.findOne({ _id: process.env.NODE_ENV });
   }
 
   store.dispatch(settingsUpdate(
