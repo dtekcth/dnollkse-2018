@@ -11,13 +11,10 @@ import Loader from "/imports/ui/components/loader";
 import MainLayout from "/imports/ui/layouts/main";
 
 import CommitteePage from "/imports/ui/pages/committee";
-import HomePage from "/imports/ui/pages/home";
 import DynamicPage from "/imports/ui/pages/dynamicpage";
 import ContactsPage from "/imports/ui/pages/contacts";
 import SchedulePage from "/imports/ui/pages/schedule";
-import FAQPage from "/imports/ui/pages/faq";
-import LinksPage from "/imports/ui/pages/links";
-import DocumentsPage from "/imports/ui/pages/documents";
+import NewsPage from "/imports/ui/pages/news";
 import LoginPage from "/imports/ui/pages/login";
 import EnvironmentPage from "/imports/ui/pages/environment";
 import SetupPage from "/imports/ui/pages/setup";
@@ -27,10 +24,16 @@ import AdminCommitteesPage from "/imports/ui/pages/admin/committees/list";
 import AdminManageCommitteePage from "/imports/ui/pages/admin/committees/manage";
 import AdminIndexPage from "/imports/ui/pages/admin/index";
 import AdminSettingsPage from "/imports/ui/pages/admin/settings/index.jsx";
+
 import AdminPagesPage from "/imports/ui/pages/admin/pages/index.jsx";
 import AdminManagePagePage from "/imports/ui/pages/admin/pages/manage.jsx";
+
+import AdminNewsPage from "/imports/ui/pages/admin/news/index.jsx";
+import AdminManagePostPage from "/imports/ui/pages/admin/news/manage.jsx";
+
 import AdminRolePage from "/imports/ui/pages/admin/role";
 import AdminUsersPage from "/imports/ui/pages/admin/users";
+
 import AdminUploadsPage from "/imports/ui/pages/admin/uploads/list";
 import AdminUploadsManagePage from "/imports/ui/pages/admin/uploads/manage";
 
@@ -81,7 +84,7 @@ class App extends Component {
         </Helmet>
 
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={NewsPage} />
           <Route exact path="/contacts" component={ContactsPage} />
           <Route exact path="/schedule" component={SchedulePage} />
           <Route exact path="/environment" component={EnvironmentPage} />
@@ -127,6 +130,17 @@ class App extends Component {
           <Route
             exact path="/admin/pages/:pageId"
             component={AdminManagePagePage}
+          />
+
+          {/* News */}
+          <Route exact path="/admin/news" component={AdminNewsPage} />
+          <Route
+            exact path="/admin/news/new"
+            render={props => <AdminManagePostPage new {...props} />}
+          />
+          <Route
+            exact path="/admin/news/:postId"
+            component={AdminManagePostPage}
           />
 
           <Route

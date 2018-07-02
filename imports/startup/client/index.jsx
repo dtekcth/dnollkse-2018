@@ -30,6 +30,9 @@ import "/imports/api/settings/client";
 import "/imports/api/pages";
 import "/imports/api/pages/client";
 
+// Import news api
+import "/imports/api/news";
+import "/imports/api/news/client";
 
 // Import environment api
 import "/imports/api/environment";

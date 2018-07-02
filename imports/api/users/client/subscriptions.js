@@ -1,6 +1,6 @@
 import { Roles } from "meteor/alanning:roles";
 
-import { userUpdate, rolesUpdate } from "/imports/actions/user";
+import { userUpdate, rolesUpdate } from "/imports/actions";
 import store from "/imports/store";
 
 Tracker.autorun(() => {

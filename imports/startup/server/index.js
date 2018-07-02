@@ -9,6 +9,10 @@ import "/imports/api/settings/server";
 import "/imports/api/pages";
 import "/imports/api/pages/server";
 
+// Import news api
+import "/imports/api/news";
+import "/imports/api/news/server";
+
 // Import environment api
 import "/imports/api/environment";
 import "/imports/api/environment/server";

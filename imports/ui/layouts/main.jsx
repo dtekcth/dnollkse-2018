@@ -52,7 +52,7 @@ class MainLayout extends Component {
           <Link
             to={s.link}
             className={
-              cx("navlink inline-block px-1 py-2 xl:px-2 lg:py-3")
+              cx("navlink inline-block px-2 py-2 xl:px-2 lg:py-3")
             }
           >
             {textFix(s.text)}
@@ -81,7 +81,7 @@ class MainLayout extends Component {
                     <ul className={
                       cx("flex-grow list-reset tracking-wide font-geomancy",
                          "whitespace-no-wrap",
-                         "text-3xs sm:text-xs lg:text-base ml-2 lg:ml-4")
+                         "text-3xs sm:text-xs lg:text-base ml-2")
                     }>
                       {links}
                     </ul>

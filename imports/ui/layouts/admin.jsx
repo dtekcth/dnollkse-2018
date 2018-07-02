@@ -38,6 +38,7 @@ class AdminLayout extends Component {
       [ "/admin"            , "Dashboard" ],
       [ "/admin/users"      , "Users & Permissions" ],
       [ "/admin/committees" , "Committees" ],
+      [ "/admin/news"       , "News" ],
       [ "/admin/pages"      , "Pages" ],
       [ "/admin/uploads"    , "Uploads" ],
       [ "/admin/settings"   , "Settings" ],

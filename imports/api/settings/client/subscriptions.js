@@ -1,4 +1,4 @@
-import { settingsUpdate } from "/imports/actions/settings";
+import { settingsUpdate } from "/imports/actions";
 import store from "/imports/store";
 
 import Settings from "./../collections";

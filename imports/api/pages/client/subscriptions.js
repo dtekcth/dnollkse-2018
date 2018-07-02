@@ -1,4 +1,4 @@
-import { pagesUpdate } from "/imports/actions/pages";
+import { pagesUpdate } from "/imports/actions";
 import store from "/imports/store";
 
 import Pages from "./../collections";

@@ -1,4 +1,4 @@
-import { committeeUpdate } from "/imports/actions/committees";
+import { committeeUpdate } from "/imports/actions";
 import store from "/imports/store";
 
 import Committees from "./../collections";

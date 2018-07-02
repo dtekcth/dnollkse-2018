@@ -1,4 +1,4 @@
-export { default as Settings } from "./collections";
+export { default as Pages } from "./collections";
 
 export {
   pagesCreateMethod,
