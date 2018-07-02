@@ -19,26 +19,29 @@ class SettingsContact extends Component {
 
   renderContact({ value, onChange }) {
     return (
-      <F>
-        <InputGroup
-          value={value.name || ""}
-          placeholder="Name..."
-          text="Name"
-          onChange={
-            e => onChange && onChange({ name: e.target.value })
-          }
-        />
+      <div className="flex -mx-1">
+        <div className="w-1/2 px-1">
+          <InputGroup
+            value={value.name || ""}
+            placeholder="Name..."
+            text="Name"
+            onChange={
+              e => onChange && onChange({ name: e.target.value })
+            }
+          />
+        </div>
 
-        <InputGroup
-          className="mt-1"
-          value={value.value || ""}
-          placeholder="Value..."
-          text="Value"
-          onChange={
-            e => onChange && onChange({ value: e.target.value })
-          }
-        />
-      </F>
+        <div className="w-1/2 px-1">
+          <InputGroup
+            value={value.value || ""}
+            placeholder="Value..."
+            text="Value"
+            onChange={
+              e => onChange && onChange({ value: e.target.value })
+            }
+          />
+        </div>
+      </div>
     );
   }
 

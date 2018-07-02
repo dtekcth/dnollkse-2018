@@ -74,16 +74,6 @@ Settings.schema = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Id,
     optional: true
   },
-  formDescription: {
-    type: String,
-    label: "Form Description",
-    optional: true
-  },
-  formEmbed: {
-    type: String,
-    label: "Form Embed Link",
-    optional: true
-  },
   setup: {
     type: Boolean,
     optional: true

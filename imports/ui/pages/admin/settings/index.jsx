@@ -75,7 +75,7 @@ class AdminSettingsPage extends Component {
   updateSettings() {
     const s = this.props.settings.data;
 
-    this.setState(_.pick(s, [ "committee", "formDescription", "formEmbed",
+    this.setState(_.pick(s, [ "committee",
                               "navigation", "questions", "links", "documents",
                               "contacts" ]));
   }
@@ -85,7 +85,7 @@ class AdminSettingsPage extends Component {
     e.preventDefault();
 
     settingsUpdateMethod.call(
-      _.pick(this.state, [ "committee", "formDescription", "formEmbed",
+      _.pick(this.state, [ "committee",
                            "navigation", "questions", "links", "documents",
                            "contacts" ]),
       err => {
@@ -332,27 +332,6 @@ class AdminSettingsPage extends Component {
                 options={options}
                 onChange={
                   opt => this.setState({ committee: opt.value._id })
-                }
-              />
-
-              <InputGroup
-                className="mt-1"
-                richtext
-                value={this.state.formDescription || ""}
-                placeholder="URL..."
-                text="Form Description"
-                onChange={
-                  value => this.setState({ formDescription: value })
-                }
-              />
-
-              <InputGroup
-                className="mt-1"
-                value={this.state.formEmbed || ""}
-                placeholder="URL..."
-                text="Form Embed Link"
-                onChange={
-                  e => this.setState({ formEmbed: e.target.value })
                 }
               />
             </div>

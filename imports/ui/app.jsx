@@ -13,6 +13,7 @@ import MainLayout from "/imports/ui/layouts/main";
 import CommitteePage from "/imports/ui/pages/committee";
 import HomePage from "/imports/ui/pages/home";
 import DynamicPage from "/imports/ui/pages/dynamicpage";
+import ContactsPage from "/imports/ui/pages/contacts";
 import FAQPage from "/imports/ui/pages/faq";
 import LinksPage from "/imports/ui/pages/links";
 import DocumentsPage from "/imports/ui/pages/documents";
@@ -80,9 +81,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/faq" component={FAQPage} />
-          <Route exact path="/links" component={LinksPage} />
-          <Route exact path="/documents" component={DocumentsPage} />
+          <Route exact path="/contacts" component={ContactsPage} />
           <Route exact path="/environment" component={EnvironmentPage} />
           <Route exact path="/committee" component={CommitteePage} />
           <Route exact path="/setup" component={SetupPage} />

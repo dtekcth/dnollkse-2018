@@ -39,8 +39,6 @@ export const settingsUpdateMethod = new ValidatedMethod({
   name: "settings.update",
   validate: new SimpleSchema({
     committee       : Settings.simpleSchema().schema("committee"),
-    formDescription : Settings.simpleSchema().schema("formDescription"),
-    formEmbed       : Settings.simpleSchema().schema("formEmbed"),
 
     navigation      : Settings.simpleSchema().schema("navigation"),
     "navigation.$"  : Settings.simpleSchema().schema("navigation.$"),
@@ -58,7 +56,7 @@ export const settingsUpdateMethod = new ValidatedMethod({
     "contacts.$"    : Settings.simpleSchema().schema("contacts.$")
   }).validator({}),
 
-  run({ committee, formDescription, formEmbed, questions,
+  run({ committee, questions,
         navigation, links, documents, contacts }) {
     if (!this.userId || !Roles.userIsInRole(this.userId, ["ADMIN_SETTINGS"])) {
       throw new Meteor.Error("settings.methods.update.notAuthorized",
@@ -113,8 +111,6 @@ export const settingsUpdateMethod = new ValidatedMethod({
     Settings.upsert({ _id: "development" }, {
       $set: {
         committee,
-        formDescription,
-        formEmbed,
         navigation,
         questions,
         links,
