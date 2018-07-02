@@ -8776,6 +8776,16 @@ button,
   color: #d24504;
 }
 
+.fr-view a {
+  -webkit-transition: background-color .2s, color .2s, border-color .2s;
+  transition: background-color .2s, color .2s, border-color .2s;
+  color: #fa6607;
+}
+
+.fr-view a:hover {
+  color: #d24504;
+}
+
 .editor-toolbar {
   background-color: #fff;
 }
@@ -8784,6 +8794,18 @@ button,
 .CodeMirror-scroll {
   min-height: 100px !important;
   z-index: 0 !important;
+}
+
+a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
+  display: none !important;
+}
+
+.fr-image-resizer {
+  border-color: #fa6607;
+}
+
+.fr-image-resizer .fr-handler {
+  background-color: #fa6607;
 }
 
 .tabs {

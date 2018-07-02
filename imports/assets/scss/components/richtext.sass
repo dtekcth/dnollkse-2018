@@ -45,6 +45,12 @@
     &:hover
       @apply .text-dtek-dark
 
+.fr-view
+  a
+    @apply .transition-colors .text-dtek
+
+    &:hover
+      @apply .text-dtek-dark
 
 .editor-toolbar
   @apply .bg-white
@@ -55,3 +61,12 @@
 
   .editor-preview
     @extend .markdown
+
+a[href="https://www.froala.com/wysiwyg-editor?k=u"]
+  display: none !important
+
+.fr-image-resizer
+  @apply .border-dtek
+
+  .fr-handler
+    @apply .bg-dtek

@@ -45,9 +45,6 @@ class MainLayout extends Component {
 
   render() {
     const { props } = this;
-    const coverStyle = {
-      backgroundImage: "url(https://dnollk.se/uploads/2018/omslag2018.JPG)"
-    }
 
     const links = _.map(props.settings.navigation, (s, i) => {
       return (
@@ -68,9 +65,12 @@ class MainLayout extends Component {
       <BaseLayout title={props.title}>
         <div className={cx("layout-main", props.className)}>
           <header>
-            {/* <div className="header-cover" style={coverStyle}></div> */}
             <div className="relative">
-              <ImageFileContainer className="block" imageId={props.committee.cover} />
+              <ImageFileContainer
+                className="block w-full"
+                imageId={props.committee.cover}
+                defaultSrc="/static/images/placeholder-cover.png"
+              />
 
               <nav className="navbar w-full absolute pin-b mb-3">
                 <div className="container mx-auto">

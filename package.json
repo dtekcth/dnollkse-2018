@@ -26,6 +26,7 @@
     "highcharts": "^6.1.0",
     "highcharts-react-official": "^1.1.0",
     "immutability-helper": "^2.7.1",
+    "jquery": "^3.3.1",
     "kerberos": "0.0.24",
     "marked": "^0.4.0",
     "meteor-node-stubs": "^0.3.2",

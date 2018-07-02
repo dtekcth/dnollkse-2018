@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import MainLayout from "/imports/ui/layouts/main";
 import Loader from "/imports/ui/components/loader";
-import Markdown from "/imports/ui/components/markdown";
 
 const mapStateToProps = (state) => {
   return {

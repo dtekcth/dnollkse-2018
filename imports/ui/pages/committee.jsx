@@ -3,9 +3,9 @@ import React, { Fragment as F, Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import cx from "classnames";
+import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
 import Loader from "/imports/ui/components/loader";
-import Markdown from "/imports/ui/components/markdown";
 import ImageFileContainer from "/imports/ui/containers/imagefile";
 import MainLayout from "/imports/ui/layouts/main";
 
@@ -47,9 +47,9 @@ class CommitteePage extends Component {
             {m.position}
           </h3>
           <div className="mt-2 text-justify-word leading-loose">
-            <Markdown>
-              {m.description}
-            </Markdown>
+            <FroalaEditorView
+              model={m.description}
+            />
           </div>
         </div>
       );
@@ -110,9 +110,9 @@ class CommitteePage extends Component {
           <div
             className="px-2 mt-3 text-justify-word leading-loose"
           >
-            <Markdown>
-              {committee.description}
-            </Markdown>
+            <FroalaEditorView
+              model={committee.description}
+            />
           </div>
 
           <div className="mt-4">

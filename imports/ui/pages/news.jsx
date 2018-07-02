@@ -2,10 +2,10 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux"
 import moment from "moment";
+import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
 import MainLayout from "/imports/ui/layouts/main";
 import Loader from "/imports/ui/components/loader";
-import Markdown from "/imports/ui/components/markdown";
 
 const mapStateToProps = (state) => {
   return {
@@ -30,9 +30,11 @@ class NewsPage extends Component {
 
           {
             !_.isEmpty(i.content) && 
-            <Markdown className="mt-2">
-              {i.content}
-            </Markdown>
+            <div className="mt-2">
+              <FroalaEditorView
+                model={i.content}
+              />
+            </div>
           }
         </div>
       )

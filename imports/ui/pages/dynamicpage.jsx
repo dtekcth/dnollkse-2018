@@ -3,10 +3,10 @@ import React, { Fragment as F, Component } from "react";
 import { compose } from "react-komposer"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom";
+import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
 import MainLayout from "/imports/ui/layouts/main";
 import Loader from "/imports/ui/components/loader";
-import Markdown from "/imports/ui/components/markdown";
 
 const mapStateToProps = (state) => {
   return {
@@ -38,9 +38,11 @@ class DynamicPage extends Component {
         <div key={index} className="bg-white rounded p-4 mt-3">
           <h3>{i.title}</h3>
 
-          <Markdown className="mt-2">
-            {i.text}
-          </Markdown>
+          <div className="mt-2">
+            <FroalaEditorView
+              model={i.text}
+            />
+          </div>
         </div>
       )
     });
@@ -61,9 +63,9 @@ class DynamicPage extends Component {
           <div
             className="px-2 mt-3 text-justify-word leading-loose"
           >
-            <Markdown>
-              {page.content.text}
-            </Markdown>
+            <FroalaEditorView
+              model={page.content.text}
+            />
           </div>
 
           <iframe
