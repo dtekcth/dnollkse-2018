@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux"
+import moment from "moment";
 
 import MainLayout from "/imports/ui/layouts/main";
 import Loader from "/imports/ui/components/loader";
@@ -20,10 +21,15 @@ class NewsPage extends Component {
     return _.map(news.list, (i, index) => {
       return (
         <div key={index} className="bg-white rounded p-4 mt-3">
-          <h3>{i.title}</h3>
+          <div className="flex justify-between">
+            <h3>{i.title}</h3>
+            <div className="text-grey">
+              {moment(i.date).format("LLL")}
+            </div>
+          </div>
 
           {
-            !_.isEmpty(i.text) && 
+            !_.isEmpty(i.content) && 
             <Markdown className="mt-2">
               {i.content}
             </Markdown>
