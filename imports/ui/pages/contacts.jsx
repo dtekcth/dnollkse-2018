@@ -37,12 +37,7 @@ class ContactsPage extends Component {
   getContacts() {
     const { settings } = this.props;
 
-    if (settings.data.contacts.length === 0)
-      return (
-        <div className="p-2 text-grey italic">No contacts</div>
-      );
-
-    return _.map(settings.data.contacts, (i, index) => {
+    const list = _.map(settings.data.contacts.list, (i, index) => {
       return (
         <div key={index} className="flex justify-between p-2">
           <div>{i.name}</div>
@@ -50,10 +45,22 @@ class ContactsPage extends Component {
         </div>
       );
     });
+
+    return (
+      <F>
+        <div className="flex justify-between p-2">
+          <div>Jour number</div>
+          <div className="italic">{settings.data.contacts.jour}</div>
+        </div>
+
+        {list}
+      </F>
+    );
   }
 
   render() {
     const { props } = this;
+    const { settings } = props;
 
     if (!props.settings.ready || !props.committee.ready) {
       return (
@@ -65,8 +72,8 @@ class ContactsPage extends Component {
 
     return (
       <MainLayout title="Contacts" className="bg-grey-lighter">
-        <div className="container mx-auto mt-4">
-          <h2 className="text-center">Contact Information</h2>
+        <div className="container mx-auto mt-4 mb-4">
+          <h2 className="text-center">Contact Info</h2>
 
           <div className="mt-2">
             <div className="bg-white p-2 rounded mx-auto max-w-md">
@@ -74,28 +81,35 @@ class ContactsPage extends Component {
             </div>
           </div>
 
-          <h2 className="text-center mt-3">Contacts</h2>
 
-          <div className="mt-2">
-            <div className="bg-white p-2 rounded mx-auto max-w-md">
+          <div className="mt-3">
+            <h2 className="text-center">Other Info</h2>
+
+            <div className="bg-white p-2 rounded mx-auto max-w-md mt-2">
               {this.getContacts()}
             </div>
           </div>
 
-          <h2 className="text-center mt-3">IRC</h2>
 
-          <div className="mt-2 mb-4">
-            <div className="bg-white p-4 rounded mx-auto max-w-md">
-              <div>IRC-kanal : #dtek på irc.dtek.se</div>
+          {
+            !_.isEmpty(settings.data.contacts.irc) && 
+            <div className="mt-3">
+              <h2 className="text-center">IRC</h2>
 
-              <div>
-                <span>Alternativt : </span>
-                <Link to="https://irc.dtek.se/" className="link-dtek">
-                  https://irc.dtek.se/
-                </Link>
+              <div className="bg-white p-4 rounded mx-auto max-w-md mt-2">
+                <span>IRC-kanal : </span>
+                <span className="text-dtek">{settings.data.contacts.irc}</span>
+                <span> på irc.dtek.se</span>
+
+                <div className="mt-1">
+                  <span>Alternativt : </span>
+                  <Link to="https://irc.dtek.se/" className="link-dtek">
+                    https://irc.dtek.se/
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          }
         </div>
       </MainLayout>
     );

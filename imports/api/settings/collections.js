@@ -56,7 +56,7 @@ Settings.docSchema = new SimpleSchema({
   }
 });
 
-Settings.contactSchema = new SimpleSchema({
+Settings.contactListSchema = new SimpleSchema({
   name: {
     type: String,
     label: "Contact Name"
@@ -65,6 +65,26 @@ Settings.contactSchema = new SimpleSchema({
     type: String,
     label: "Contact Value"
   }
+});
+
+Settings.contactsSchema = new SimpleSchema({
+  jour: {
+    type: String,
+    label: "Jour Number",
+    optional: true
+  },
+  irc: {
+    type: String,
+    label: "IRC Channel",
+    optional: true
+  },
+  list: {
+    type: Array,
+    label: "Other Contacts",
+    optional: true,
+    defaultValue: []
+  },
+  "list.$": Settings.contactListSchema
 });
 
 Settings.schema = new SimpleSchema({
@@ -121,13 +141,7 @@ Settings.schema = new SimpleSchema({
   },
   "documents.$": Settings.docSchema,
 
-  contacts: {
-    type: Array,
-    label: "Contacts",
-    optional: true,
-    defaultValue: []
-  },
-  "contacts.$": Settings.contactSchema,
+  contacts: Settings.contactsSchema,
 
   created_at: schemaCreatedAt()
 });

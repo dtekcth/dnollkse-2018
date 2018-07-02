@@ -58,7 +58,7 @@ class AdminSettingsPage extends Component {
     questions  : [],
     links      : [],
     documents  : [],
-    contacts   : [],
+    contacts   : {},
     page       : "nav"
   }
 

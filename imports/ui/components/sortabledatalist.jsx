@@ -64,11 +64,12 @@ const ItemList = SortableContainer(
 
 class SortableDataList extends Component {
   static propTypes = {
-    renderItem: PropTypes.func.isRequired,
+    items      : PropTypes.array,
+    renderItem : PropTypes.func.isRequired,
   }
 
   static defaultProps = {
-    
+    items: []
   }
 
   state = {

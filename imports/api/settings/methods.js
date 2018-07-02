@@ -54,8 +54,7 @@ export const settingsUpdateMethod = new ValidatedMethod({
     documents       : Settings.simpleSchema().schema("documents"),
     "documents.$"   : Settings.simpleSchema().schema("documents.$"),
 
-    contacts        : Settings.simpleSchema().schema("contacts"),
-    "contacts.$"    : Settings.simpleSchema().schema("contacts.$")
+    contacts        : Settings.simpleSchema().schema("contacts")
   }).validator({}),
 
   run({ committee, gcalId, gcalKey, questions,
@@ -101,7 +100,7 @@ export const settingsUpdateMethod = new ValidatedMethod({
                              "Documents must have a title and a text!");
     }
 
-    const foundEmptyContact = _.find(contacts, i => {
+    const foundEmptyContact = _.find(contacts.list, i => {
       return _.isEmpty(i.name) || _.isEmpty(i.value);
     });
 
