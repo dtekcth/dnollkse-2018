@@ -1,8 +1,10 @@
 import { analytics } from "meteor/okgrow:analytics";
 
 import React, { Component } from "react";
+import BigCalendar from "react-big-calendar";
 import { mount } from "react-mounter";
 import { Provider } from "react-redux";
+import moment from "moment";
 
 import {
   BrowserRouter as Router
@@ -45,6 +47,8 @@ import "/imports/api/committees/client";
 
 DocHead.addMeta({ name: "viewport", content: "initial-scale=0.5, minimum-scale=0.5" });
 DocHead.addMeta({ name: "theme-color", content: "#FA6607" });
+
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
 const Root = () => ( 
   <Router>

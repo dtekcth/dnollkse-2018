@@ -39,6 +39,8 @@ export const settingsUpdateMethod = new ValidatedMethod({
   name: "settings.update",
   validate: new SimpleSchema({
     committee       : Settings.simpleSchema().schema("committee"),
+    gcalId          : Settings.simpleSchema().schema("gcalId"),
+    gcalKey         : Settings.simpleSchema().schema("gcalKey"),
 
     navigation      : Settings.simpleSchema().schema("navigation"),
     "navigation.$"  : Settings.simpleSchema().schema("navigation.$"),
@@ -56,7 +58,7 @@ export const settingsUpdateMethod = new ValidatedMethod({
     "contacts.$"    : Settings.simpleSchema().schema("contacts.$")
   }).validator({}),
 
-  run({ committee, questions,
+  run({ committee, gcalId, gcalKey, questions,
         navigation, links, documents, contacts }) {
     if (!this.userId || !Roles.userIsInRole(this.userId, ["ADMIN_SETTINGS"])) {
       throw new Meteor.Error("settings.methods.update.notAuthorized",
@@ -111,6 +113,8 @@ export const settingsUpdateMethod = new ValidatedMethod({
     Settings.upsert({ _id: "development" }, {
       $set: {
         committee,
+        gcalId,
+        gcalKey,
         navigation,
         questions,
         links,

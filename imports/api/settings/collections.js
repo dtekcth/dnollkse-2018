@@ -74,6 +74,16 @@ Settings.schema = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Id,
     optional: true
   },
+  gcalId: {
+    type: String,
+    label: "Google Calendar ID",
+    optional: true
+  },
+  gcalKey: {
+    type: String,
+    label: "Google Calendar Key",
+    optional: true
+  },
   setup: {
     type: Boolean,
     optional: true

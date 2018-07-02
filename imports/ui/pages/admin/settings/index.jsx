@@ -75,7 +75,7 @@ class AdminSettingsPage extends Component {
   updateSettings() {
     const s = this.props.settings.data;
 
-    this.setState(_.pick(s, [ "committee",
+    this.setState(_.pick(s, [ "committee", "gcalId", "gcalKey",
                               "navigation", "questions", "links", "documents",
                               "contacts" ]));
   }
@@ -85,7 +85,7 @@ class AdminSettingsPage extends Component {
     e.preventDefault();
 
     settingsUpdateMethod.call(
-      _.pick(this.state, [ "committee",
+      _.pick(this.state, [ "committee", "gcalId", "gcalKey",
                            "navigation", "questions", "links", "documents",
                            "contacts" ]),
       err => {
@@ -332,6 +332,26 @@ class AdminSettingsPage extends Component {
                 options={options}
                 onChange={
                   opt => this.setState({ committee: opt.value._id })
+                }
+              />
+
+              <InputGroup
+                className="mt-1"
+                value={this.state.gcalId || ""}
+                placeholder="Google Calendar ID..."
+                text="Google Calendar ID"
+                onChange={
+                  e => this.setState({ gcalId: e.target.value })
+                }
+              />
+
+              <InputGroup
+                className="mt-1"
+                value={this.state.gcalKey || ""}
+                placeholder="Google Calendar API Key..."
+                text="Google Calendar API Key"
+                onChange={
+                  e => this.setState({ gcalKey: e.target.value })
                 }
               />
             </div>
