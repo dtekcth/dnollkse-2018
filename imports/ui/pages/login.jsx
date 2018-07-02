@@ -16,7 +16,7 @@ class LoginPage extends Component {
 
     return (
       <BaseLayout className="bg-grey-lighter h-screen" title="Login">
-        <AuthorizedLayout noLoad fail successRoute={params.redirect || "/admin"}>
+        <AuthorizedLayout noLoad fail successRoute={params.redirect || "/"}>
           <div className="flex justify-center">
             <div className="w-full max-w-xs mt-2">
               <div className="absolute-center">

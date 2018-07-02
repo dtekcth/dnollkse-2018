@@ -1,3 +1,5 @@
+import { Roles } from "meteor/alanning:roles";
+
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -12,6 +14,7 @@ const mapStateToProps = (state) => {
   return {
     settings  : state.settings.data,
     committee : state.committee.data,
+    user      : state.user,
     ready     : state.committee.ready && state.settings.ready
   };
 };
@@ -121,8 +124,21 @@ class MainLayout extends Component {
                     <li><Link to="/about"         >Om...</Link></li>
                     <li><Link to="/faq"           >Faq</Link></li>
                     <li><Link to="/contact"       >Kontakt</Link></li>
-                    <li><Link to="/environment"   >Environment</Link></li>
-                    <li><Link to="/login"         >Login</Link></li>
+
+                    {
+                      Roles.userIsInRole(props.user.userId, ["ENVIRONMENT_VIEW"]) &&
+                      <li><Link to="/environment">Environment</Link></li>
+                    }
+
+                    {
+                      Roles.userIsInRole(props.user.userId, ["ADMIN_VIEW"]) &&
+                      <li><Link to="/admin">Admin</Link></li>
+                    }
+
+                    {
+                      !props.user.userId &&
+                      <li><Link to="/login">Login</Link></li>
+                    }
                   </ul>
                 </div>
               </div>

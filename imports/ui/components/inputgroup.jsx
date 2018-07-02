@@ -11,7 +11,7 @@ const InputGroup = (props) => {
   if (props.textarea) {
     input = (
       <textarea
-        className="appearance-none bg-transparent w-full text-grey-darker mt-1"
+        className="text-input-sm w-full text-grey-darker mt-1"
         value={props.value}
         onChange={props.onChange}
         id={props.id}

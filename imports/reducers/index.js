@@ -39,6 +39,18 @@ export const news = (state = {}, action) => {
   }
 };
 
+// Reducer for images
+export const images = (state = {}, action) => {
+  switch (action.type) {
+  case "IMAGES_UPDATE":
+    return {
+      ready : action.ready
+    };
+  default:
+    return state;
+  }
+};
+
 // Reducer for settings data
 export const settings = (state = {}, action) => {
   switch (action.type) {
@@ -102,6 +114,7 @@ export default combineReducers({
   settings,
   pages,
   news,
+  images,
   committee
 });
 

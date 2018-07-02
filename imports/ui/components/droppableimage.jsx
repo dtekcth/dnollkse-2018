@@ -10,6 +10,7 @@ class DroppableImage extends Component {
     onUploadStart    : PropTypes.func,
     onUploadProgress : PropTypes.func,
     onUpload         : PropTypes.func,
+    onChange         : PropTypes.func,
   }
 
   state = {
@@ -27,15 +28,18 @@ class DroppableImage extends Component {
     this.setState({
       file
     });
+
+    this.props.onChange && this.props.onChange(file);
   }
 
-  upload(cb) {
+  upload(cb, meta) {
     const { file } = this.state;
 
     if (!file) return;
 
     const uploadInstance = Images.insert({
       file: file,
+      meta,
       streams: "dynamic",
       chunkSize: "dynamic",
       onProgress: (progress, fileData) => { // eslint-disable-line no-unused-vars

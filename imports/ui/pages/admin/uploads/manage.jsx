@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { NotificationManager } from "react-notifications";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome"
+import { connect } from "react-redux";
 import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
@@ -13,6 +15,13 @@ import AdminLayout from "/imports/ui/layouts/admin";
 import composeWithTracker from "/imports/helpers/composetracker";
 import { Images, imageRemoveMethod } from "/imports/api/images";
 
+const mapStateToProps = (state) => {
+  return {
+    ready: state.images.ready
+  };
+};
+
+@connect(mapStateToProps)
 @composeWithTracker((props, onData) => {
   if (props.new) {
     onData(null, {});
@@ -29,19 +38,55 @@ import { Images, imageRemoveMethod } from "/imports/api/images";
   });
 })
 class AdminUploadsManagePage extends Component {
-  state = {}
+  state = {
+    name        : "",
+    description : ""
+  }
+
+  updateInfo() {
+    const { image } = this.props;
+    if (!image) return;
+
+    this.setState({
+      name        : image.meta.name,
+      description : image.meta.description,
+    });
+  }
+
+  componentDidMount() {
+    if (this.props.ready)
+      this.updateInfo();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.ready != prevProps.ready)
+      this.updateInfo();
+  }
 
   @autobind
   handleSubmit(e) {
     e.preventDefault();
 
+    const { name, description, image } = this.state;
+
     if (!this.droppableImage) return;
 
+    if (!image) {
+      NotificationManager.error("Must provide an image!");
+      return;
+    }
+
+    if (_.isEmpty(name)) {
+      NotificationManager.error("Must provide an image name!");
+      return;
+    }
 
     this.droppableImage.upload((err, file) => {
       setTimeout(() => {
         this.props.history.push("/admin/uploads");
       }, 500);
+    }, {
+      name, description
     });
   }
 
@@ -85,7 +130,11 @@ class AdminUploadsManagePage extends Component {
 
         <div className="p-4">
           <div className="flex justify-between">
-            <h2 className="ml-2">Manage upload</h2>
+            <h2 className="ml-2">
+              {
+                this.props.new ? "Manage Upload" : "New Upload"
+              }
+            </h2>
             {deleteBtn}
           </div>
 
@@ -101,17 +150,25 @@ class AdminUploadsManagePage extends Component {
                           progress: p
                         })
                     }
+                    onChange={f => this.setState({ image: f })}
                     ref={e => this.droppableImage = e}
                     defaultSrc="/static/images/placeholder-1000x700.png"
                   />
                 </div>
 
                 <div className="w-2/3 md:w-3/4 xl:w-4/5 px-1">
-                  <InputGroup id="name" text="Image name" />
+                  <InputGroup
+                    id="name"
+                    text="Image name"
+                    value={this.state.name || ""}
+                    onChange={e => this.setState({ name: e.target.value })}
+                  />
                   <InputGroup
                     textarea
                     className="mt-1"
                     id="description"
+                    value={this.state.description || ""}
+                    onChange={e => this.setState({ description: e.target.value })}
                     text="Description (optional)"
                     rows="4"
                   />
@@ -119,15 +176,18 @@ class AdminUploadsManagePage extends Component {
               </div>
 
               <div className="flex justify-end mt-2">
-                <button
-                  className={
-                    cx("py-1 px-2 rounded-full inline-block",
-                       "bg-green text-white hover:bg-green-dark transition-colors")
-                  }
-                >
-                  <span className="font-semibold">Save</span>
-                  <FontAwesomeIcon className="ml-1" icon="check" fixedWidth />
-                </button>
+                {
+                  this.props.new &&
+                  <button
+                    className={
+                      cx("py-1 px-2 rounded-full inline-block",
+                         "bg-green text-white hover:bg-green-dark transition-colors")
+                    }
+                    >
+                    <span className="font-semibold">Save</span>
+                    <FontAwesomeIcon className="ml-1" icon="check" fixedWidth />
+                  </button>
+                }
               </div>
             </div>
           </AutoForm>

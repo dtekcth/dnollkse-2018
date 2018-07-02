@@ -2,6 +2,9 @@ import { FilesCollection } from "meteor/ostrio:files";
 
 import SimpleSchema from "simpl-schema";
 
+import { imagesUpdate } from "/imports/actions";
+import store from "/imports/store";
+
 const checkFile = file => {
   // Allow upload files under 10MB, and only in png/jpg/jpeg formats
   if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.extension)) {
@@ -21,7 +24,13 @@ const Images = new FilesCollection({
 Images.collection.attachSchema(new SimpleSchema(Images.schema));
 
 if (Meteor.isClient) {
-  Meteor.subscribe("files.images.all");
+  Tracker.autorun(() => {
+    const handle = Meteor.subscribe("files.images.all");
+
+    store.dispatch(imagesUpdate(
+      handle.ready()
+    ));
+  });
 }
 
 if (Meteor.isServer) {

@@ -22,6 +22,13 @@ export const newsUpdate = (news, ready) => {
   };
 };
 
+export const imagesUpdate = (ready) => {
+  return {
+    type: "IMAGES_UPDATE",
+    ready
+  };
+};
+
 export const settingsUpdate = (settings, ready) => {
   return {
     type: "SETTINGS_UPDATE",
