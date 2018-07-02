@@ -7294,27 +7294,80 @@ button,
 }
 
 .markdown > * + *,
-.CodeMirror .editor-preview > * + * {
+.CodeMirror .editor-preview > * + *,
+.CodeMirror-scroll .editor-preview > * + * {
   margin-top: .75rem;
 }
 
 .markdown .rounded > p > img,
-.CodeMirror .editor-preview .rounded > p > img {
+.CodeMirror .editor-preview .rounded > p > img,
+.CodeMirror-scroll .editor-preview .rounded > p > img {
   border-radius: .25rem;
 }
 
 .markdown .rounded-sm > p > img,
-.CodeMirror .editor-preview .rounded-sm > p > img {
+.CodeMirror .editor-preview .rounded-sm > p > img,
+.CodeMirror-scroll .editor-preview .rounded-sm > p > img {
   border-radius: .125rem;
 }
 
 .markdown .rounded-lg > p > img,
-.CodeMirror .editor-preview .rounded-lg > p > img {
+.CodeMirror .editor-preview .rounded-lg > p > img,
+.CodeMirror-scroll .editor-preview .rounded-lg > p > img {
   border-radius: .5rem;
 }
 
-.CodeMirror {
-  height: 200px;
+.markdown a,
+.CodeMirror .editor-preview a,
+.CodeMirror-scroll .editor-preview a {
+  -webkit-transition: background-color .2s, color .2s, border-color .2s;
+  transition: background-color .2s, color .2s, border-color .2s;
+  color: #fa6607;
+}
+
+.markdown a:hover,
+.CodeMirror .editor-preview a:hover,
+.CodeMirror-scroll .editor-preview a:hover {
+  color: #d24504;
+}
+
+.editor-toolbar {
+  background-color: #fff;
+}
+
+.CodeMirror,
+.CodeMirror-scroll {
+  min-height: 100px !important;
+}
+
+.tabs {
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+}
+
+.tabs li {
+  display: inline-block;
+}
+
+.tabs li a {
+  display: block;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  -webkit-transition: background-color .2s, color .2s, border-color .2s;
+  transition: background-color .2s, color .2s, border-color .2s;
+  border-bottom-width: 4px;
+  border-color: transparent;
+}
+
+.tabs li a:hover {
+  background-color: #dae1e7;
+}
+
+.tabs li.active a {
+  border-color: #fa6607;
 }
 
 @-webkit-keyframes loginloading {
@@ -7387,6 +7440,10 @@ button:focus {
 
 button:disabled {
   cursor: default;
+}
+
+.dragging {
+  z-index: 10;
 }
 
 .pretty {

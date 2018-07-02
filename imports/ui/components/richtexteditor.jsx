@@ -1,5 +1,6 @@
 import React, { Fragment as F, Component } from "react";
 import SimpleMDE from "react-simplemde-editor";
+import CodeMirror from "codemirror";
 import marked from "marked";
 
 import SelectableImage from "/imports/ui/components/selectableimage";
@@ -62,6 +63,7 @@ class RichTextEditor extends Component {
               const editor = this.editor.simplemde;
               const sel = editor.codemirror.getSelection();
               editor.codemirror.replaceSelection(`![${sel}](${v.link()})`);
+              this.editor.eventWrapper();
             }
           }
         />

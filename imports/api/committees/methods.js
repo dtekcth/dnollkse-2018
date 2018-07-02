@@ -2,6 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { Roles } from "meteor/alanning:roles";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 
+import _ from "lodash";
 import SimpleSchema from "simpl-schema";
 
 import Committees from "./collections";
@@ -23,7 +24,7 @@ export const committeeCreateMethod = new ValidatedMethod({
                              "Not authorized to create committees");
     }
 
-    if (name == "") {
+    if (_.isEmpty(name)) {
       throw new Meteor.Error("committees.methods.create.nameEmpty",
                              "Committee name cannot be empty");
     }
@@ -58,7 +59,7 @@ export const committeeUpdateMethod = new ValidatedMethod({
                              "Not authorized to update committees");
     }
 
-    if (name == "") {
+    if (_.isEmpty(name)) {
       throw new Meteor.Error("committees.methods.update.nameEmpty",
                              "Committee name cannot be empty");
     }

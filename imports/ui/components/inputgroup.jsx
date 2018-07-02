@@ -2,6 +2,7 @@ import React from "react";
 import cx from "classnames";
 
 import Dropdown from "/imports/ui/components/dropdown";
+import RichTextEditor from "/imports/ui/components/richtexteditor";
 
 const InputGroup = (props) => {
   let input;
@@ -14,6 +15,17 @@ const InputGroup = (props) => {
         onChange={props.onChange}
         id={props.id}
         rows={props.rows}
+      />
+    );
+  }
+  if (props.richtext) {
+    input = (
+      <RichTextEditor
+        className="appearance-none bg-transparent w-full text-grey-darker mt-1"
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
+        id={props.id}
       />
     );
   }
@@ -33,6 +45,7 @@ const InputGroup = (props) => {
     input = (
       <input
         className="appearance-none bg-transparent w-full text-grey-darker mt-1"
+        placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
         id={props.id}

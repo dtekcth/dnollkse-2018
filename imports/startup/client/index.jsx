@@ -24,6 +24,11 @@ import store from "/imports/store";
 import "/imports/api/settings";
 import "/imports/api/settings/client";
 
+// Import pages api
+import "/imports/api/pages";
+import "/imports/api/pages/client";
+
+
 // Import environment api
 import "/imports/api/environment";
 

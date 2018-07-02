@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,10 +10,22 @@ import ImageFileContainer from "/imports/ui/containers/imagefile";
 
 const mapStateToProps = (state) => {
   return {
-    committee: state.committee.data,
-    ready: state.settings.ready
+    settings  : state.settings.data,
+    committee : state.committee.data,
+    ready     : state.committee.ready && state.settings.ready
   };
 };
+
+const textSub = {
+  S : "s",
+  W : "w"
+}
+const textFix = (text) =>
+  _.map(_.toUpper(text), c => {
+    if (textSub[c]) return textSub[c];
+
+    return c;
+  });
 
 @connect(mapStateToProps)
 class MainLayout extends Component {
@@ -33,18 +46,20 @@ class MainLayout extends Component {
       backgroundImage: "url(https://dnollk.se/uploads/2018/omslag2018.JPG)"
     }
 
-    const linkCls = "";
-    const linkHelper = (href, text) => (
-      <li className="navitem inline-block text-white">
-        <Link
-          to={href}
-          className={
-            cx("navlink inline-block px-1 py-2 xl:px-2 lg:py-3")
-          }>
-          {text}
-        </Link>
-      </li>
-    );
+    const links = _.map(props.settings.navigation, (s, i) => {
+      return (
+        <li key={i} className="navitem inline-block text-white">
+          <Link
+            to={s.link}
+            className={
+              cx("navlink inline-block px-1 py-2 xl:px-2 lg:py-3")
+            }
+          >
+            {textFix(s.text)}
+          </Link>
+        </li>
+      );
+    });
 
     return (
       <BaseLayout title={props.title}>
@@ -68,15 +83,7 @@ class MainLayout extends Component {
                          "whitespace-no-wrap",
                          "text-3xs sm:text-xs lg:text-base ml-2 lg:ml-4")
                     }>
-                      {linkHelper("/", "startsida")}
-                      {linkHelper("/committee/2018", "NOLLDEKLARATION")}
-                      {linkHelper("/admin", "schema")}
-                      {linkHelper("#", "arr")}
-                      {linkHelper("#", "dokument")}
-                      {linkHelper("#", "länkar")}
-                      {linkHelper("#", "om...")}
-                      {linkHelper("#", "faq")}
-                      {linkHelper("#", "kontakt")}
+                      {links}
                     </ul>
                   </div>
                 </div>

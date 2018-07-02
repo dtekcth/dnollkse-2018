@@ -1,6 +1,12 @@
 import _ from "lodash";
 import React, { Fragment as F, Component } from "react";
 import { NotificationManager } from "react-notifications";
+import {
+  SortableContainer,
+  SortableElement,
+  SortableHandle,
+  arrayMove
+} from "react-sortable-hoc";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import autobind from "autobind-decorator";
 import cx from "classnames";
@@ -9,6 +15,7 @@ import marked from "marked";
 import PropTypes from "prop-types";
 
 import AutoForm from "/imports/ui/components/autoform";
+import IconButton from "/imports/ui/components/iconbutton";
 import InputGroup from "/imports/ui/components/inputgroup";
 import Loader from "/imports/ui/components/loader";
 import RichTextEditor from "/imports/ui/components/richtexteditor";
@@ -22,6 +29,111 @@ import {
   committeeCreateMethod,
   committeeUpdateMethod,
 } from "/imports/api/committees";
+
+const DragHandle = SortableHandle(() =>
+  <div className="text-grey p-1">
+    <FontAwesomeIcon icon="bars" fixedWidth />
+  </div>
+);
+
+const MemberItem = SortableElement(({ className, value, onChange, onRemove }) => {
+  return (
+    <li className={cx("list-reset p-2 bg-white rounded", className)}>
+      <div className="bg-white rounded flex items-center -mx-1">
+        <DragHandle />
+
+        <div className="flex items-center w-1/3 md:w-1/4 xl:w-1/5 px-1">
+          <SelectableImage
+            placeholder="/static/images/placeholder-member.png"
+            imageId={value.image}
+            onChange={
+              img => onChange && onChange({ image: img._id })
+            }
+          />
+        </div>
+
+        <div className="w-2/3 md:w-3/4 xl:w-4/5 px-1">
+          <InputGroup
+            value={value.firstname || ""}
+            placeholder="First name..."
+            text="First name"
+            onChange={
+              e => onChange && onChange({ firstname: e.target.value })
+            }
+          />
+
+          <InputGroup
+            className="mt-1"
+            value={value.lastname || ""}
+            placeholder="Last name..."
+            text="Last name"
+            onChange={
+              e => onChange && onChange({ lastname: e.target.value })
+            }
+          />
+
+          <InputGroup
+            className="mt-1"
+            value={value.nickname || ""}
+            placeholder="Nickname..."
+            text="Nickname"
+            onChange={
+              e => onChange && onChange({ nickname: e.target.value })
+            }
+          />
+
+          <InputGroup
+            className="mt-1"
+            value={value.position || ""}
+            placeholder="Position..."
+            text="Position"
+            onChange={
+              e => onChange && onChange({ position: e.target.value })
+            }
+          />
+
+          <InputGroup
+            className="mt-1"
+            richtext
+            value={value.description || ""}
+            placeholder="Description..."
+            text="Description"
+            onChange={
+              value => onChange && onChange({ description: value })
+            }
+          />
+        </div>
+
+        <div>
+          <IconButton
+            type="button"
+            icon="times"
+            onClick={onRemove}
+          />
+        </div>
+      </div>
+    </li>
+  );
+});
+
+const MemberList = SortableContainer(({ items, onChange, onRemove }) => {
+  return (
+    <ul className="list-reset mt-2">
+      {
+        items.map((value, index) => (
+          <MemberItem
+            className={index != items.length - 1 && "mb-2"}
+            key={`item-${index}`}
+            index={index}
+            value={value}
+            onChange={m => onChange && onChange(index, { ...value, ...m })}
+            onRemove={() => onRemove && onRemove(index)}
+          />
+        ))
+      }
+    </ul>
+  );
+});
 
 @composeWithTracker((props, onData) => {
   if (props.new) {
@@ -123,16 +235,11 @@ class AdminManageCommitteePage extends Component {
   }
 
   @autobind
-  handleMemberDataChanged(index, field, value) {
-    const member = this.state.members[index];
-    if (!member) return;
-
+  handleMemberChanged(index, m) {
     this.setState({
       members: update(this.state.members, {
         [index]: {
-          $merge: {
-            [field]: value
-          }
+          $merge: m
         }
       })
     })
@@ -146,100 +253,9 @@ class AdminManageCommitteePage extends Component {
   }
 
   @autobind
-  renderMemberInput(props) {
-    if (props.textarea) {
-      return (
-        <RichTextEditor
-          className={props.className}
-          value={props.value}
-          onChange={
-            value =>
-              this.handleMemberDataChanged(props.index, props.field, value)
-          }
-        />
-      );
-    }
-
-    return (
-      <InputGroup
-        value={props.value}
-        textarea={props.textarea}
-        rows={props.rows}
-        text={props.text}
-        className={props.className}
-        onChange={
-          e => this.handleMemberDataChanged(props.index, props.field, e.target.value)
-        }
-      />
-    );
-  }
-
-  getMembers() {
-    const { members } = this.state;
-
-    const InputHelper = this.renderMemberInput;
-    
-    return _.map(members, (m, index) => {
-      return (
-        <div key={index} className="mt-2 p-2 rounded bg-white">
-          <div className="flex -mx-1">
-            <div className="flex items-center w-1/3 md:w-1/4 xl:w-1/5 px-1">
-              <SelectableImage
-                placeholder="/static/images/placeholder-member.png"
-                imageId={m.image}
-                onChange={
-                  img =>
-                    this.handleMemberDataChanged(index, "image", img._id)
-                }
-              />
-            </div>
-
-            <div className="w-2/3 md:w-3/4 xl:w-4/5 px-1">
-              <InputHelper
-                index={index} value={m.firstname}
-                text="First name" field="firstname"
-              />
-              <InputHelper
-                index={index} value={m.lastname}
-                text="Last name" field="lastname" className="mt-1"
-              />
-              <InputHelper
-                index={index} value={m.nickname}
-                text="Nickname" field="nickname" className="mt-1"
-              />
-              <InputHelper
-                index={index} value={m.position}
-                text="Position" field="position" className="mt-1"
-              />
-
-              <InputHelper
-                index={index}
-                value={m.description}
-                text="Description"
-                field="description"
-                className="mt-1"
-                textarea
-                rows="8"
-              />
-            </div>
-
-            <div className="px-1 mt-1">
-              <button
-                type="button"
-                className={
-                  cx("inline-flex justify-center items-center",
-                     "w-6 h-6 rounded-full transition-colors",
-                     "bg-transparent hover:bg-red",
-                     "text-red hover:text-white")
-                }
-                onClick={e => this.handleRemoveMember(index)}
-              >
-                <FontAwesomeIcon icon="times" fixedWidth size="sm" />
-              </button>
-            </div>
-          </div>
-        </div>
-      );
+  onSortEnd({ oldIndex, newIndex }) {
+    this.setState({
+      members: arrayMove(this.state.members, oldIndex, newIndex),
     });
   }
 
@@ -266,6 +282,26 @@ class AdminManageCommitteePage extends Component {
         <span className="ml-1">Save</span>
       </button>
     );
+
+    let memberList = (
+      <div className="text-grey p-2">No questions</div>
+    );
+
+    if (this.state.members.length > 0) {
+      memberList = (
+        <MemberList
+          helperClass="dragging"
+          useDragHandle
+          useWindowAsScrollContainer
+          lockToContainerEdges
+          lockAxis="y"
+          items={this.state.members}
+          onSortEnd={this.onSortEnd}
+          onChange={this.handleMemberChanged}
+          onRemove={this.handleRemoveMember}
+        />
+      );
+    }
 
     return (
       <AdminLayout title="Manage Committee">
@@ -352,8 +388,9 @@ class AdminManageCommitteePage extends Component {
                     <h3 className="ml-2 text-grey-dark">Members</h3>
 
                     <div className="mt-1">
-                      {this.getMembers()}
+                      {memberList}
                     </div>
+
                   </div>
                 </F> :
                 <div></div>

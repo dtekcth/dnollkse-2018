@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import cx from "classnames";
 import marked from "marked";
 import PropTypes from "prop-types";
 
 class Markdown extends Component {
   static propTypes = {
-    children : PropTypes.string,
-    sanitize : PropTypes.bool,
-    options  : PropTypes.object,
+    children  : PropTypes.string,
+    className : PropTypes.string,
+    sanitize  : PropTypes.bool,
+    options   : PropTypes.object,
   }
 
   static defaultProps = {
@@ -25,7 +27,7 @@ class Markdown extends Component {
 
     return (
       <div
-        className="markdown"
+        className={cx("markdown", props.className)}
         dangerouslySetInnerHTML={{
           __html: html
         }}

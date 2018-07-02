@@ -17,6 +17,7 @@ const createDefaultPermissions = () => {
       "ADMIN_MANAGE_USERS",
       "ADMIN_MANAGE_COMMITTEES",
       "ADMIN_MANAGE_UPLOADS",
+      "ADMIN_MANAGE_PAGES",
     ],
     env: [
       "ENVIRONMENT_VIEW"
@@ -55,6 +56,7 @@ Meteor.startup(() => {
     "ADMIN_MANAGE_USERS",
     "ADMIN_MANAGE_COMMITTEES",
     "ADMIN_MANAGE_UPLOADS",
+    "ADMIN_MANAGE_PAGES",
     "ADMIN_SETTINGS",
     "ENVIRONMENT_VIEW",
   ];

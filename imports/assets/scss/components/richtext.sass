@@ -39,8 +39,18 @@
   .rounded-lg > p > img
     @apply .rounded-lg
 
-.CodeMirror
-  height: 200px
+  a
+    @apply .transition-colors .text-dtek
+
+    &:hover
+      @apply .text-dtek-dark
+
+
+.editor-toolbar
+  @apply .bg-white
+
+.CodeMirror, .CodeMirror-scroll
+  min-height: 100px !important
 
   .editor-preview
     @extend .markdown

@@ -5,6 +5,10 @@ import "/imports/api/jobs/server";
 import "/imports/api/settings";
 import "/imports/api/settings/server";
 
+// Import pages api
+import "/imports/api/pages";
+import "/imports/api/pages/server";
+
 // Import environment api
 import "/imports/api/environment";
 import "/imports/api/environment/server";

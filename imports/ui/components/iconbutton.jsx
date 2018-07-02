@@ -21,7 +21,7 @@ class IconButton extends Component {
 
     return (
       <Comp
-        type={(Comp == "button" && props.type) ? "button" : undefined}
+        type={Comp == "button" ? props.type || "button" : props.type}
         className={
           cx("inline-flex justify-center items-center",
              "w-6 h-6 rounded-full transition-colors bg-transparent",

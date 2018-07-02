@@ -1,6 +1,7 @@
 import React, { Fragment as F, Component } from "react";
 import { Helmet } from "react-helmet";
 import { NotificationContainer } from "react-notifications";
+import { connect } from "react-redux";
 import { Route, Switch, withRouter } from "react-router-dom";
 import autobind from "autobind-decorator";
 import PropTypes from "prop-types";
@@ -11,8 +12,11 @@ import MainLayout from "/imports/ui/layouts/main";
 
 import CommitteePage from "/imports/ui/pages/committee";
 import HomePage from "/imports/ui/pages/home";
+import DynamicPage from "/imports/ui/pages/dynamicpage";
+import FAQPage from "/imports/ui/pages/faq";
+import LinksPage from "/imports/ui/pages/links";
+import DocumentsPage from "/imports/ui/pages/documents";
 import LoginPage from "/imports/ui/pages/login";
-import TestPage from "/imports/ui/pages/test";
 import EnvironmentPage from "/imports/ui/pages/environment";
 import SetupPage from "/imports/ui/pages/setup";
 import NotFoundPage from "/imports/ui/pages/notfound";
@@ -20,13 +24,22 @@ import NotFoundPage from "/imports/ui/pages/notfound";
 import AdminCommitteesPage from "/imports/ui/pages/admin/committees/list";
 import AdminManageCommitteePage from "/imports/ui/pages/admin/committees/manage";
 import AdminIndexPage from "/imports/ui/pages/admin/index";
-import AdminSettingsPage from "/imports/ui/pages/admin/settings";
+import AdminSettingsPage from "/imports/ui/pages/admin/settings/index.jsx";
+import AdminPagesPage from "/imports/ui/pages/admin/pages/index.jsx";
+import AdminManagePagePage from "/imports/ui/pages/admin/pages/manage.jsx";
 import AdminRolePage from "/imports/ui/pages/admin/role";
 import AdminUsersPage from "/imports/ui/pages/admin/users";
 import AdminUploadsPage from "/imports/ui/pages/admin/uploads/list";
 import AdminUploadsManagePage from "/imports/ui/pages/admin/uploads/manage";
 
+const mapStateToProps = (state) => {
+  return {
+    pages: state.pages
+  };
+};
+
 @withRouter
+@connect(mapStateToProps)
 class App extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired
@@ -48,6 +61,14 @@ class App extends Component {
   }
 
   render() {
+    const routes = _.map(this.props.pages.list, (p, i) =>
+      <Route
+        key={p._id}
+        exact path={p.url}
+        render={props => <DynamicPage {...props} pageId={p._id} />}
+      />
+    );
+
     return (
       <F>
         <Helmet>
@@ -58,20 +79,24 @@ class App extends Component {
         </Helmet>
 
         <Switch>
-          <Route name="Home"        exact path="/" component={HomePage} />
-          <Route name="Test"        exact path="/test" component={TestPage} />
-          <Route name="Environment" exact path="/environment" component={EnvironmentPage} />
-          <Route name="Committee"   exact path="/committee/:committee" component={CommitteePage} />
-          <Route name="Setup"       exact path="/setup" component={SetupPage} />
-          <Route name="Login"       exact path="/login" component={LoginPage} />
-          <Route name="Logout"      exact path="/logout" render={this.handleLogout} />
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/faq" component={FAQPage} />
+          <Route exact path="/links" component={LinksPage} />
+          <Route exact path="/documents" component={DocumentsPage} />
+          <Route exact path="/environment" component={EnvironmentPage} />
+          <Route exact path="/committee" component={CommitteePage} />
+          <Route exact path="/setup" component={SetupPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/logout" render={this.handleLogout} />
+
+          {routes}
 
           {/* Admin routes */}
-          <Route name="Admin"               exact path="/admin" component={AdminIndexPage } />
-          <Route name="Admin - Settings"    exact path="/admin/settings" component={AdminSettingsPage } />
-          <Route name="Admin - Users"       exact path="/admin/users" component={AdminUsersPage } />
-          <Route name="Admin - Uploads"     exact path="/admin/uploads" component={AdminUploadsPage } />
-          <Route name="Admin - Manage Role" exact path="/admin/roles/:role/manage" component={AdminRolePage } />
+          <Route exact path="/admin" component={AdminIndexPage} />
+          <Route exact path="/admin/settings" component={AdminSettingsPage} />
+          <Route exact path="/admin/users" component={AdminUsersPage} />
+          <Route exact path="/admin/uploads" component={AdminUploadsPage} />
+          <Route exact path="/admin/roles/:role/manage" component={AdminRolePage} />
           <Route
             exact path="/admin/uploads/new"
             render={props => <AdminUploadsManagePage new {...props} />}
@@ -81,8 +106,8 @@ class App extends Component {
             component={AdminUploadsManagePage }
           />
 
-
-          <Route exact path="/admin/committees" component={AdminCommitteesPage } />
+          {/* Committees */}
+          <Route exact path="/admin/committees" component={AdminCommitteesPage} />
           <Route
             exact path="/admin/committees/new"
             render={props => <AdminManageCommitteePage new {...props} />}
@@ -90,6 +115,17 @@ class App extends Component {
           <Route
             exact path="/admin/committees/:committeeId"
             component={AdminManageCommitteePage}
+          />
+
+          {/* Pages */}
+          <Route exact path="/admin/pages" component={AdminPagesPage} />
+          <Route
+            exact path="/admin/pages/new"
+            render={props => <AdminManagePagePage new {...props} />}
+          />
+          <Route
+            exact path="/admin/pages/:pageId"
+            component={AdminManagePagePage}
           />
 
           <Route

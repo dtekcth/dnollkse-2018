@@ -38,6 +38,7 @@ class AdminLayout extends Component {
       [ "/admin"            , "Dashboard" ],
       [ "/admin/users"      , "Users & Permissions" ],
       [ "/admin/committees" , "Committees" ],
+      [ "/admin/pages"      , "Pages" ],
       [ "/admin/uploads"    , "Uploads" ],
       [ "/admin/settings"   , "Settings" ],
     ];
@@ -106,7 +107,7 @@ class AdminLayout extends Component {
 
                   <div className="navitem flex-grow"></div>
 
-                  <Link to="/" className="navitem block mx-2">
+                  <Link to="/" className="navitem block px-2">
                     Back to site
                   </Link>
 

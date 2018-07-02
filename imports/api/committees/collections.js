@@ -10,9 +10,15 @@ export default Committees;
 Committees.memberSchema = new SimpleSchema({
   firstname   : String,
   lastname    : String,
-  nickname    : String,
+  nickname    : {
+    type: String,
+    optional: true
+  },
   position    : String,
-  description : String,
+  description : {
+    type: String,
+    optional: true
+  },
   image       : {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
