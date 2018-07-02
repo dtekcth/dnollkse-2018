@@ -7,6 +7,7 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import AutoForm from "/imports/ui/components/autoform";
 import IconButton from "/imports/ui/components/iconbutton";
@@ -57,7 +58,7 @@ class AdminManagePostPage extends Component {
     const { post } = this.props;
     if (!post) return;
 
-    const state = _.pick(post, [ "title", "content" ])
+    const state = _.pick(post, [ "title", "date", "content" ])
 
     this.setState(state);
   }
@@ -76,7 +77,7 @@ class AdminManagePostPage extends Component {
   handleSave(e) {
     e.preventDefault();
 
-    const { title, content } = this.state;
+    const { title, date, content } = this.state;
     
     const cb = e => {
       if (e) {
@@ -91,13 +92,13 @@ class AdminManagePostPage extends Component {
     
     if (this.props.new) {
       newsCreateMethod.call({
-        title, content
+        title, date, content
       }, cb);
     }
     else {
       newsUpdateMethod.call({
         postId: this.props.post._id,
-        title, content
+        title, date, content
       }, cb);
     }
   }
@@ -173,6 +174,13 @@ class AdminManagePostPage extends Component {
                     value={this.state.title}
                     onChange={e => this.setState({ title: e.target.value })}
                   />
+
+                  <InputGroup
+                    datepicker
+                    className="mt-1"
+                    text="Date published"
+                    value={moment(this.state.date)}
+                    onChange={date => this.setState({ date: date.toDate() })} />
 
                   <InputGroup
                     className="mt-1"

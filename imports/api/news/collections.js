@@ -12,6 +12,10 @@ News.schema = new SimpleSchema({
     type: String,
     label: "Post Title"
   },
+  date: {
+    type: Date,
+    label: "Post Date"
+  },
   content: {
     type: String,
     label: "Post Content"

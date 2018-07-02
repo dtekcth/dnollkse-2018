@@ -11,10 +11,11 @@ export const newsCreateMethod = new ValidatedMethod({
   name: "news.create",
   validate: new SimpleSchema({
     title   : News.simpleSchema().schema("title"),
+    date    : News.simpleSchema().schema("date"),
     content : News.simpleSchema().schema("content")
   }).validator({}),
 
-  run({ title, content }) {
+  run({ title, date, content }) {
     if (!this.userId || !Roles.userIsInRole(this.userId, ["ADMIN_MANAGE_NEWS"])) {
       throw new Meteor.Error("news.methods.create.notAuthorized",
                              "Not authorized to manage news");
@@ -22,6 +23,7 @@ export const newsCreateMethod = new ValidatedMethod({
 
     News.insert({
       title,
+      date,
       content
     });
   }
@@ -32,10 +34,11 @@ export const newsUpdateMethod = new ValidatedMethod({
   validate: new SimpleSchema({
     postId  : { type: String, label: "Post ID", regEx: SimpleSchema.RegEx.Id },
     title   : News.simpleSchema().schema("title"),
+    date    : News.simpleSchema().schema("date"),
     content : News.simpleSchema().schema("content")
   }).validator({}),
 
-  run({ postId, title, content }) {
+  run({ postId, title, date, content }) {
     if (!this.userId || !Roles.userIsInRole(this.userId, ["ADMIN_MANAGE_NEWS"])) {
       throw new Meteor.Error("news.methods.update.notAuthorized",
                              "Not authorized to manage news");
@@ -44,6 +47,7 @@ export const newsUpdateMethod = new ValidatedMethod({
     News.update(postId, {
       $set: {
         title,
+        date,
         content
       }
     });

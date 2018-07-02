@@ -1,0 +1,20 @@
+.text-input
+  @apply .appearance-none .border .rounded .py-1 .px-2 .text-grey-darker
+
+  outline: none
+  transition: all 0.2s
+
+  &:focus
+    @apply .border-dtek
+    box-shadow: 0 0 0 2px color(config("colors.dtek") a(0.2))
+
+.text-input-sm
+  @extend .text-input
+  @apply .text-sm .px-1
+
+  padding-top: 0.3rem
+  padding-bottom: 0.3rem
+
+.text-input-lg
+  @extend .text-input
+  @apply .text-xl .py-2 .px-3

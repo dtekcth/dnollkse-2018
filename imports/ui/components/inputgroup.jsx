@@ -3,6 +3,7 @@ import cx from "classnames";
 
 import Dropdown from "/imports/ui/components/dropdown";
 import RichTextEditor from "/imports/ui/components/richtexteditor";
+import DatePicker from "react-datepicker";
 
 const InputGroup = (props) => {
   let input;
@@ -18,7 +19,7 @@ const InputGroup = (props) => {
       />
     );
   }
-  if (props.richtext) {
+  else if (props.richtext) {
     input = (
       <RichTextEditor
         className="appearance-none bg-transparent w-full text-grey-darker mt-1"
@@ -41,10 +42,21 @@ const InputGroup = (props) => {
       />
     );
   }
+  else if (props.datepicker) {
+    input = (
+      <div className="date-picker w-full">
+        <DatePicker
+          className="text-input-sm w-full mt-1"
+          onChange={props.onChange}
+          selected={props.value}
+        />
+      </div>
+    );
+  }
   else
     input = (
       <input
-        className="appearance-none bg-transparent w-full text-grey-darker mt-1"
+        className="text-input-sm w-full mt-1"
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
