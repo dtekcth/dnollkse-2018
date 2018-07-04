@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { NotificationManager } from "react-notifications";
 import { connect } from "react-redux";
 import { Redirect, withRouter, Link } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -172,6 +173,10 @@ class AdminRolePage extends Component {
     addRolesToParentMethod.call({
       parent: this.props.role._id,
       role: perm.value
+    }, e => {
+      if (e) {
+        NotificationManager.error(e.reason);
+      }
     });
   }
 
@@ -180,6 +185,10 @@ class AdminRolePage extends Component {
     removeRolesFromParentMethod.call({
       parent: this.props.role._id,
       role: perm
+    }, e => {
+      if (e) {
+        NotificationManager.error(e.reason);
+      }
     });
   }
 
