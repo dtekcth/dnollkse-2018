@@ -76,10 +76,12 @@ class MainLayout extends Component {
                 <div className="container mx-auto">
                   <div className="flex mx-2 relative">
                     <div className="w-32 lg:w-48">
-                      <ImageFileContainer
-                        className="w-32 lg:w-48 block absolute pin-b logo"
-                        imageId={props.committee.logo}
-                      />
+                      <Link to="/" className="block">
+                        <ImageFileContainer
+                          className="w-32 lg:w-48 block absolute pin-b logo"
+                          imageId={props.committee.logo}
+                        />
+                      </Link>
                     </div>
                     <ul className={
                       cx("flex-grow list-reset tracking-wide font-geomancy",
