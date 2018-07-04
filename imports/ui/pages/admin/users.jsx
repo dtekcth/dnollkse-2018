@@ -1,10 +1,11 @@
 import _ from "lodash";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { NotificationManager } from "react-notifications";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
@@ -82,14 +83,22 @@ class AdminUsersPage extends Component {
   @autobind
   handleAssignRole(users, role) {
     _.each(users, u => {
-      userAssignRoleMethod.call({ userId: u._id, role }, e => {});
+      userAssignRoleMethod.call({ userId: u._id, role }, e => {
+        if (e) {
+          NotificationManager.error(e.reason);
+        }
+      });
     });
   }
 
   @autobind
   handleUnassignRole(users, role) {
     _.each(users, u => {
-      userUnassignRoleMethod.call({ userId: u._id, role }, e => {});
+      userUnassignRoleMethod.call({ userId: u._id, role }, e => {
+        if (e) {
+          NotificationManager.error(e.reason);
+        }
+      });
     });
   }
 
