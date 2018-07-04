@@ -8800,6 +8800,10 @@ a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
   display: none !important;
 }
 
+.fr-box {
+  z-index: 0;
+}
+
 .fr-image-resizer {
   border-color: #fa6607;
 }
