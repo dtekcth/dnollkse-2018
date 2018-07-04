@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import PrettyCheckbox from "/imports/ui/components/prettycheckbox";
 import IconButton from "/imports/ui/components/iconbutton"
 import AdminLayout from "/imports/ui/layouts/admin";
+import { ConfirmationPopup } from "/imports/ui/components/popup";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 
@@ -96,6 +97,8 @@ class AdminCommitteesPage extends Component {
             .sortBy(c => c.name)
             .reverse()
             .map((c, index) => {
+              let deletePopup;
+
               return (
                 <CommitteeTransition key={c._id}>
                   <li className="p-2 text-grey-darkest">
@@ -122,9 +125,17 @@ class AdminCommitteesPage extends Component {
                         </Link>
                       </div>
 
-                      <IconButton
-                        icon="times"
-                        onClick={e => this.handleRemove(c)}
+                      <ConfirmationPopup
+                        ref={elem => deletePopup = elem}
+                        position="left top"
+                        trigger={
+                          <IconButton
+                            icon="times"
+                            onClick={() => deletePopup.toggle()}
+                          />
+                        }
+                        text="This cannot be undone"
+                        onConfirm={() => this.handleRemove(c)}
                       />
                     </div>
                   </li>

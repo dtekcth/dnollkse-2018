@@ -8924,6 +8924,171 @@ a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
   padding-right: 1.5rem;
 }
 
+.popup .popup-trigger {
+  position: relative;
+  display: inline-block;
+}
+
+.popup .popup-content {
+  position: absolute;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+  top: calc(50% - 1em);
+  left: 100%;
+  margin-left: 1em;
+  z-index: 100 !important;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
+  opacity: 0;
+  -webkit-transform: scale(0) !important;
+          transform: scale(0) !important;
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+  padding: 1em;
+  border-radius: 4px;
+  color: black;
+  background-color: white;
+}
+
+.popup .popup-content:before {
+  content: '';
+  position: absolute;
+  background-color: white;
+  width: .71428571em;
+  height: .71428571em;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: 2;
+  bottom: auto;
+  left: auto;
+  top: 1em;
+  right: 100%;
+  margin: -0.357142855em;
+}
+
+.popup .popup-content[data-position="right bottom"] {
+  -webkit-transform: translateY(-100%) scale(0) !important;
+          transform: translateY(-100%) scale(0) !important;
+  -webkit-transform-origin: left bottom;
+          transform-origin: left bottom;
+  top: calc(50% + 1em);
+}
+
+.popup .popup-content[data-position="right bottom"]:before {
+  top: auto;
+  left: auto;
+  bottom: 1em;
+  right: 100%;
+}
+
+.popup .popup-content[data-position="right center"] {
+  -webkit-transform: translateY(-50%) scale(0) !important;
+          transform: translateY(-50%) scale(0) !important;
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  top: calc(50%);
+}
+
+.popup .popup-content[data-position="right center"]:before {
+  bottom: auto;
+  left: auto;
+  top: 50%;
+  right: 100%;
+}
+
+.popup .popup-content[data-position="left top"] {
+  -webkit-transform: translateX(-100%) scale(0) !important;
+          transform: translateX(-100%) scale(0) !important;
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+  top: 50%;
+  left: 0;
+  margin-top: -1em;
+  margin-left: -1em;
+}
+
+.popup .popup-content[data-position="left top"]:before {
+  bottom: auto;
+  right: auto;
+  top: 1em;
+  left: 100%;
+}
+
+.popup .popup-content[data-position="left bottom"] {
+  -webkit-transform: translate(-100%, -100%) scale(0) !important;
+          transform: translate(-100%, -100%) scale(0) !important;
+  -webkit-transform-origin: right bottom;
+          transform-origin: right bottom;
+  top: 50%;
+  left: 0;
+  margin-top: 1em;
+  margin-left: -1em;
+}
+
+.popup .popup-content[data-position="left bottom"]:before {
+  top: auto;
+  right: auto;
+  bottom: 1em;
+  left: 100%;
+}
+
+.popup .popup-content[data-position="left center"] {
+  -webkit-transform: translate(-100%, -50%) scale(0) !important;
+          transform: translate(-100%, -50%) scale(0) !important;
+  -webkit-transform-origin: right center;
+          transform-origin: right center;
+  top: 50%;
+  left: 0;
+  margin-left: -1em;
+}
+
+.popup .popup-content[data-position="left center"]:before {
+  bottom: auto;
+  right: auto;
+  top: 50%;
+  left: 100%;
+}
+
+.popup.visible .popup-content {
+  opacity: 1;
+  -webkit-transform: scale(1) !important;
+          transform: scale(1) !important;
+}
+
+.popup.visible .popup-content[data-position="right bottom"] {
+  -webkit-transform: translateY(-100%) scale(1) !important;
+          transform: translateY(-100%) scale(1) !important;
+}
+
+.popup.visible .popup-content[data-position="right center"] {
+  -webkit-transform: translateY(-50%) scale(1) !important;
+          transform: translateY(-50%) scale(1) !important;
+}
+
+.popup.visible .popup-content[data-position="left top"] {
+  -webkit-transform: translateX(-100%) scale(1) !important;
+          transform: translateX(-100%) scale(1) !important;
+}
+
+.popup.visible .popup-content[data-position="left bottom"] {
+  -webkit-transform: translate(-100%, -100%) scale(1) !important;
+          transform: translate(-100%, -100%) scale(1) !important;
+}
+
+.popup.visible .popup-content[data-position="left center"] {
+  -webkit-transform: translate(-100%, -50%) scale(1) !important;
+          transform: translate(-100%, -50%) scale(1) !important;
+}
+
+.popup.inverted .popup-content {
+  color: white;
+  background-color: #33363b;
+}
+
+.popup.inverted .popup-content:before {
+  background-color: #33363b;
+}
+
 @-webkit-keyframes loginloading {
   0% {
     -webkit-box-shadow: 0 0 0 0 #fa6607;

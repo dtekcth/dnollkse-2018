@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import IconButton from "/imports/ui/components/iconbutton"
 import AdminLayout from "/imports/ui/layouts/admin";
 import Loader from "/imports/ui/layouts/admin";
+import { ConfirmationPopup } from "/imports/ui/components/popup";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 
@@ -69,6 +70,8 @@ class AdminPagesPage extends Component {
             .sortBy(i => i.name)
             .reverse()
             .map((i, index) => {
+              let deletePopup;
+
               return (
                 <PageTransition key={i._id}>
                   <li className="p-2 text-grey-darkest">
@@ -83,9 +86,17 @@ class AdminPagesPage extends Component {
                         </Link>
                       </div>
 
-                      <IconButton
-                        icon="times"
-                        onClick={e => this.handleRemove(i)}
+                      <ConfirmationPopup
+                        ref={elem => deletePopup = elem}
+                        position="left top"
+                        trigger={
+                          <IconButton
+                            icon="times"
+                            onClick={() => deletePopup.toggle()}
+                          />
+                        }
+                        text="This cannot be undone"
+                        onConfirm={() => this.handleRemove(i)}
                       />
                     </div>
                   </li>

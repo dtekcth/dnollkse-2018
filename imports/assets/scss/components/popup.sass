@@ -1,0 +1,130 @@
+$popup-content-padding      : 1em
+$popup-content-border-radius: 4px
+
+.popup
+  .popup-trigger
+    @apply .relative .inline-block
+
+  .popup-content
+    @apply .absolute .shadow-lg
+
+    top: calc(50% - 1em)
+    left: 100%
+    margin-left: 1em
+    z-index: 100 !important
+    transition: all 0.1s ease
+    opacity: 0
+    transform: scale(0) !important
+    transform-origin: left top
+    padding: $popup-content-padding
+    border-radius: $popup-content-border-radius
+    color: black
+    background-color: white
+
+    &:before
+      content: ''
+      position: absolute
+      background-color: white
+      width: 0.71428571em
+      height: 0.71428571em
+      transform: rotate(45deg)
+      z-index: 2
+
+      // box-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 0px 1px, rgba(0, 0, 0, 0.14902) 0px 8px 16px;
+
+      bottom: auto
+      left: auto
+      top: 1em
+      right: 100%
+      margin: -0.357142855em
+
+    &[data-position="right bottom"]
+      transform: translateY(-100%) scale(0) !important
+      transform-origin: left bottom
+      top: calc(50% + 1em)
+
+      &:before
+        top: auto
+        left: auto
+        bottom: 1em
+        right: 100%
+
+    &[data-position="right center"]
+      transform: translateY(-50%) scale(0) !important
+      transform-origin: left center
+      top: calc(50%)
+
+      &:before
+        bottom: auto
+        left: auto
+        top: 50%
+        right: 100%
+
+    // Left side alignments
+    &[data-position="left top"]
+      transform: translateX(-100%) scale(0) !important
+      transform-origin: right top
+      top: 50%
+      left: 0
+      margin-top: -1em
+      margin-left: -1em
+
+      &:before
+        bottom: auto
+        right: auto
+        top: 1em
+        left: 100%
+
+    &[data-position="left bottom"]
+      transform: translate(-100%, -100%) scale(0) !important
+      transform-origin: right bottom
+      top: 50%
+      left: 0
+      margin-top: 1em
+      margin-left: -1em
+
+      &:before
+        top: auto
+        right: auto
+        bottom: 1em
+        left: 100%
+
+    &[data-position="left center"]
+      transform: translate(-100%, -50%) scale(0) !important
+      transform-origin: right center
+      top: 50%
+      left: 0
+      margin-left: -1em
+
+      &:before
+        bottom: auto
+        right: auto
+        top: 50%
+        left: 100%
+
+  &.visible .popup-content
+    opacity: 1
+    transform: scale(1) !important
+
+    &[data-position="right bottom"]
+      transform: translateY(-100%) scale(1) !important
+
+    &[data-position="right center"]
+      transform: translateY(-50%) scale(1) !important
+
+    // Left alignments
+    &[data-position="left top"]
+      transform: translateX(-100%) scale(1) !important
+
+    &[data-position="left bottom"]
+      transform: translate(-100%, -100%) scale(1) !important
+
+    &[data-position="left center"]
+      transform: translate(-100%, -50%) scale(1) !important
+
+  &.inverted .popup-content
+    color: white
+    background-color: config("colors.black-shark")
+
+    &:before
+      background-color: config("colors.black-shark")
