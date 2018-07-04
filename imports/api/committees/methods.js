@@ -29,7 +29,7 @@ export const committeeCreateMethod = new ValidatedMethod({
                              "Committee name cannot be empty");
     }
 
-    Committees.insert({
+    return Committees.insert({
       name,
       description,
       logo,

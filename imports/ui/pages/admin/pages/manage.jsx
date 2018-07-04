@@ -115,7 +115,7 @@ class AdminManagePagePage extends Component {
         break;
     }
     
-    const cb = e => {
+    const cb = (e, id) => {
       if (e) {
         NotificationManager.error(e.reason);
         console.error(e);
@@ -124,6 +124,10 @@ class AdminManagePagePage extends Component {
       }
       
       NotificationManager.success("Saved changes!");
+
+      if (this.props.new) {
+        this.props.history.push("/admin/pages/" + id);
+      }
     }
     
     if (this.props.new) {

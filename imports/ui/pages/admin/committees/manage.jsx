@@ -172,6 +172,8 @@ class AdminManageCommitteePage extends Component {
     if (this.props.ready != prevProps.ready) {
       const { committee } = this.props;
 
+      if (!committee) return;
+
       this.setState({
         name        : committee.name,
         description : committee.description,
@@ -188,7 +190,7 @@ class AdminManageCommitteePage extends Component {
 
     const { name, description, logo, cover, members } = this.state;
 
-    const cb = e => {
+    const cb = (e, id) => {
       if (e) {
         NotificationManager.error(e.reason);
         console.error(e);
@@ -196,7 +198,11 @@ class AdminManageCommitteePage extends Component {
         return;
       }
       
-      NotificationManager.error("Saved changes!");
+      NotificationManager.success("Saved changes!");
+
+      if (this.props.new) {
+        this.props.history.push("/admin/committees/" + id);
+      }
     }
 
     if (this.props.new) {

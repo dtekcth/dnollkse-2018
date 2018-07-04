@@ -22,7 +22,7 @@ export const pagesCreateMethod = new ValidatedMethod({
                              "Not authorized to manage pages");
     }
 
-    Pages.insert({
+    return Pages.insert({
       title,
       url,
       type,
