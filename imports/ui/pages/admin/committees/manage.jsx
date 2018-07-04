@@ -196,7 +196,7 @@ class AdminManageCommitteePage extends Component {
         return;
       }
       
-      this.props.history.push("/admin/committees");
+      NotificationManager.error("Saved changes!");
     }
 
     if (this.props.new) {
