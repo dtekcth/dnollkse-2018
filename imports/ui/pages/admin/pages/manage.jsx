@@ -14,6 +14,8 @@ import InputGroup from "/imports/ui/components/inputgroup";
 import Loader from "/imports/ui/components/loader";
 import RichTextEditor from "/imports/ui/components/richtexteditor";
 import AdminLayout from "/imports/ui/layouts/admin";
+import AuthorizedLayout from "/imports/ui/layouts/authorized";
+import ForbiddenPage from "/imports/ui/pages/forbidden";
 
 import ListPage from "./list";
 import FormPage from "./form";
@@ -255,61 +257,66 @@ class AdminManagePagePage extends Component {
 
     return (
       <AdminLayout title="Manage Page">
-        <div className="p-4">
-          <div className="px-1">
-            <h2 className="ml-2">
-              <a href="#" className="link-dtek" onClick={props.history.goBack}>
-                <FontAwesomeIcon icon="chevron-left" fixedWidth size="sm" />
-              </a>
-              <span className="ml-2">Page:</span>
-              <span className="ml-1 text-dtek">
-                {props.new ? "New" : props.page.title}
-              </span>
-            </h2>
+        <AuthorizedLayout
+          roles={["ADMIN_MANAGE_NEWS"]}
+          failureContent={<ForbiddenPage />}
+        >
+          <div className="p-4">
+            <div className="px-1">
+              <h2 className="ml-2">
+                <a href="#" className="link-dtek" onClick={props.history.goBack}>
+                  <FontAwesomeIcon icon="chevron-left" fixedWidth size="sm" />
+                </a>
+                <span className="ml-2">Page:</span>
+                <span className="ml-1 text-dtek">
+                  {props.new ? "New" : props.page.title}
+                </span>
+              </h2>
 
-            <AutoForm
-              onSubmit={this.handleSave}
-              trimOnSubmit
-            >
-              <div className="mt-2 p-2 rounded bg-white">
-                <div>
-                  <h3 className="ml-2 text-grey-dark">Page info</h3>
+              <AutoForm
+                onSubmit={this.handleSave}
+                trimOnSubmit
+              >
+                <div className="mt-2 p-2 rounded bg-white">
+                  <div>
+                    <h3 className="ml-2 text-grey-dark">Page info</h3>
 
-                  <InputGroup
-                    className="mt-1"
-                    text="Title"
-                    value={this.state.title}
-                    onChange={e => this.setState({ title: e.target.value })}
-                  />
+                    <InputGroup
+                      className="mt-1"
+                      text="Title"
+                      value={this.state.title}
+                      onChange={e => this.setState({ title: e.target.value })}
+                    />
 
-                  <InputGroup
-                    className="mt-1"
-                    text="url"
-                    value={this.state.url}
-                    onChange={e => this.setState({ url: e.target.value })}
-                  />
+                    <InputGroup
+                      className="mt-1"
+                      text="url"
+                      value={this.state.url}
+                      onChange={e => this.setState({ url: e.target.value })}
+                    />
 
-                  <InputGroup
-                    className="mt-1"
-                    dropdown
-                    text="Page type"
-                    value={currentOption && currentOption.label}
-                    options={options}
-                    onChange={e => this.setState({ type: e.value })}
-                  />
+                    <InputGroup
+                      className="mt-1"
+                      dropdown
+                      text="Page type"
+                      value={currentOption && currentOption.label}
+                      options={options}
+                      onChange={e => this.setState({ type: e.value })}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex justify-end mt-2">
-                {this.renderSaveButton()}
-              </div>
+                <div className="flex justify-end mt-2">
+                  {this.renderSaveButton()}
+                </div>
 
-              <div className="mt-2">
-                {this.renderPage()}
-              </div>
-            </AutoForm>
+                <div className="mt-2">
+                  {this.renderPage()}
+                </div>
+              </AutoForm>
+            </div>
           </div>
-        </div>
+        </AuthorizedLayout>
       </AdminLayout>
     );
   }

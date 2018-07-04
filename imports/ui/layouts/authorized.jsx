@@ -43,8 +43,13 @@ class AuthorizedLayout extends Component {
     const { user } = this.props;
     const userId = user.userId;
     if (!userId) return false;
-    
-    if (this.props.roles && !Roles.userIsInRole(userId, this.props.roles))
+
+    const hasAllRoles = _.chain(this.props.roles)
+                         .map(r => Roles.userIsInRole(userId, r))
+                         .all()
+                         .value();
+
+    if (this.props.roles && !hasAllRoles)
       return false;
     
     return true;

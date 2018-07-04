@@ -28,7 +28,12 @@ class AdminLayout extends Component {
     className : PropTypes.string,
     content   : PropTypes.object,
     children  : PropTypes.node,
-    title     : PropTypes.string
+    title     : PropTypes.string,
+    roles     : PropTypes.array
+  }
+
+  static defaultProps = {
+    roles: []
   }
 
   render() {

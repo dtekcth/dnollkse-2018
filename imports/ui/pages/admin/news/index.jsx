@@ -9,9 +9,11 @@ import cx from "classnames";
 import PropTypes from "prop-types";
 
 import IconButton from "/imports/ui/components/iconbutton"
+import { ConfirmationPopup } from "/imports/ui/components/popup";
 import AdminLayout from "/imports/ui/layouts/admin";
 import Loader from "/imports/ui/layouts/admin";
-import { ConfirmationPopup } from "/imports/ui/components/popup";
+import AuthorizedLayout from "/imports/ui/layouts/authorized";
+import ForbiddenPage from "/imports/ui/pages/forbidden";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 
@@ -116,37 +118,42 @@ class AdminNewsPage extends Component {
 
     return (
       <AdminLayout title="News">
-        <div className="p-4">
-          <div className="px-1">
-            <div className="flex justify-between px-2">
-              <h2 className="ml-2">News</h2>
+        <AuthorizedLayout
+          roles={["ADMIN_MANAGE_NEWS"]}
+          failureContent={<ForbiddenPage />}
+        >
+          <div className="p-4">
+            <div className="px-1">
+              <div className="flex justify-between px-2">
+                <h2 className="ml-2">News</h2>
 
-              <Link
-                to="/admin/news/new"
-                className={
-                  cx("button py-1 px-2 rounded-full inline-block",
-                     "bg-green text-white hover:bg-green-dark transition-colors")
-                }
-              >
-                <FontAwesomeIcon icon="plus" fixedWidth />
-                <span className="ml-1">Add new post</span>
-              </Link>
-            </div>
+                <Link
+                  to="/admin/news/new"
+                  className={
+                    cx("button py-1 px-2 rounded-full inline-block",
+                       "bg-green text-white hover:bg-green-dark transition-colors")
+                  }
+                >
+                  <FontAwesomeIcon icon="plus" fixedWidth />
+                  <span className="ml-1">Add new post</span>
+                </Link>
+              </div>
 
-            <div className="mt-2 rounded bg-white">
-              <ul className="list-reset mt-1">
-                <li className="p-2 border-b border-grey-lighter">
-                  News
-                </li>
+              <div className="mt-2 rounded bg-white">
+                <ul className="list-reset mt-1">
+                  <li className="p-2 border-b border-grey-lighter">
+                    News
+                  </li>
 
-                <TransitionGroup>
-                  {this.getNews()}
-                </TransitionGroup>
-              </ul>
+                  <TransitionGroup>
+                    {this.getNews()}
+                  </TransitionGroup>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </AdminLayout>
+        </AuthorizedLayout>
+            </AdminLayout>
     );
   }
 }

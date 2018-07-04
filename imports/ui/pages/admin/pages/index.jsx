@@ -13,6 +13,8 @@ import IconButton from "/imports/ui/components/iconbutton"
 import AdminLayout from "/imports/ui/layouts/admin";
 import Loader from "/imports/ui/layouts/admin";
 import { ConfirmationPopup } from "/imports/ui/components/popup";
+import AuthorizedLayout from "/imports/ui/layouts/authorized";
+import ForbiddenPage from "/imports/ui/pages/forbidden";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 
@@ -117,36 +119,41 @@ class AdminPagesPage extends Component {
 
     return (
       <AdminLayout title="Pages">
-        <div className="p-4">
-          <div className="px-1">
-            <div className="flex justify-between px-2">
-              <h2 className="ml-2">Pages</h2>
+        <AuthorizedLayout
+          roles={["ADMIN_MANAGE_PAGES"]}
+          failureContent={<ForbiddenPage />}
+        >
+          <div className="p-4">
+            <div className="px-1">
+              <div className="flex justify-between px-2">
+                <h2 className="ml-2">Pages</h2>
 
-              <Link
-                to="/admin/pages/new"
-                className={
-                  cx("button py-1 px-2 rounded-full inline-block",
-                     "bg-green text-white hover:bg-green-dark transition-colors")
-                }
-              >
-                <FontAwesomeIcon icon="plus" fixedWidth />
-                <span className="ml-1">Add new page</span>
-              </Link>
-            </div>
+                <Link
+                  to="/admin/pages/new"
+                  className={
+                    cx("button py-1 px-2 rounded-full inline-block",
+                       "bg-green text-white hover:bg-green-dark transition-colors")
+                  }
+                >
+                  <FontAwesomeIcon icon="plus" fixedWidth />
+                  <span className="ml-1">Add new page</span>
+                </Link>
+              </div>
 
-            <div className="mt-2 rounded bg-white">
-              <ul className="list-reset mt-1">
-                <li className="p-2 border-b border-grey-lighter">
-                  Pages
-                </li>
+              <div className="mt-2 rounded bg-white">
+                <ul className="list-reset mt-1">
+                  <li className="p-2 border-b border-grey-lighter">
+                    Pages
+                  </li>
 
-                <TransitionGroup>
-                  {this.getPages()}
-                </TransitionGroup>
-              </ul>
+                  <TransitionGroup>
+                    {this.getPages()}
+                  </TransitionGroup>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        </AuthorizedLayout>
       </AdminLayout>
     );
   }
