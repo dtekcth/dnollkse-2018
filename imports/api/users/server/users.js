@@ -18,6 +18,7 @@ const createDefaultPermissions = () => {
       "ADMIN_MANAGE_COMMITTEES",
       "ADMIN_MANAGE_UPLOADS",
       "ADMIN_MANAGE_PAGES",
+      "ADMIN_MANAGE_NEWS",
     ],
     env: [
       "ENVIRONMENT_VIEW"
