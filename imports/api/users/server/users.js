@@ -94,6 +94,8 @@ Accounts.config({
 Accounts.onCreateUser((options, user) => {
   console.log(options, user);
 
+  Roles.addUsersToRoles(user._id, [ "user" ]);
+    
   return user;
 });
 
@@ -111,6 +113,7 @@ Accounts.validateNewUser((user) => {
   }).validate(user);
 
   // throw new Meteor.Error(403, "Not authorized to create new users");
+
 
   // Return true to allow user creation to proceed
   return true;
