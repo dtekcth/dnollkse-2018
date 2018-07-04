@@ -52,11 +52,12 @@ class AdminManagePagePage extends Component {
   }
 
   state = {
-    title : "",
-    url  : "",
-    type  : "",
-    list  : { items: [] },
-    form  : { text: "", url: "", embed: "" },
+    title    : "",
+    url      : "",
+    type     : "",
+    list     : { items : [] },
+    form     : { text  : "", url : "", embed : "" },
+    document : { text  : "" }
   }
 
   updateInfo() {
@@ -72,6 +73,10 @@ class AdminManagePagePage extends Component {
 
       case "form":
         state.form = page.content;
+        break;
+
+      case "document":
+        state.document = page.content;
         break;
     }
 
@@ -92,17 +97,21 @@ class AdminManagePagePage extends Component {
   handleSave(e) {
     e.preventDefault();
 
-    const { title, url, type, list, form } = this.state;
+    const { title, url, type } = this.state;
 
     let content;
 
     switch (type) {
       case "list":
-        content = list;
+        content = this.state.list;
         break;
 
       case "form":
-        content = form;
+        content = this.state.form;
+        break;
+
+      case "document":
+        content = this.state.document;
         break;
     }
     
@@ -114,7 +123,7 @@ class AdminManagePagePage extends Component {
         return;
       }
       
-      this.props.history.push("/admin/pages");
+      NotificationManager.success("Saved changes!");
     }
     
     if (this.props.new) {
@@ -196,6 +205,27 @@ class AdminManagePagePage extends Component {
           </F>
         );
         break;
+
+      case "document":
+        return (
+          <F>
+            <div className="p-2 bg-white rounded">
+              <InputGroup
+                richtext
+                value={this.state.document.text || ""}
+                placeholder="Content..."
+                text="Content"
+                onChange={
+                  text => this.setState({ document: { text } })
+                }
+              />
+            </div>
+
+            <div className="flex justify-end mt-2">
+              {this.renderSaveButton()}
+            </div>
+          </F>
+        );
     }
   }
 
@@ -212,8 +242,9 @@ class AdminManagePagePage extends Component {
       );
 
     const options = [
-      { value: "list", key: "list", label: "List" },
-      { value: "form", key: "form", label: "Form" },
+      { value : "list", key     : "list", label     : "List" },
+      { value : "form", key     : "form", label     : "Form" },
+      { value : "document", key : "document", label : "Document" },
     ];
 
     const currentOption = _.find(options, o => o.value == this.state.type);

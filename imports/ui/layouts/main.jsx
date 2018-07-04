@@ -7,8 +7,9 @@ import { Link } from "react-router-dom";
 import cx from "classnames";
 import PropTypes from "prop-types";
 
-import BaseLayout from "/imports/ui/layouts/base";
+import Loader from "/imports/ui/components/loader";
 import ImageFileContainer from "/imports/ui/containers/imagefile";
+import BaseLayout from "/imports/ui/layouts/base";
 
 const mapStateToProps = (state) => {
   return {
@@ -45,6 +46,12 @@ class MainLayout extends Component {
 
   render() {
     const { props } = this;
+
+    if (!props.ready) {
+      return (
+        <Loader delay={1000} centered size="lg" />
+      );
+    }
 
     const links = _.map(props.settings.navigation, (s, i) => {
       return (

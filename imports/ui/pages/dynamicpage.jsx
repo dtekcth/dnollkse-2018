@@ -109,6 +109,21 @@ class DynamicPage extends Component {
       case "form":
         return this.getForm();
         break;
+
+      case "document":
+        return (
+          <F>
+            <h2 className="text-center">{page.title}</h2>
+
+
+            <div className="bg-white rounded p-4 mt-3 mb-4">
+              <FroalaEditorView
+                model={page.content.text}
+              />
+            </div>
+          </F>
+        );
+        break;
     }
   }
 
