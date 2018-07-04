@@ -95,10 +95,12 @@ class AdminLayout extends Component {
                   <div className="navitem">
                     {
                       props.committee.ready &&
-                      <ImageFileContainer
-                        className="w-10 h-10 block"
-                        imageId={props.committee.data.logo}
-                      />
+                      <Link to="/admin" className="block">
+                        <ImageFileContainer
+                          className="w-10 h-10 block"
+                          imageId={props.committee.data.logo}
+                        />
+                      </Link>
                     }
                   </div>
 
