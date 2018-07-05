@@ -19,6 +19,7 @@ import ForbiddenPage from "/imports/ui/pages/forbidden";
 
 import ListPage from "./list";
 import FormPage from "./form";
+import CommitteePage from "./committee";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 
@@ -54,12 +55,13 @@ class AdminManagePagePage extends Component {
   }
 
   state = {
-    title    : "",
-    url      : "",
-    type     : "",
-    list     : { items : [] },
-    form     : { text  : "", url : "", embed : "" },
-    document : { text  : "" }
+    title     : "",
+    url       : "",
+    type      : "",
+    list      : { items       : [] },
+    form      : { text        : "", url : "", embed : "" },
+    document  : { text        : "" },
+    committee : { committeeId : "" },
   }
 
   updateInfo() {
@@ -79,6 +81,10 @@ class AdminManagePagePage extends Component {
 
       case "document":
         state.document = page.content;
+        break;
+
+      case "committee":
+        state.committee = page.content;
         break;
     }
 
@@ -114,6 +120,10 @@ class AdminManagePagePage extends Component {
 
       case "document":
         content = this.state.document;
+        break;
+
+      case "committee":
+        content = this.state.committee;
         break;
     }
     
@@ -192,13 +202,11 @@ class AdminManagePagePage extends Component {
             </div>
           </F>
         );
-        break;
 
       case "form":
         return (
           <F>
             <FormPage
-              ref={e => this.list = e}
               text={this.state.form.text}
               url={this.state.form.url}
               embed={this.state.form.embed}
@@ -210,7 +218,6 @@ class AdminManagePagePage extends Component {
             </div>
           </F>
         );
-        break;
 
       case "document":
         return (
@@ -232,6 +239,21 @@ class AdminManagePagePage extends Component {
             </div>
           </F>
         );
+
+      case "committee":
+        return (
+          <F>
+            <CommitteePage
+              committeeId={this.state.committee.committeeId}
+              onChange={data => this.setState({ committee: data })}
+            />
+
+            <div className="flex justify-end mt-2">
+              {this.renderSaveButton()}
+            </div>
+          </F>
+        );
+        break;
     }
   }
 
@@ -248,9 +270,10 @@ class AdminManagePagePage extends Component {
       );
 
     const options = [
-      { value : "list", key     : "list", label     : "List" },
-      { value : "form", key     : "form", label     : "Form" },
-      { value : "document", key : "document", label : "Document" },
+      { value : "list", key      : "list", label      : "List" },
+      { value : "form", key      : "form", label      : "Form" },
+      { value : "document", key  : "document", label  : "Document" },
+      { value : "committee", key : "committee", label : "Committee" },
     ];
 
     const currentOption = _.find(options, o => o.value == this.state.type);

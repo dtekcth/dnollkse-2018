@@ -68,6 +68,26 @@ class MainLayout extends Component {
       );
     });
 
+    const footerNav = [ ...props.settings.navigation ];
+    if (Roles.userIsInRole(props.user.userId, ["ENVIRONMENT_VIEW"]))
+      footerNav.push({ link: "/environment", text: "Environment" })
+
+    if (Roles.userIsInRole(props.user.userId, ["ADMIN_VIEW"]))
+      footerNav.push({ link: "/admin", text: "Admin" })
+
+    if (!props.user.userId)
+      footerNav.push({ link: "/login", text: "Login" })
+    else 
+      footerNav.push({ link: "/logout", text: "Logout" })
+
+    const footerLinks = _.map(footerNav, (s, i) => {
+      return (
+        <li key={i}>
+          <Link to={s.link}>{s.text}</Link>
+        </li>
+      );
+    });
+
     return (
       <BaseLayout title={props.title}>
         <div className={cx("layout-main", props.className)}>
@@ -124,30 +144,7 @@ class MainLayout extends Component {
                 </div>
                 <div className="flex-1 p-3">
                   <ul className="list-reset tracking-wide text-grey text-base leading-loose">
-                    <li><Link to="/"              >Startsida</Link></li>
-                    <li><Link to="/committee/2018">DNollK 2018</Link></li>
-                    <li><Link to="/schedule"      >Schema</Link></li>
-                    <li><Link to="/events"        >Arr</Link></li>
-                    <li><Link to="/docs"          >Dokument</Link></li>
-                    <li><Link to="/links"         >Länkar</Link></li>
-                    <li><Link to="/about"         >Om...</Link></li>
-                    <li><Link to="/faq"           >Faq</Link></li>
-                    <li><Link to="/contact"       >Kontakt</Link></li>
-
-                    {
-                      Roles.userIsInRole(props.user.userId, ["ENVIRONMENT_VIEW"]) &&
-                      <li><Link to="/environment">Environment</Link></li>
-                    }
-
-                    {
-                      Roles.userIsInRole(props.user.userId, ["ADMIN_VIEW"]) &&
-                      <li><Link to="/admin">Admin</Link></li>
-                    }
-
-                    {
-                      !props.user.userId &&
-                      <li><Link to="/login">Login</Link></li>
-                    }
+                    {footerLinks}
                   </ul>
                 </div>
               </div>

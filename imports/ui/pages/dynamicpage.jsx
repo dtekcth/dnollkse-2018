@@ -7,6 +7,7 @@ import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
 import MainLayout from "/imports/ui/layouts/main";
 import Loader from "/imports/ui/components/loader";
+import CommitteeContainer from "/imports/ui/containers/committee";
 
 const mapStateToProps = (state) => {
   return {
@@ -104,11 +105,8 @@ class DynamicPage extends Component {
           </F>
         );
 
-        break;
-
       case "form":
         return this.getForm();
-        break;
 
       case "document":
         return (
@@ -123,7 +121,13 @@ class DynamicPage extends Component {
             </div>
           </F>
         );
-        break;
+
+      case "committee":
+        return (
+          <div className="bg-white rounded p-4 mt-3 mb-4">
+            <CommitteeContainer committeeId={page.content.committeeId} />
+          </div>
+        );
     }
   }
 

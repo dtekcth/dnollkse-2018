@@ -10,7 +10,6 @@ import Loader from "/imports/ui/components/loader";
 
 import MainLayout from "/imports/ui/layouts/main";
 
-import CommitteePage from "/imports/ui/pages/committee";
 import DynamicPage from "/imports/ui/pages/dynamicpage";
 import ContactsPage from "/imports/ui/pages/contacts";
 import SchedulePage from "/imports/ui/pages/schedule";
@@ -88,7 +87,6 @@ class App extends Component {
           <Route exact path="/contact" component={ContactsPage} />
           <Route exact path="/schedule" component={SchedulePage} />
           <Route exact path="/environment" component={EnvironmentPage} />
-          <Route exact path="/committee" component={CommitteePage} />
           <Route exact path="/setup" component={SetupPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/logout" render={this.handleLogout} />

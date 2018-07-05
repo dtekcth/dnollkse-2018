@@ -1,27 +1,11 @@
 import _ from "lodash";
 import React, { Fragment as F, Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import cx from "classnames";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
-import Loader from "/imports/ui/components/loader";
 import ImageFileContainer from "/imports/ui/containers/imagefile";
-import MainLayout from "/imports/ui/layouts/main";
 
-import composeWithTracker from "/imports/helpers/composetracker";
-import { Committees } from "/imports/api/committees";
-
-const mapStateToProps = (state) => {
-  return {
-    settings: state.settings,
-    committee: state.committee.data,
-    ready: state.settings.ready && state.committee.ready
-  };
-};
-
-@connect(mapStateToProps)
-class CommitteePage extends Component {
+class CommitteeComponent extends Component {
   static defaultProps = {
     committee: {}
   }
@@ -88,40 +72,28 @@ class CommitteePage extends Component {
   }
 
   render() {
-    const { committee, ready } = this.props;
-
-    if (!ready) {
-      return (
-        <MainLayout>
-          <div className="p-4 flex justify-center">
-            <Loader size="lg" delay={1000} />
-          </div>
-        </MainLayout>
-      )
-    }
+    const { committee } = this.props;
 
     return (
-      <MainLayout title="Committee">
-        <div className="container mx-auto mt-4 p-4 bg-white rounded">
-          <h1 className="font-geomancy tracking-wide text-center">
-            {committee.name}
-          </h1>
+      <F>
+        <h1 className="font-geomancy tracking-wide text-center">
+          {committee.name}
+        </h1>
 
-          <div
-            className="px-2 mt-3 text-justify-word leading-loose"
-          >
-            <FroalaEditorView
-              model={committee.description}
-            />
-          </div>
-
-          <div className="mt-4">
-            {this.getMembers()}
-          </div>
+        <div
+          className="px-2 mt-3 text-justify-word leading-loose"
+        >
+          <FroalaEditorView
+            model={committee.description}
+          />
         </div>
-      </MainLayout>
+
+        <div className="mt-4">
+          {this.getMembers()}
+        </div>
+      </F>
     );
   }
 }
 
-export default CommitteePage;
+export default CommitteeComponent;
