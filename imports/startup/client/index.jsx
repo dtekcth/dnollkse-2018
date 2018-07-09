@@ -48,9 +48,6 @@ import "/imports/api/users/client";
 import "/imports/api/committees";
 import "/imports/api/committees/client";
 
-DocHead.addMeta({ name: "viewport", content: "initial-scale=0.5, minimum-scale=0.5" });
-DocHead.addMeta({ name: "theme-color", content: "#FA6607" });
-
 BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
 const Root = () => ( 

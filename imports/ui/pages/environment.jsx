@@ -8,7 +8,7 @@ import HighchartsReact from "highcharts-react-official";
 import composeWithTracker from "/imports/helpers/composetracker";
 import { Environment } from "/imports/api/environment";
 
-import MainLayout from "/imports/ui/layouts/main";
+import DocumentTitle from "/imports/ui/components/documenttitle";
 import AuthorizedLayout from "/imports/ui/layouts/authorized";
 import ForbiddenPage from "/imports/ui/pages/forbidden";
 
@@ -121,21 +121,19 @@ class EnvironmentPage extends Component {
       <AuthorizedLayout
         roles={["ENVIRONMENT_VIEW"]}
         failureContent={
-          <MainLayout>
-            <ForbiddenPage />
-          </MainLayout>
+          <ForbiddenPage />
         }
       >
-        <MainLayout title="Environment">
-          <div className="container mx-auto mt-4 p-4">
-            <h2 className="text-center">Temperature and humidity in DNollK's room</h2>
+        <div className="container mx-auto mt-4 p-4">
+          <DocumentTitle title="Environment" />
 
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={options}
-            />
-          </div>
-        </MainLayout>
+          <h2 className="text-center">Temperature and humidity in DNollK's room</h2>
+
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+          />
+        </div>
       </AuthorizedLayout>
     );
   }

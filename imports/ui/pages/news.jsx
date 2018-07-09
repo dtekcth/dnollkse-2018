@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import moment from "moment";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
-import MainLayout from "/imports/ui/layouts/main";
+import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 
 const mapStateToProps = (state) => {
@@ -43,15 +43,15 @@ class NewsPage extends Component {
 
   render() {
     return (
-      <MainLayout title="News" className="bg-grey-lighter">
-        <div className="container mx-auto mt-4">
-          <h2 className="text-center">News</h2>
+      <div className="container mx-auto mt-4">
+        <DocumentTitle title="News" />
 
-          <div className="mb-4">
-            {this.getNews()}
-          </div>
+        <h2 className="text-center">News</h2>
+
+        <div className="mb-4">
+          {this.getNews()}
         </div>
-      </MainLayout>
+      </div>
     );
   }
 }

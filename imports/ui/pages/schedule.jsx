@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-import MainLayout from "/imports/ui/layouts/main";
+import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 
 const mapStateToProps = (state) => {
@@ -22,9 +22,7 @@ class SchedulePage extends Component {
 
     if (!settings.ready)
       return (
-        <MainLayout title="Schedule" className="bg-grey-lighter">
-          <Loader delay={1000} size="lg" />
-        </MainLayout>
+        <Loader delay={1000} size="lg" />
       );
 
     /* const timeRangeFormat = (range) =>*/
@@ -34,43 +32,45 @@ class SchedulePage extends Component {
 
     if (!calId)
       return (
-        <MainLayout title="Schedule" className="bg-grey-lighter">
+        <F>
+          <DocumentTitle title="Schedule" />
+
           <div className="text-grey italic">No calendar configured</div>
-        </MainLayout>
+        </F>
       );
 
     return (
-      <MainLayout title="Schedule" className="bg-grey-lighter">
-        <div className="container mx-auto mt-4 mb-4">
-          <div className="p-2 bg-white rounded">
-            <iframe
-              src={
-                `https://calendar.google.com/calendar/embed?src=${calId}&ctz=Europe%2FStockholm&mode=WEEK`
-              }
-              style={{ "border": 0}}
-              width="100%"
-              height="800"
-              frameBorder="0"
-              scrolling="no"
-            />
+      <div className="container mx-auto mt-4 mb-4">
+        <DocumentTitle title="Schedule" />
 
-            {/* <BigCalendar */}
-              {/* events={events} */}
-              {/* defaultView="week" */}
-              {/* startAccessor="start" */}
-              {/* endAccessor="end" */}
-              {/* formats={{ */}
-               {/* timeGutterFormat: "HH:mm", */}
-               {/* agendaTimeFormat: "HH:mm", */}
-               {/* agendaTimeRangeFormat: timeRangeFormat, */}
-               {/* eventTimeRangeFormat: timeRangeFormat, */}
-               {/* eventTimeRangeStartFormat: "HH:mm", */}
-               {/* eventTimeRangeEndFormat: "HH:mm", */}
-               {/* }} */}
-              {/* /> */}
-          </div>
+        <div className="p-2 bg-white rounded">
+          <iframe
+            src={
+              `https://calendar.google.com/calendar/embed?src=${calId}&ctz=Europe%2FStockholm&mode=WEEK`
+            }
+            style={{ "border": 0}}
+            width="100%"
+            height="800"
+            frameBorder="0"
+            scrolling="no"
+          />
+
+          {/* <BigCalendar */}
+            {/* events={events} */}
+            {/* defaultView="week" */}
+            {/* startAccessor="start" */}
+            {/* endAccessor="end" */}
+            {/* formats={{ */}
+             {/* timeGutterFormat: "HH:mm", */}
+             {/* agendaTimeFormat: "HH:mm", */}
+             {/* agendaTimeRangeFormat: timeRangeFormat, */}
+             {/* eventTimeRangeFormat: timeRangeFormat, */}
+             {/* eventTimeRangeStartFormat: "HH:mm", */}
+             {/* eventTimeRangeEndFormat: "HH:mm", */}
+             {/* }} */}
+            {/* /> */}
         </div>
-      </MainLayout>
+      </div>
     );
   }
 }

@@ -11,9 +11,8 @@ $react-notifications-font-base-path: "./static/fonts/"
 @import "pages/index.sass"
 
 body
-  overflow-x: hidden
+  overflow: hidden
   font-family: "Museo Sans", "Helvetica Neue", Arial, Helvetica, sans-serif
-
 
 html
   font-size: 90%
@@ -93,30 +92,83 @@ button:disabled
 .transition-shadows
   transition: box-shadow 0.2s
 
-.layout-main .navbar
-  background-color: rgba(0, 0, 0, 0.65)
+.layout-main
+  height: 100vh
+  overflow-y: auto
 
-  .navitem
-    position: relative
+  .navbar
+    background-color: rgba(0, 0, 0, 0.65)
 
-    &:after
-      content: " "
+    .navitem
+      position: relative
 
-      display: block
+      &:after
+        content: " "
+
+        display: block
+        width: 100%
+        height: 0
+        background-color: config("colors.dtek")
+
+        transition: height 0.1s
+
+        position: absolute
+        bottom: 0
+
+      &:hover:after
+        height: 4px
+
+.drawer
+  background-color: transparent
+  pointer-events: none
+
+  transition: background-color 0.5s
+
+  overflow-y: auto
+
+  &.open
+    background-color: rgba(0, 0, 0, 0.2)
+    pointer-events: all
+
+    ul
+      transform: translateX(0)
+
+  @screen md
+    &.open
+      background-color: transparent
+      pointer-events: none
+
+      ul
+        transform: translateX(-100%)
+
+  ul
+    display: inline-block
+    min-height: 100vh
+
+    transform: translateX(-100%)
+
+    transition: transform 0.5s
+
+    .drawer-item
       width: 100%
-      height: 0
-      background-color: config("colors.dtek")
+      position: relative
 
-      transition: height 0.1s
+      &:after
+        content: " "
 
-      position: absolute
-      bottom: 0
+        display: block
+        width: 0
+        height: 100%
+        background-color: config("colors.dtek")
 
-    &:hover:after
-      height: 4px
+        transition: width 0.1s
 
-  .logo
-    margin-bottom: -2rem
+        position: absolute
+        top: 0
+        left: 0
+
+      &:hover:after
+        width: 4px
 
 .layout-admin
   .topbar

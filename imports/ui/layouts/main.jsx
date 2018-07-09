@@ -4,6 +4,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import cx from "classnames";
 import PropTypes from "prop-types";
 
@@ -44,6 +45,10 @@ class MainLayout extends Component {
     committee: {}
   }
 
+  state = {
+    drawer: false
+  }
+
   render() {
     const { props } = this;
 
@@ -68,19 +73,19 @@ class MainLayout extends Component {
       );
     });
 
-    const footerNav = [ ...props.settings.navigation ];
+    const listNavs = [ ...props.settings.navigation ];
     if (Roles.userIsInRole(props.user.userId, ["ENVIRONMENT_VIEW"]))
-      footerNav.push({ link: "/environment", text: "Environment" })
+      listNavs.push({ link: "/environment", text: "Environment" })
 
     if (Roles.userIsInRole(props.user.userId, ["ADMIN_VIEW"]))
-      footerNav.push({ link: "/admin", text: "Admin" })
+      listNavs.push({ link: "/admin", text: "Admin" })
 
     if (!props.user.userId)
-      footerNav.push({ link: "/login", text: "Login" })
+      listNavs.push({ link: "/login", text: "Login" })
     else 
-      footerNav.push({ link: "/logout", text: "Logout" })
+      listNavs.push({ link: "/logout", text: "Logout" })
 
-    const footerLinks = _.map(footerNav, (s, i) => {
+    const footerLinks = _.map(listNavs, (s, i) => {
       return (
         <li key={i}>
           <Link to={s.link}>{s.text}</Link>
@@ -88,9 +93,25 @@ class MainLayout extends Component {
       );
     });
 
+    const drawerLinks = _.map(listNavs, (s, i) => {
+      return (
+        <li key={i} className="drawer-item">
+          <Link
+            to={s.link}
+            className={
+              cx("drawerlink inline-block px-4 py-2 w-full")
+            }
+            onClick={() => this.setState({ drawer: false })}
+          >
+            {textFix(s.text)}
+          </Link>
+        </li>
+      );
+    });
+
     return (
       <BaseLayout title={props.title}>
-        <div className={cx("layout-main", props.className)}>
+        <div className={cx("layout-main min-h-full", props.className)}>
           <header>
             <div className="relative">
               <ImageFileContainer
@@ -100,16 +121,45 @@ class MainLayout extends Component {
               />
 
               <nav className="navbar w-full absolute pin-b mb-3">
-                <div className="container mx-auto">
+                {/* Mobile navbar */}
+                <div className="md:hidden container mx-auto relative">
+                  <div>
+                    <ul className="list-reset">
+                      <li className="navitem inline-block text-white">
+                        <a
+                          href="#"
+                          className="block p-2"
+                          onClick={
+                            e => {
+                              e.preventDefault();
+                              this.setState({ drawer: true });
+                            }
+                          }
+                        >
+                          <FontAwesomeIcon icon="bars" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <Link to="/" className="absolutex-center block w-24">
+                    <ImageFileContainer
+                      className="block absolute pin-b -mb-4"
+                      imageId={props.committee.logo}
+                    />
+                  </Link>
+                </div>
+
+                {/* Main navbar */}
+                <div className="hidden md:block container mx-auto">
                   <div className="flex mx-2 relative">
-                    <div className="w-32 lg:w-48">
-                      <Link to="/" className="block">
-                        <ImageFileContainer
-                          className="w-32 lg:w-48 block absolute pin-b logo"
-                          imageId={props.committee.logo}
-                        />
-                      </Link>
-                    </div>
+                    <Link to="/" className="block w-24 lg:w-48">
+                      <ImageFileContainer
+                        className="w-24 lg:w-48 block absolute pin-b -mb-4 lg:-mb-8"
+                        imageId={props.committee.logo}
+                      />
+                    </Link>
+
                     <ul className={
                       cx("flex-grow list-reset tracking-wide font-geomancy",
                          "whitespace-no-wrap",
@@ -150,6 +200,25 @@ class MainLayout extends Component {
               </div>
             </div>
           </footer>
+        </div>
+
+        <div
+          ref={e => this.drawer = e}
+          className={cx("drawer fixed pin", this.state.drawer && "open")}
+          onClick={
+            e => {
+              if (e.target == this.drawer)
+                this.setState({ drawer: false })
+            }
+          }
+        >
+          <ul className="bg-black-shark list-reset tracking-wide font-geomancy text-white">
+            <li className="px-3 py-2 text-xl text-center">
+              {textFix(props.committee.name)}
+            </li>
+
+            {drawerLinks}
+          </ul>
         </div>
       </BaseLayout>
     );

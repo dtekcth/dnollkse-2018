@@ -76,22 +76,28 @@ class App extends Component {
     return (
       <F>
         <Helmet>
-          <meta name="viewport" content="initial-scale=0.5, minimum-scale=0.5" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=0.5"
+          />
           <meta name="theme-color" content="#FA6607" />
 
           <link rel="icon" href="/favicon.ico?v=4" />
         </Helmet>
 
         <Switch>
-          <Route exact path="/" component={NewsPage} />
-          <Route exact path="/contact" component={ContactsPage} />
-          <Route exact path="/schedule" component={SchedulePage} />
-          <Route exact path="/environment" component={EnvironmentPage} />
-          <Route exact path="/setup" component={SetupPage} />
+          <MainLayout className="bg-grey-lighter">
+            <Route exact path="/" component={NewsPage} />
+            <Route exact path="/contact" component={ContactsPage} />
+            <Route exact path="/schedule" component={SchedulePage} />
+            <Route exact path="/environment" component={EnvironmentPage} />
+            <Route exact path="/setup" component={SetupPage} />
+
+            {routes}
+          </MainLayout>
+
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/logout" render={this.handleLogout} />
-
-          {routes}
 
           {/* Admin routes */}
           <Route exact path="/admin" component={AdminIndexPage} />

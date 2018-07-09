@@ -78,6 +78,13 @@ class AdminLayout extends Component {
 
     return (
       <BaseLayout title={props.title ? `Admin - ${props.title}` : "Admin"}>
+        <Helmet>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=0.5, minimum-scale=0.5"
+          />
+        </Helmet>
+
         <AuthorizedLayout
           roles={["ADMIN_VIEW"]}
           loginRoute="/login"

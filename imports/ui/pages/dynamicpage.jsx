@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
-import MainLayout from "/imports/ui/layouts/main";
+import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 import CommitteeContainer from "/imports/ui/containers/committee";
 
@@ -135,11 +135,11 @@ class DynamicPage extends Component {
     const { page } = this.props;
 
     return (
-      <MainLayout title="Documents" className="bg-grey-lighter">
-        <div className="container mx-auto mt-4">
-          {this.getContent()}
-        </div>
-      </MainLayout>
+      <div className="container mx-auto mt-4">
+        <DocumentTitle title="Page" />
+
+        {this.getContent()}
+      </div>
     );
   }
 }
