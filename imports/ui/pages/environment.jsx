@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import cx from "classnames";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 import { Environment } from "/imports/api/environment";
@@ -19,7 +20,9 @@ Highcharts.setOptions({
 });
 
 @composeWithTracker((props, onData) => {
-  const handle = Meteor.subscribe("environment");
+  const handle = Meteor.subscribe("environment", {
+    from: moment().subtract({ months: 1 }).startOf("month").toDate()
+  });
   
   if (handle.ready()) {
     const env = Environment.find().fetch();
@@ -129,10 +132,12 @@ class EnvironmentPage extends Component {
 
           <h2 className="text-center">Temperature and humidity in DNollK's room</h2>
 
-          <HighchartsReact
-            highcharts={Highcharts}
-            options={options}
-          />
+          <div className="mt-2">
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={options}
+            />
+          </div>
         </div>
       </AuthorizedLayout>
     );
