@@ -179,20 +179,20 @@ class MainLayout extends Component {
 
           <footer className="bg-black-ash p-5">
             <div className="container mx-auto">
-              <div className="flex -mx-3">
-                <div className="pl-3 pr-4">
+              <div className="flex flex-wrap -mx-3">
+                <div className="w-full md:w-1/3 pl-3 pr-4">
                   <ImageFileContainer
-                    className="w-24 block"
+                    className="w-24 mx-auto block"
                     imageId={props.committee.logo}
                   />
                 </div>
-                <div className="flex-1 p-3">
+                <div className="w-full md:w-1/3 p-3 text-center">
                   <h2 className="text-white font-geomancy tracking-wide">DNollK 2018</h2>
                   <span className="inline-block text-grey-dark tracking-wide text-base mt-1">
                     Chalmers University of Technology
                   </span>
                 </div>
-                <div className="flex-1 p-3">
+                <div className="w-full md:w-1/3 p-3">
                   <ul className="list-reset tracking-wide text-grey text-base leading-loose">
                     {footerLinks}
                   </ul>
