@@ -121,7 +121,7 @@ class MainLayout extends Component {
                 defaultSrc="/static/images/placeholder-cover.png"
               />
 
-              <nav className="navbar w-full absolute pin-b mb-3">
+              <nav className="navbar w-full absolute pin-b mb-1 sm:mb-3">
                 {/* Mobile navbar */}
                 <div className="md:hidden container mx-auto relative">
                   <div>
@@ -129,7 +129,7 @@ class MainLayout extends Component {
                       <li className="navitem inline-block text-white">
                         <a
                           href="#"
-                          className="block p-2"
+                          className="block p-1 sm:p-2"
                           onClick={
                             e => {
                               e.preventDefault();
@@ -143,9 +143,9 @@ class MainLayout extends Component {
                     </ul>
                   </div>
 
-                  <Link to="/" className="absolutex-center block w-24">
+                  <Link to="/" className="absolutex-center block w-16 sm:w-24">
                     <ImageFileContainer
-                      className="block absolute pin-b -mb-4"
+                      className="block absolute pin-b -mb-2 sm:-mb-4"
                       imageId={props.committee.logo}
                     />
                   </Link>
@@ -215,7 +215,17 @@ class MainLayout extends Component {
         >
           <ul className="list-reset" style={{ width: 300 }}>
             <li className="px-3 py-2 text-xl text-center">
-              {textFix(props.committee.name)}
+              <Link
+                to="/"
+                className="mx-auto block w-24"
+                onClick={() => this.setState({ drawer: false })}
+              >
+                <ImageFileContainer className="block" imageId={props.committee.logo} />
+              </Link>
+
+              <div className="mt-2">
+                {textFix(props.committee.name)}
+              </div>
             </li>
 
             {drawerLinks}
