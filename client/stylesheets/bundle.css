@@ -9277,47 +9277,6 @@ button:disabled {
   height: 4px;
 }
 
-.drawer {
-  background-color: transparent;
-  pointer-events: none;
-  -webkit-transition: background-color .5s;
-  transition: background-color .5s;
-  overflow-y: auto;
-}
-
-.drawer.open {
-  background-color: rgba(0, 0, 0, .2);
-  pointer-events: all;
-}
-
-.drawer.open ul {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-}
-
-@media (min-width: 768px) {
-  .drawer.open {
-    background-color: transparent;
-    pointer-events: none;
-  }
-
-  .drawer.open ul {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-  }
-}
-
-.drawer ul {
-  display: inline-block;
-  min-height: 100vh;
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  -webkit-transition: -webkit-transform .5s;
-  transition: -webkit-transform .5s;
-  transition: transform .5s;
-  transition: transform .5s, -webkit-transform .5s;
-}
-
 .drawer ul .drawer-item {
   width: 100%;
   position: relative;
@@ -9338,6 +9297,11 @@ button:disabled {
 
 .drawer ul .drawer-item:hover:after {
   width: 4px;
+}
+
+.layout-admin {
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .layout-admin .topbar .topbar-main {

@@ -2,6 +2,7 @@ import { Roles } from "meteor/alanning:roles";
 
 import _ from "lodash";
 import React, { Component } from "react";
+import Drawer from "react-motion-drawer";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome"
@@ -99,7 +100,7 @@ class MainLayout extends Component {
           <Link
             to={s.link}
             className={
-              cx("drawerlink inline-block px-4 py-2 w-full")
+              cx("drawerlink block px-4 py-2")
             }
             onClick={() => this.setState({ drawer: false })}
           >
@@ -202,24 +203,24 @@ class MainLayout extends Component {
           </footer>
         </div>
 
-        <div
-          ref={e => this.drawer = e}
-          className={cx("drawer fixed pin", this.state.drawer && "open")}
-          onClick={
-            e => {
-              if (e.target == this.drawer)
-                this.setState({ drawer: false })
-            }
+        <Drawer
+          open={this.state.drawer}
+          onChange={
+            open =>
+              this.setState({ drawer: open })
           }
+          noTouchOpen
+          width={300}
+          className="bg-black-shark tracking-wide font-geomancy text-white"
         >
-          <ul className="bg-black-shark list-reset tracking-wide font-geomancy text-white">
+          <ul className="list-reset" style={{ width: 300 }}>
             <li className="px-3 py-2 text-xl text-center">
               {textFix(props.committee.name)}
             </li>
 
             {drawerLinks}
           </ul>
-        </div>
+        </Drawer>
       </BaseLayout>
     );
   }

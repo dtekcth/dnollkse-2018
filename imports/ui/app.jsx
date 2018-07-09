@@ -36,6 +36,27 @@ import AdminUsersPage from "/imports/ui/pages/admin/users";
 import AdminUploadsPage from "/imports/ui/pages/admin/uploads/list";
 import AdminUploadsManagePage from "/imports/ui/pages/admin/uploads/manage";
 
+function RouteWithLayout({layout, component, ...rest}){
+  return (
+    <Route {...rest} render={(props) =>
+      React.createElement(layout, props, React.createElement(component, props))
+    }/>
+  );
+}
+
+const MainRoute = ({ component: Component, render, ...rest }) => {
+  return (
+    <Route {...rest} render={matchProps => (
+      <MainLayout className="bg-grey-lighter">
+        {
+          render ? render(matchProps) :
+          <Component {...matchProps} />
+        }
+      </MainLayout>
+    )} />
+  )
+};
+
 const mapStateToProps = (state) => {
   return {
     pages: state.pages
@@ -66,8 +87,8 @@ class App extends Component {
 
   render() {
     const routes = _.map(this.props.pages.list, (p, i) =>
-      <Route
-        key={p._id}
+      <MainRoute
+        key={i}
         exact path={p.url}
         render={props => <DynamicPage {...props} pageId={p._id} />}
       />
@@ -86,15 +107,13 @@ class App extends Component {
         </Helmet>
 
         <Switch>
-          <MainLayout className="bg-grey-lighter">
-            <Route exact path="/" component={NewsPage} />
-            <Route exact path="/contact" component={ContactsPage} />
-            <Route exact path="/schedule" component={SchedulePage} />
-            <Route exact path="/environment" component={EnvironmentPage} />
-            <Route exact path="/setup" component={SetupPage} />
+          <MainRoute exact path="/" component={NewsPage} />
+          <MainRoute exact path="/contact" component={ContactsPage} />
+          <MainRoute exact path="/schedule" component={SchedulePage} />
+          <MainRoute exact path="/environment" component={EnvironmentPage} />
+          <MainRoute exact path="/setup" component={SetupPage} />
 
-            {routes}
-          </MainLayout>
+          {routes}
 
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/logout" render={this.handleLogout} />
