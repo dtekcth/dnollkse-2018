@@ -18,7 +18,7 @@ const checkPrecedence = (user, role) => {
         .max()
         .value();
 
-  return rolePrecedence[role] <= highest;
+  return (rolePrecedence[role] || 0) <= highest;
 };
 
 export const userAuthenticateMethod = new ValidatedMethod({
