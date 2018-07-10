@@ -101,6 +101,7 @@ class RichTextEditor extends Component {
             config={{
               height: props.height || 400,
               toolbarButtons: toolbar,
+              toolbarSticky: false,
               imageEditButtons: [
                 "imageAlign", "imageCaption", "imageRemove", "|",
                 "imageLink", "linkOpen", "linkEdit", "linkRemove", "-",
