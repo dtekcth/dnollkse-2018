@@ -153,10 +153,10 @@ class MainLayout extends Component {
 
                 {/* Main navbar */}
                 <div className="hidden md:block container mx-auto">
-                  <div className="flex mx-2 relative">
-                    <Link to="/" className="block w-24 lg:w-48">
+                  <div className="flex mx-2">
+                    <Link to="/" className="flex-no-shrink block w-24 lg:w-32 xl:w-48 relative">
                       <ImageFileContainer
-                        className="w-24 lg:w-48 block absolute pin-b -mb-4 lg:-mb-8"
+                        className="block absolute pin-b -mb-4 lg:-mb-4 xl:-mb-8"
                         imageId={props.committee.logo}
                       />
                     </Link>
@@ -164,7 +164,7 @@ class MainLayout extends Component {
                     <ul className={
                       cx("flex-grow list-reset tracking-wide font-geomancy",
                          "whitespace-no-wrap",
-                         "text-3xs sm:text-xs lg:text-base ml-2")
+                         "text-3xs sm:text-2xs lg:text-sm ml-2")
                     }>
                       {links}
                     </ul>
