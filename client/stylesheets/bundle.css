@@ -9196,6 +9196,7 @@ button:disabled {
 }
 
 .layout-admin {
+  overflow-x: hidden;
   overflow-y: auto;
   height: 100vh;
 }
