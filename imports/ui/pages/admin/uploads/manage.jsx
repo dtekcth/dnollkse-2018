@@ -119,8 +119,10 @@ class AdminUploadsManagePage extends Component {
             data-clipboard-text={props.image && props.image.link()}
             onSuccess={() => NotificationManager.success("URL Copied!")}
           >
-            <FontAwesomeIcon icon="link" fixedWidth />
-            <span className="font-semibold ml-1">Copy Link</span>
+            <F>
+              <FontAwesomeIcon icon="link" fixedWidth />
+              <span className="font-semibold ml-1">Copy Link</span>
+            </F>
           </Clipboard>
 
           <button
