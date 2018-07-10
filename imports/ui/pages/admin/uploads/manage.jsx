@@ -82,6 +82,11 @@ class AdminUploadsManagePage extends Component {
     }
 
     this.droppableImage.upload((err, file) => {
+      if (err) {
+        NotificationManager.error(err.reason);
+        return;
+      }
+
       setTimeout(() => {
         this.props.history.push("/admin/uploads");
       }, 500);

@@ -1,16 +1,21 @@
 import { FilesCollection } from "meteor/ostrio:files";
 
 import SimpleSchema from "simpl-schema";
+import bytes from "bytes";
 
 import { imagesUpdate } from "/imports/actions";
 import store from "/imports/store";
 
 const checkFile = file => {
+  const size = bytes.parse(Meteor.settings.public.fileMaxSize);
+  const regexp = new RegExp(Meteor.settings.public.fileExtensions, "i");
+
   // Allow upload files under 10MB, and only in png/jpg/jpeg formats
-  if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.extension)) {
+  if (file.size <= size && regexp.test(file.extension)) {
     return true;
   } else {
-    return "Please upload image, with size equal or less than 10MB";
+    return "Please upload file (" + Meteor.settings.public.fileExtensions +
+      "), with size equal or less than " + bytes.format(size);
   }
 };
 

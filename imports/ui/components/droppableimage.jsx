@@ -61,7 +61,10 @@ class DroppableImage extends Component {
         this.props.onUploadStart && this.props.onUploadStart(fileData);
       },
       onUploaded: (err, fileRef) => {
-        if (err) return;
+        if (err) {
+          cb(err);
+          return;
+        };
 
         if (!this.unmounted)
           this.setState({
@@ -80,7 +83,7 @@ class DroppableImage extends Component {
             });
         }, 500);
 
-        cb(err, fileRef);
+        cb(null, fileRef);
       },
       onError: (err, fileData) => { // eslint-disable-line no-unused-vars
         if (!this.unmounted)
