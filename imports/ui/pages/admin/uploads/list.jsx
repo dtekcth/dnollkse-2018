@@ -11,18 +11,36 @@ import AdminLayout from "/imports/ui/layouts/admin";
 import ImageGallery from "/imports/ui/components/imagegallery";
 
 class AdminUploadsPage extends Component {
-  createImageCell(img) {
+  getFileIcon(file) {
+    const mime = file.get("mime");
+
+    if (_.startsWith(mime, "image"))
+      return "file-image";
+    else if (mime === "application/pdf")
+      return "file-pdf";
+
+    return "file";
+  }
+
+  createImageCell(img, func) {
     return (
       <Link
         key={img._id}
         to={`/admin/uploads/${img._id}`}
         style={{ width: 200, height: 200 }}
         className={
-          cx("mx-auto flex justify-center items-center p-2",
+          cx("mx-auto flex justify-center items-center relative p-2",
              "rounded bg-white transition-shadows hover:shadow-lg")
         }
       >
-        <img className="block max-w-full max-h-full" src={img.link()} />
+        {func()}
+
+        <div className="absolute pin-b pin-x px-2 py-1 bg-white">
+          <FontAwesomeIcon icon="file-image" className="text-dtek" />
+          <span className="ml-1">
+            {img.meta.name}
+          </span>
+        </div>
       </Link>
     );
   }

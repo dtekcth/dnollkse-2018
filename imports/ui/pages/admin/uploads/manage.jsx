@@ -1,8 +1,9 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React, { Fragment as F, Component } from "react";
+import Clipboard from "react-clipboard.js"
 import { NotificationManager } from "react-notifications";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import { connect } from "react-redux";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
@@ -106,19 +107,33 @@ class AdminUploadsManagePage extends Component {
   render() {
     const props = this.props;
 
-    let deleteBtn;
+    let tools;
     if (!props.new)
-      deleteBtn = (
-        <button
-          className={
-            cx("py-1 px-2 rounded-full inline-block",
-               "bg-red text-white hover:bg-red-dark transition-colors")
-          }
-          onClick={this.handleDelete}
-        >
-          <FontAwesomeIcon icon="trash" fixedWidth />
-          <span className="font-semibold ml-1">Delete</span>
-        </button>
+      tools = (
+        <F>
+          <Clipboard
+            className={
+              cx("py-1 px-2 rounded-full inline-block",
+                 "bg-blue text-white hover:bg-blue-dark transition-colors")
+            }
+            data-clipboard-text={props.image && props.image.link()}
+            onSuccess={() => NotificationManager.success("URL Copied!")}
+          >
+            <FontAwesomeIcon icon="link" fixedWidth />
+            <span className="font-semibold ml-1">Copy Link</span>
+          </Clipboard>
+
+          <button
+            className={
+              cx("py-1 px-2 rounded-full inline-block ml-1",
+                 "bg-red text-white hover:bg-red-dark transition-colors")
+            }
+            onClick={this.handleDelete}
+          >
+            <FontAwesomeIcon icon="trash" fixedWidth />
+            <span className="font-semibold ml-1">Delete</span>
+          </button>
+        </F>
       );
 
     return (
@@ -137,10 +152,13 @@ class AdminUploadsManagePage extends Component {
           <div className="flex justify-between">
             <h2 className="ml-2">
               {
-                this.props.new ? "Manage Upload" : "New Upload"
+                this.props.new ? "New Upload" : "Manage Upload"
               }
             </h2>
-            {deleteBtn}
+
+            <div>
+              {tools}
+            </div>
           </div>
 
           <AutoForm onSubmit={this.handleSubmit}>

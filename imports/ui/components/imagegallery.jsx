@@ -1,10 +1,14 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
+import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
 
 import Loader from "/imports/ui/components/loader";
+import FilePreview from "/imports/ui/components/filepreview";
+
 import composeWithTracker from "/imports/helpers/composetracker";
 import { Images } from "/imports/api/images";
 
@@ -30,8 +34,26 @@ class ImageGallery extends Component {
   }
 
   static defaultProps = {
-    cellWidth: 200,
-    gridGap: 5
+    cellWidth  : 200,
+    cellHeight : 200,
+    gridGap    : 5
+  }
+
+  @autobind
+  renderInnerCell(img) {
+    const { cellHeight } = this.props;
+
+    if (_.startsWith(img.get("mime"), "image")) {
+      return (
+        <LazyLoad height={cellHeight}>
+          <FilePreview className="block max-w-full max-h-full" file={img} />
+        </LazyLoad>
+      );
+    }
+
+    return (
+      <FilePreview className="block max-w-full max-h-full" file={img} />
+    );
   }
 
   getImages() {
@@ -43,7 +65,12 @@ class ImageGallery extends Component {
     const CellC = cellComponent || "div";
 
     return _.map(images, (img, i) => {
-      return this.props.createCell && this.props.createCell(img, i, this.props) || (
+      if (this.props.createCell) {
+        return this.props.createCell(img, this.renderInnerCell.bind(this, img),
+                                     i, this.props);
+      }
+
+      return (
         <div className="inline-block" key={img._id}>
           <CellC
             className={
@@ -53,9 +80,7 @@ class ImageGallery extends Component {
             onClick={e => this.props.onCellClick(img, i, e)}
             {...cellProps}
           >
-            <LazyLoad height={cellHeight}>
-              <img className="block max-w-full max-h-full" src={img.link()} />
-            </LazyLoad>
+            {this.renderInnerCell(img)}
           </CellC>
         </div>
       );
