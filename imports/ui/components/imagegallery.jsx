@@ -59,32 +59,36 @@ class ImageGallery extends Component {
   getImages() {
     const {
       cellWidth, cellHeight, cellClassName, cellProps, cellComponent,
-      images
+      filter, images
     } = this.props;
 
     const CellC = cellComponent || "div";
 
-    return _.map(images, (img, i) => {
-      if (this.props.createCell) {
-        return this.props.createCell(img, this.renderInnerCell.bind(this, img),
-                                     i, this.props);
-      }
+    return _
+      .chain(images)
+      .filter(filter)
+      .map((img, i) => {
+        if (this.props.createCell) {
+          return this.props.createCell(img, this.renderInnerCell.bind(this, img),
+                                       i, this.props);
+        }
 
-      return (
-        <div className="inline-block" key={img._id}>
-          <CellC
-            className={
-              cx("mx-auto flex justify-center items-center", cellClassName)
-            }
-            style={{ width: cellWidth, height: cellHeight }}
-            onClick={e => this.props.onCellClick(img, i, e)}
-            {...cellProps}
-          >
-            {this.renderInnerCell(img)}
-          </CellC>
-        </div>
-      );
-    });
+        return (
+          <div className="inline-block" key={img._id}>
+            <CellC
+              className={
+                cx("mx-auto flex justify-center items-center", cellClassName)
+              }
+              style={{ width: cellWidth, height: cellHeight }}
+              onClick={e => this.props.onCellClick(img, i, e)}
+              {...cellProps}
+            >
+              {this.renderInnerCell(img)}
+            </CellC>
+          </div>
+        );
+      })
+      .value();
   }
   
   render() {

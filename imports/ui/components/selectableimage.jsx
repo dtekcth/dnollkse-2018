@@ -108,6 +108,9 @@ class SelectableImage extends Component {
               onCellClick={this.handleSelectImage}
               cellWidth={100}
               cellHeight={100}
+              filter={
+                img => _.startsWith(img.get("mime"), "image")
+              }
             />
           </div>
         </Modal>
