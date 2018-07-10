@@ -7,6 +7,7 @@ class Loader extends Component {
   static propTypes = {
     classNames : PropTypes.object,
     size       : PropTypes.string,
+    color      : PropTypes.string,
     delay      : PropTypes.number,
     centered   : PropTypes.bool
   }
@@ -42,6 +43,8 @@ class Loader extends Component {
       );
     }
 
+    const col = props.color || "dtek";
+
     return (
       <div
         className={
@@ -50,7 +53,7 @@ class Loader extends Component {
              props.classNames.loader)
         }
       >
-        <div className={cx("spinner spinner-dtek", props.classNames.spinner )}>
+        <div className={cx("spinner", "spinner-" + col, props.classNames.spinner )}>
         </div>
       </div>
     )

@@ -9,6 +9,7 @@ class DroppableImage extends Component {
     imageId          : PropTypes.string,
     onUploadStart    : PropTypes.func,
     onUploadProgress : PropTypes.func,
+    onUploadAborted  : PropTypes.func,
     onUpload         : PropTypes.func,
     onChange         : PropTypes.func,
   }
@@ -19,6 +20,11 @@ class DroppableImage extends Component {
 
   componentWillUnmount() {
     this.unmounted = true;
+
+    if (this.state.uploading && this.uploadInstance) {
+      this.uploadInstance.abort();
+      this.props.onUploadAborted && this.props.onUploadAborted();
+    }
   }
 
   onDropImage(files) {
@@ -33,9 +39,9 @@ class DroppableImage extends Component {
   }
 
   upload(cb, meta) {
-    const { file } = this.state;
+    const { file, uploading } = this.state;
 
-    if (!file) return;
+    if (!file || uploading) return;
 
     const uploadInstance = Images.insert({
       file: file,
@@ -43,12 +49,13 @@ class DroppableImage extends Component {
       streams: "dynamic",
       chunkSize: "dynamic",
       onProgress: (progress, fileData) => { // eslint-disable-line no-unused-vars
-        if (!this.unmounted)
+        if (!this.unmounted) {
           this.setState({
             progress: progress
           });
 
-        this.props.onUploadProgress && this.props.onUploadProgress(progress, fileData);
+          this.props.onUploadProgress && this.props.onUploadProgress(progress, fileData);
+        }
       },
       onStart: (err, fileData) => { // eslint-disable-line no-unused-vars
         if (!this.unmounted)
@@ -107,6 +114,8 @@ class DroppableImage extends Component {
     });
 
     uploadInstance.start();
+
+    this.uploadInstance = uploadInstance;
   }
 
   render() {

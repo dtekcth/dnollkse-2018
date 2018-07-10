@@ -939,19 +939,23 @@ module.exports = {
 
 
   loader: {
-    xs: '24px',
-    sm: '32px',
-    md: '48px',
-    lg: '80px',
-    xl: '128px',
+    '3xs' : '12px',
+    '2xs' : '18px',
+    'xs'  : '24px',
+    'sm'  : '32px',
+    'md'  : '48px',
+    'lg'  : '80px',
+    'xl'  : '128px',
   },
 
   loaderBorder: {
-    xs: '4px',
-    sm: '4px',
-    md: '4px',
-    lg: '6px',
-    xl: '8px',
+    '3xs' : '2px',
+    '2xs' : '3px',
+    'xs'  : '4px',
+    'sm'  : '4px',
+    'md'  : '4px',
+    'lg'  : '6px',
+    'xl'  : '8px',
   },
 
   loaderAnimSpeed: "1s",

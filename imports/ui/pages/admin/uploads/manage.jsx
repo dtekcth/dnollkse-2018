@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import InputGroup from "/imports/ui/components/inputgroup";
 import AutoForm from "/imports/ui/components/autoform";
 import DroppableImage from "/imports/ui/components/droppableimage";
+import Loader from "/imports/ui/components/loader"
 import AdminLayout from "/imports/ui/layouts/admin";
 
 import composeWithTracker from "/imports/helpers/composetracker";
@@ -41,7 +42,8 @@ const mapStateToProps = (state) => {
 class AdminUploadsManagePage extends Component {
   state = {
     name        : "",
-    description : ""
+    description : "",
+    uploading   : false
   }
 
   updateInfo() {
@@ -57,6 +59,10 @@ class AdminUploadsManagePage extends Component {
   componentDidMount() {
     if (this.props.ready)
       this.updateInfo();
+  }
+
+  componentWillUnmount() {
+    this.unmounted = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -82,14 +88,20 @@ class AdminUploadsManagePage extends Component {
       return;
     }
 
+    this.setState({ uploading: true });
     this.droppableImage.upload((err, file) => {
       if (err) {
         NotificationManager.error(err.reason);
+        this.setState({ uploading: false });
         return;
       }
 
       setTimeout(() => {
-        this.props.history.push("/admin/uploads");
+        if (!this.unmounted) {
+          this.setState({ uploading: false });
+
+          this.props.history.push("/admin/uploads");
+        }
       }, 500);
     }, {
       name, description
@@ -175,6 +187,10 @@ class AdminUploadsManagePage extends Component {
                           progress: p
                         })
                     }
+                    onUploadAborted={
+                      () =>
+                        NotificationManager.error("Upload aborted...")
+                    }
                     onChange={f => this.setState({ image: f })}
                     ref={e => this.droppableImage = e}
                     defaultSrc="/static/images/placeholder-1000x700.png"
@@ -208,9 +224,16 @@ class AdminUploadsManagePage extends Component {
                       cx("py-1 px-2 rounded-full inline-block",
                          "bg-green text-white hover:bg-green-dark transition-colors")
                     }
-                    >
-                    <span className="font-semibold">Save</span>
-                    <FontAwesomeIcon className="ml-1" icon="check" fixedWidth />
+                    disabled={this.state.uploading}
+                  >
+                    {
+                      this.state.uploading ?
+                      <Loader size="2xs" color="white" /> :
+                      <F>
+                        <span className="font-semibold">Save</span>
+                        <FontAwesomeIcon className="ml-1" icon="check" fixedWidth />
+                      </F>
+                    }
                   </button>
                 }
               </div>

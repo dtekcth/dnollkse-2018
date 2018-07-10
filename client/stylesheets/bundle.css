@@ -2154,10 +2154,6 @@ button,
 .loader-base .spinner,
 .loader-lg .spinner,
 .loader-xl .spinner,
-.loader-2xl .spinner,
-.loader-3xl .spinner,
-.loader-4xl .spinner,
-.loader-5xl .spinner,
 .loader .spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;
@@ -2175,10 +2171,6 @@ button,
 .loader-base .spinner-white,
 .loader-lg .spinner-white,
 .loader-xl .spinner-white,
-.loader-2xl .spinner-white,
-.loader-3xl .spinner-white,
-.loader-4xl .spinner-white,
-.loader-5xl .spinner-white,
 .loader .spinner-white {
   border-color: transparent;
   border-top-color: white;
@@ -2191,10 +2183,6 @@ button,
 .loader-base .spinner-dtek,
 .loader-lg .spinner-dtek,
 .loader-xl .spinner-dtek,
-.loader-2xl .spinner-dtek,
-.loader-3xl .spinner-dtek,
-.loader-4xl .spinner-dtek,
-.loader-5xl .spinner-dtek,
 .loader .spinner-dtek {
   border-color: transparent;
   border-top-color: #fa6607;
@@ -2207,10 +2195,6 @@ button,
 .centered.loader-base,
 .centered.loader-lg,
 .centered.loader-xl,
-.centered.loader-2xl,
-.centered.loader-3xl,
-.centered.loader-4xl,
-.centered.loader-5xl,
 .centered.loader {
   position: absolute;
   top: 50%;
@@ -2220,21 +2204,21 @@ button,
 }
 
 .loader-3xs {
-  width: undefined;
-  height: undefined;
+  width: 12px;
+  height: 12px;
 }
 
 .loader-3xs .spinner {
-  border-width: undefined;
+  border-width: 2px;
 }
 
 .loader-2xs {
-  width: undefined;
-  height: undefined;
+  width: 18px;
+  height: 18px;
 }
 
 .loader-2xs .spinner {
-  border-width: undefined;
+  border-width: 3px;
 }
 
 .loader-xs {
@@ -2280,42 +2264,6 @@ button,
 
 .loader-xl .spinner {
   border-width: 8px;
-}
-
-.loader-2xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-2xl .spinner {
-  border-width: undefined;
-}
-
-.loader-3xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-3xl .spinner {
-  border-width: undefined;
-}
-
-.loader-4xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-4xl .spinner {
-  border-width: undefined;
-}
-
-.loader-5xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-5xl .spinner {
-  border-width: undefined;
 }
 
 .loader {
@@ -8285,10 +8233,6 @@ button,
 .loader-base .spinner,
 .loader-lg .spinner,
 .loader-xl .spinner,
-.loader-2xl .spinner,
-.loader-3xl .spinner,
-.loader-4xl .spinner,
-.loader-5xl .spinner,
 .loader .spinner {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;
@@ -8306,10 +8250,6 @@ button,
 .loader-base .spinner-white,
 .loader-lg .spinner-white,
 .loader-xl .spinner-white,
-.loader-2xl .spinner-white,
-.loader-3xl .spinner-white,
-.loader-4xl .spinner-white,
-.loader-5xl .spinner-white,
 .loader .spinner-white {
   border-color: transparent;
   border-top-color: white;
@@ -8322,10 +8262,6 @@ button,
 .loader-base .spinner-dtek,
 .loader-lg .spinner-dtek,
 .loader-xl .spinner-dtek,
-.loader-2xl .spinner-dtek,
-.loader-3xl .spinner-dtek,
-.loader-4xl .spinner-dtek,
-.loader-5xl .spinner-dtek,
 .loader .spinner-dtek {
   border-color: transparent;
   border-top-color: #fa6607;
@@ -8338,10 +8274,6 @@ button,
 .centered.loader-base,
 .centered.loader-lg,
 .centered.loader-xl,
-.centered.loader-2xl,
-.centered.loader-3xl,
-.centered.loader-4xl,
-.centered.loader-5xl,
 .centered.loader {
   position: absolute;
   top: 50%;
@@ -8351,21 +8283,21 @@ button,
 }
 
 .loader-3xs {
-  width: undefined;
-  height: undefined;
+  width: 12px;
+  height: 12px;
 }
 
 .loader-3xs .spinner {
-  border-width: undefined;
+  border-width: 2px;
 }
 
 .loader-2xs {
-  width: undefined;
-  height: undefined;
+  width: 18px;
+  height: 18px;
 }
 
 .loader-2xs .spinner {
-  border-width: undefined;
+  border-width: 3px;
 }
 
 .loader-xs {
@@ -8411,42 +8343,6 @@ button,
 
 .loader-xl .spinner {
   border-width: 8px;
-}
-
-.loader-2xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-2xl .spinner {
-  border-width: undefined;
-}
-
-.loader-3xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-3xl .spinner {
-  border-width: undefined;
-}
-
-.loader-4xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-4xl .spinner {
-  border-width: undefined;
-}
-
-.loader-5xl {
-  width: undefined;
-  height: undefined;
-}
-
-.loader-5xl .spinner {
-  border-width: undefined;
 }
 
 .loader {
