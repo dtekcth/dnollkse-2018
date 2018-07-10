@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Fragment as F, Component } from "react";
 import Modal from "react-responsive-modal";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome"
