@@ -124,7 +124,7 @@ class MainLayout extends Component {
               <nav className="navbar w-full absolute pin-b mb-1 sm:mb-3">
                 {/* Mobile navbar */}
                 <div className="md:hidden container mx-auto relative">
-                  <div>
+                  <div className="mx-2">
                     <ul className="list-reset">
                       <li className="navitem inline-block text-white">
                         <a
