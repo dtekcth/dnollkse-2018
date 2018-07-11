@@ -53,7 +53,8 @@ class AdminManagePostPage extends Component {
 
   state = {
     title   : "",
-    content : ""
+    content : "",
+    date    : new Date()
   }
 
   updateInfo() {
