@@ -6,6 +6,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import autobind from "autobind-decorator";
 import cx from "classnames";
+import moment from "moment";
 import PropTypes from "prop-types";
 
 import IconButton from "/imports/ui/components/iconbutton"
@@ -68,7 +69,7 @@ class AdminNewsPage extends Component {
     }
 
     return _.chain(news.list)
-            .sortBy(i => i.name)
+            .sortBy(i => i.date)
             .reverse()
             .map((i, index) => {
               let deletePopup;
@@ -87,18 +88,25 @@ class AdminNewsPage extends Component {
                         </Link>
                       </div>
 
-                      <ConfirmationPopup
-                        ref={elem => deletePopup = elem}
-                        position="left top"
-                        trigger={
-                          <IconButton
-                            icon="times"
+                      <div>
+                        <span className="text-grey">
+                          {moment(i.date).format("LLL")}
+                        </span>
+                        <div className="inline-block ml-2">
+                          <ConfirmationPopup
+                            ref={elem => deletePopup = elem}
+                            position="left top"
+                            trigger={
+                              <IconButton
+                                icon="times"
                             onClick={() => deletePopup.toggle()}
+                              />
+                            }
+                            text="This cannot be undone"
+                            onConfirm={() => this.handleRemove(i)}
                           />
-                        }
-                        text="This cannot be undone"
-                        onConfirm={() => this.handleRemove(i)}
-                      />
+                        </div>
+                      </div>
                     </div>
                   </li>
                 </NewsTransition>
