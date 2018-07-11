@@ -61,7 +61,7 @@ export const newsRemoveMethod = new ValidatedMethod({
   }).validator({}),
 
   run({ postId }) {
-    if (!this.userId || !Roles.userIsInRole(this.userId, ["ADMIN_MANAGE_News"])) {
+    if (!this.userId || !Roles.userIsInRole(this.userId, ["ADMIN_MANAGE_NEWS"])) {
       throw new Meteor.Error("news.methods.remove.notAuthorized",
                              "Not authorized to manage news");
     }
