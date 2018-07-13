@@ -9,6 +9,7 @@ import moment from "moment";
 import composeWithTracker from "/imports/helpers/composetracker";
 import { Environment } from "/imports/api/environment";
 
+import MainLayout from "/imports/ui/layouts/main";
 import DocumentTitle from "/imports/ui/components/documenttitle";
 import AuthorizedLayout from "/imports/ui/layouts/authorized";
 import ForbiddenPage from "/imports/ui/pages/forbidden";
@@ -121,25 +122,27 @@ class EnvironmentPage extends Component {
     };
 
     return (
-      <AuthorizedLayout
-        roles={["ENVIRONMENT_VIEW"]}
-        failureContent={
-          <ForbiddenPage />
-        }
-      >
-        <div className="container mx-auto mt-4 p-4">
-          <DocumentTitle title="Environment" />
+      <MainLayout>
+        <AuthorizedLayout
+          roles={["ENVIRONMENT_VIEW"]}
+          failureContent={
+            <ForbiddenPage />
+          }
+        >
+          <div className="container mx-auto p-4">
+            <DocumentTitle title="Environment" />
 
-          <h2 className="text-center">Temperature and humidity in DNollK's room</h2>
+            <h2 className="text-center">Temperature and humidity in DNollK's room</h2>
 
-          <div className="mt-2">
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={options}
-            />
+            <div className="mt-4">
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={options}
+              />
+            </div>
           </div>
-        </div>
-      </AuthorizedLayout>
+        </AuthorizedLayout>
+      </MainLayout>
     );
   }
 }
