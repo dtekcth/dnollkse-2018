@@ -62,6 +62,7 @@ class AdminManagePagePage extends Component {
     form      : { text        : "", url : "", embed : "" },
     document  : { text        : "" },
     committee : { committeeId : "" },
+    schedule  : { gcalId      : "" },
   }
 
   updateInfo() {
@@ -85,6 +86,10 @@ class AdminManagePagePage extends Component {
 
       case "committee":
         state.committee = page.content;
+        break;
+
+      case "schedule":
+        state.schedule = page.content;
         break;
     }
 
@@ -124,6 +129,10 @@ class AdminManagePagePage extends Component {
 
       case "committee":
         content = this.state.committee;
+        break;
+
+      case "schedule":
+        content = this.state.schedule;
         break;
     }
     
@@ -254,6 +263,27 @@ class AdminManagePagePage extends Component {
           </F>
         );
         break;
+
+      case "schedule":
+        return (
+          <F>
+            <div className="p-2 bg-white rounded">
+              <InputGroup
+                value={this.state.schedule.gcalId || ""}
+                placeholder="Google Calendar ID..."
+                text="Google Calendar ID"
+                onChange={
+                  e => this.setState({ schedule: { gcalId: e.target.value } })
+                }
+              />
+            </div>
+
+            <div className="flex justify-end mt-2">
+              {this.renderSaveButton()}
+            </div>
+          </F>
+        );
+        break;
     }
   }
 
@@ -270,10 +300,13 @@ class AdminManagePagePage extends Component {
       );
 
     const options = [
-      { value : "list", key      : "list", label      : "List" },
-      { value : "form", key      : "form", label      : "Form" },
-      { value : "document", key  : "document", label  : "Document" },
-      { value : "committee", key : "committee", label : "Committee" },
+      { value : "list"      , key : "list"      , label : "List" },
+      { value : "form"      , key : "form"      , label : "Form" },
+      { value : "document"  , key : "document"  , label : "Document" },
+      { value : "committee" , key : "committee" , label : "Committee" },
+      { value : "news"      , key : "news"      , label : "News" },
+      { value : "contacts"  , key : "contacts"  , label : "Contacts" },
+      { value : "schedule"  , key : "schedule"  , label : "Schedule" },
     ];
 
     const currentOption = _.find(options, o => o.value == this.state.type);
@@ -281,7 +314,7 @@ class AdminManagePagePage extends Component {
     return (
       <AdminLayout title="Manage Page">
         <AuthorizedLayout
-          roles={["ADMIN_MANAGE_NEWS"]}
+          roles={["ADMIN_MANAGE_PAGES"]}
           failureContent={<ForbiddenPage />}
         >
           <div className="p-4">

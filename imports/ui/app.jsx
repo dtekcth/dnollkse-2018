@@ -47,12 +47,12 @@ function RouteWithLayout({layout, component, ...rest}){
 const MainRoute = ({ component: Component, render, ...rest }) => {
   return (
     <Route {...rest} render={matchProps => (
-      <MainLayout className="bg-grey-lighter">
+      <F>
         {
           render ? render(matchProps) :
           <Component {...matchProps} />
         }
-      </MainLayout>
+      </F>
     )} />
   )
 };
@@ -72,7 +72,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0)
+      /* window.scrollTo(0, 0)*/
     }
   }
 
@@ -107,9 +107,6 @@ class App extends Component {
         </Helmet>
 
         <Switch>
-          <MainRoute exact path="/" component={NewsPage} />
-          <MainRoute exact path="/contact" component={ContactsPage} />
-          <MainRoute exact path="/schedule" component={SchedulePage} />
           <MainRoute exact path="/environment" component={EnvironmentPage} />
           <MainRoute exact path="/setup" component={SetupPage} />
 

@@ -5,9 +5,14 @@ import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
+import MainLayout from "/imports/ui/layouts/main";
 import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 import CommitteeContainer from "/imports/ui/containers/committee";
+
+import NewsPage from "/imports/ui/pages/news";
+import SchedulePage from "/imports/ui/pages/schedule";
+import ContactsPage from "/imports/ui/pages/contacts";
 
 const mapStateToProps = (state) => {
   return {
@@ -128,6 +133,21 @@ class DynamicPage extends Component {
             <CommitteeContainer committeeId={page.content.committeeId} />
           </div>
         );
+
+      case "news":
+        return (
+          <NewsPage />
+        );
+
+      case "schedule":
+        return (
+          <SchedulePage gcalId={page.content.gcalId} />
+        );
+
+      case "contacts":
+        return (
+          <ContactsPage />
+        );
     }
   }
 
@@ -135,11 +155,13 @@ class DynamicPage extends Component {
     const { page } = this.props;
 
     return (
-      <div className="container mx-auto mt-4">
-        <DocumentTitle title="Page" />
+      <MainLayout>
+        <div className="container mx-auto mt-4">
+          <DocumentTitle title="Page" />
 
-        {this.getContent()}
-      </div>
+          {this.getContent()}
+        </div>
+      </MainLayout>
     );
   }
 }

@@ -1,34 +1,19 @@
 import _ from "lodash";
 import React, { Fragment as F, Component } from "react";
-import BigCalendar from "react-big-calendar";
-import { compose } from "react-komposer"
-import { connect } from "react-redux"
 import { Link } from "react-router-dom";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 
-const mapStateToProps = (state) => {
-  return {
-    settings: state.settings
-  };
-};
-
-@connect(mapStateToProps)
 class SchedulePage extends Component {
+  static propTypes = {
+    gcalId: PropTypes.string.isRequired
+  }
+
   render() {
-    const { settings } = this.props;
-
-    if (!settings.ready)
-      return (
-        <Loader delay={1000} size="lg" />
-      );
-
-    /* const timeRangeFormat = (range) =>*/
-    /* moment(range.start).format("HH:mm") + " - " + moment(range.end).format("HH:mm");*/
-
-    const calId = settings.data.gcalId;
+    const calId = this.props.gcalId;
 
     if (!calId)
       return (
@@ -54,21 +39,6 @@ class SchedulePage extends Component {
             frameBorder="0"
             scrolling="no"
           />
-
-          {/* <BigCalendar */}
-            {/* events={events} */}
-            {/* defaultView="week" */}
-            {/* startAccessor="start" */}
-            {/* endAccessor="end" */}
-            {/* formats={{ */}
-             {/* timeGutterFormat: "HH:mm", */}
-             {/* agendaTimeFormat: "HH:mm", */}
-             {/* agendaTimeRangeFormat: timeRangeFormat, */}
-             {/* eventTimeRangeFormat: timeRangeFormat, */}
-             {/* eventTimeRangeStartFormat: "HH:mm", */}
-             {/* eventTimeRangeEndFormat: "HH:mm", */}
-             {/* }} */}
-            {/* /> */}
         </div>
       </div>
     );

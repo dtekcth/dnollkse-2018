@@ -112,7 +112,7 @@ class MainLayout extends Component {
 
     return (
       <BaseLayout title={props.title}>
-        <div className={cx("layout-main min-h-full", props.className)}>
+        <div className={cx("layout-main min-h-full bg-grey-lighter", props.className)}>
           <header>
             <div className="relative">
               <ImageFileContainer
