@@ -1,6 +1,6 @@
 
 import _ from "lodash";
-import React, { Component } from "react";
+import React, { Fragment as F, Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -25,7 +25,7 @@ import {
 let PageTransition = (props) => (
   <CSSTransition
     {...props}
-    classNames="role-anim"
+    classNames={cx("role-anim", props.className)}
     timeout={{ exit: 150, enter: 150 }}
   />
 );
@@ -75,19 +75,30 @@ class AdminPagesPage extends Component {
               let deletePopup;
 
               return (
-                <PageTransition key={i._id}>
-                  <li className="p-2 text-grey-darkest">
-                    <div className="flex justify-between">
+                <PageTransition
+                  className="text-grey-darkest"
+                  key={i._id}
+                >
+                  <tr>
+                    <td className="p-2">
                       <div>
                         <Link
                           to={`/admin/pages/${i._id}`}
-                          className="ml-2 link-dtek"
+                          className="link-dtek"
                         >
                           <FontAwesomeIcon icon="file-alt" fixedWidth />
                           <span className="ml-1">{i.title}</span>
                         </Link>
                       </div>
+                    </td>
 
+                    <td className="p-2">
+                      <span className="text-grey">
+                        {i.url}
+                      </span>
+                    </td>
+
+                    <td className="p-2">
                       <ConfirmationPopup
                         ref={elem => deletePopup = elem}
                         position="left top"
@@ -100,8 +111,8 @@ class AdminPagesPage extends Component {
                         text="This cannot be undone"
                         onConfirm={() => this.handleRemove(i)}
                       />
-                    </div>
-                  </li>
+                    </td>
+                  </tr>
                 </PageTransition>
               );
             })
@@ -141,15 +152,31 @@ class AdminPagesPage extends Component {
               </div>
 
               <div className="mt-2 rounded bg-white">
-                <ul className="list-reset mt-1">
-                  <li className="p-2 border-b border-grey-lighter">
-                    Pages
-                  </li>
+                <table className="w-full table-reset table-auto mt-1">
+                  <thead>
+                    <tr>
+                      <th
+                        align="left"
+                        className="font-normal p-2 border-b border-grey-lighter w-full"
+                      >
+                        Pages
+                      </th>
+                      <th
+                        align="left"
+                        className="font-normal border-b border-grey-lighter"
+                      >
+                        Route
+                      </th>
+                      <th className="border-b border-grey-lighter"></th>
+                    </tr>
+                  </thead>
 
-                  <TransitionGroup>
-                    {this.getPages()}
-                  </TransitionGroup>
-                </ul>
+                  <tbody>
+                    <TransitionGroup component={null}>
+                      {this.getPages()}
+                    </TransitionGroup>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

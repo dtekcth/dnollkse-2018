@@ -318,13 +318,22 @@ class AdminUsersPage extends Component {
                         }
                       />
                     </th>
-                    <th className="pl-2 border-b border-grey-lighter" align="left">
+                    <th
+                      className="font-normal pl-2 border-b border-grey-lighter"
+                      align="left"
+                    >
                       Users
                     </th>
-                    <th className="p-2 border-b border-grey-lighter w-full" align="left">
+                    <th
+                      className="font-normal p-2 border-b border-grey-lighter w-full"
+                      align="left"
+                    >
                       Roles
                     </th>
-                    <th className="p-2 border-b border-grey-lighter" align="left">
+                    <th
+                      className="font-normal p-2 border-b border-grey-lighter"
+                      align="left"
+                    >
                       Actions
                     </th>
                   </tr>
@@ -343,10 +352,16 @@ class AdminUsersPage extends Component {
               <table className="w-full table-reset table-auto">
                 <thead>
                   <tr>
-                    <th className="p-2 border-b border-grey-lighter w-full" align="left">
+                    <th
+                      className="font-normal p-2 border-b border-grey-lighter w-full"
+                      align="left"
+                    >
                       Roles
                     </th>
-                    <th className="p-2 border-b border-grey-lighter" align="left">
+                    <th
+                      className="font-normal p-2 border-b border-grey-lighter"
+                      align="left"
+                    >
                       Actions
                     </th>
                   </tr>

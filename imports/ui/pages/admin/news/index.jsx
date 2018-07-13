@@ -81,7 +81,7 @@ class AdminNewsPage extends Component {
                       <div>
                         <Link
                           to={`/admin/news/${i._id}`}
-                          className="ml-2 link-dtek"
+                          className="link-dtek"
                         >
                           <FontAwesomeIcon icon="file-alt" fixedWidth />
                           <span className="ml-1">{i.title}</span>
@@ -161,7 +161,7 @@ class AdminNewsPage extends Component {
             </div>
           </div>
         </AuthorizedLayout>
-            </AdminLayout>
+      </AdminLayout>
     );
   }
 }
