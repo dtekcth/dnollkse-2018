@@ -7,7 +7,6 @@ import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
 
-import PrettyCheckbox from "/imports/ui/components/prettycheckbox";
 import IconButton from "/imports/ui/components/iconbutton"
 import AdminLayout from "/imports/ui/layouts/admin";
 import { ConfirmationPopup } from "/imports/ui/components/popup";
@@ -49,32 +48,6 @@ class AdminCommitteesPage extends Component {
     committees: []
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selected: []
-    };
-  }
-
-  @autobind
-  handleSelect(index, checked) {
-    const count = this.props.committees.length;
-
-    this.setState({
-      selected: Object.assign([], this.state.selected, { [index]: checked })
-    });
-  }
-
-  @autobind
-  handleSelectAll(checked) {
-    const count = this.props.committees.length;
-
-    this.setState({
-      selected: _.fill(new Array(count), checked)
-    });
-  }
-
   @autobind
   handleRemove(c) {
     committeeRemoveMethod.call({ committeeId: c._id });
@@ -104,21 +77,9 @@ class AdminCommitteesPage extends Component {
                   <li className="p-2 text-grey-darkest">
                     <div className="flex justify-between">
                       <div>
-                        <PrettyCheckbox
-                          checked={this.state.selected[index] || false}
-                          onChange={e => this.handleSelect(index, e.target.checked)}
-                          curve
-                          animation="rotate"
-                          color="dtek"
-                          icon
-                          iconComponent={
-                            <FontAwesomeIcon className="icon p-2px" icon="check" />
-                          }
-                        />
-
                         <Link
                           to={`/admin/committees/${c._id}`}
-                          className="ml-2 link-dtek"
+                          className="link-dtek"
                         >
                           <FontAwesomeIcon icon="users" fixedWidth />
                           <span className="ml-1">{c.name}</span>
@@ -170,18 +131,7 @@ class AdminCommitteesPage extends Component {
             <div className="mt-2 rounded bg-white">
               <ul className="list-reset mt-1">
                 <li className="p-2 border-b border-grey-lighter">
-                  <PrettyCheckbox
-                    curve
-                    animation="rotate"
-                    color="dtek"
-                    onChange={e => this.handleSelectAll(e.target.checked)}
-                    icon
-                    iconComponent={
-                      <FontAwesomeIcon className="icon p-2px" icon="check" />
-                    }
-                  />
-
-                  <span className="ml-2">Committees</span>
+                  <span>Committees</span>
                 </li>
 
                 <TransitionGroup>
