@@ -18,16 +18,12 @@ class SchedulePage extends Component {
     if (!calId)
       return (
         <F>
-          <DocumentTitle title="Schedule" />
-
           <div className="text-grey italic">No calendar configured</div>
         </F>
       );
 
     return (
-      <div className="container mx-auto mt-4 mb-4">
-        <DocumentTitle title="Schedule" />
-
+      <div className="container mx-auto">
         <div className="p-2 bg-white rounded">
           <iframe
             src={

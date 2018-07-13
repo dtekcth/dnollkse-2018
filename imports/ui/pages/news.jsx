@@ -47,11 +47,7 @@ class NewsPage extends Component {
 
   render() {
     return (
-      <div className="container mx-auto mt-4">
-        <DocumentTitle title="News" />
-
-        <h2 className="text-center">News</h2>
-
+      <div className="container mx-auto">
         <div className="mb-4">
           {this.getNews()}
         </div>

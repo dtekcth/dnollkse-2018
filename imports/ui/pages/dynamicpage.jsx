@@ -136,28 +136,50 @@ class DynamicPage extends Component {
 
       case "news":
         return (
-          <NewsPage />
+          <F>
+            <h2 className="text-center">{page.title}</h2>
+
+            <div className="mt-4 mb-4">
+              <NewsPage />
+            </div>
+          </F>
         );
 
       case "schedule":
         return (
-          <SchedulePage gcalId={page.content.gcalId} />
+          <F>
+            <h2 className="text-center">{page.title}</h2>
+
+            <div className="mt-4 mb-4">
+              <SchedulePage gcalId={page.content.gcalId} />
+            </div>
+          </F>
         );
 
       case "contacts":
         return (
-          <ContactsPage />
+          <F>
+            <h2 className="text-center">{page.title}</h2>
+
+            <div className="mt-4 mb-4">
+              <ContactsPage />
+            </div>
+          </F>
         );
     }
   }
 
   render() {
-    const { page } = this.props;
+    const { page, pages } = this.props;
 
     return (
       <MainLayout>
         <div className="container mx-auto mt-4">
-          <DocumentTitle title="Page" />
+          <DocumentTitle
+            title={
+              pages.ready ? page.title : "Loading..."
+            }
+          />
 
           {this.getContent()}
         </div>

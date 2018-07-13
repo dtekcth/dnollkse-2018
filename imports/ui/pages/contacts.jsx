@@ -68,11 +68,7 @@ class ContactsPage extends Component {
     }
 
     return (
-      <div className="container mx-auto mt-4 mb-4">
-        <DocumentTitle title="Contacts" />
-
-        <h2 className="text-center">Contact Info</h2>
-
+      <div className="container mx-auto">
         <div className="mt-2">
           <div className="bg-white p-2 rounded mx-auto max-w-md">
             {this.getCommittee()}
