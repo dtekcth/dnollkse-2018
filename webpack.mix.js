@@ -7,7 +7,7 @@ const PurgecssPlugin = require("purgecss-webpack-plugin");
 const colorFunction = require("postcss-color-function");
 
 const PATHS = {
-  src    : path.join(__dirname, "src"),
+  src    : path.join(__dirname, "imports"),
   public : path.join(__dirname, "public")
 };
 
