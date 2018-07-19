@@ -24,15 +24,15 @@ button.rbc-input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: 100%;
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-align: stretch;
   -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
           align-items: stretch;
 }
 
@@ -51,6 +51,7 @@ button.rbc-input::-moz-focus-inner {
   left: 0;
   right: 0;
   bottom: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-ellipsis,
@@ -61,6 +62,7 @@ button.rbc-input::-moz-focus-inner {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-rtl {
@@ -77,8 +79,8 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-header {
   overflow: hidden;
-  -ms-flex: 1 0 0%;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0%;
           flex: 1 0 0%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -89,6 +91,7 @@ button.rbc-input::-moz-focus-inner {
   font-size: 90%;
   min-height: 0;
   border-bottom: 1px solid #ddd;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-header + .rbc-header {
@@ -121,19 +124,19 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-toolbar {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
   -webkit-box-align: center;
+      -ms-flex-align: center;
           align-items: center;
   margin-bottom: 10px;
   font-size: 16px;
 }
 
 .rbc-toolbar .rbc-toolbar-label {
-  -ms-flex-positive: 1;
   -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
           flex-grow: 1;
   padding: 0 10px;
   text-align: center;
@@ -286,12 +289,12 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-row {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
           flex-direction: row;
 }
 
@@ -316,15 +319,15 @@ button.rbc-input::-moz-focus-inner {
 .rbc-month-view {
   position: relative;
   border: 1px solid #ddd;
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex: 1 0 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
           flex: 1 0 0;
   width: 100%;
      -moz-user-select: none;
@@ -335,31 +338,32 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-month-header {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
           flex-direction: row;
 }
 
 .rbc-month-row {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex: 1 0 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
           flex: 1 0 0;
   -ms-flex-preferred-size: 0;
-  flex-basis: 0;
+      flex-basis: 0;
   overflow: hidden;
   height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-month-row + .rbc-month-row {
@@ -367,8 +371,8 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-date-cell {
-  -ms-flex: 1 1 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
           flex: 1 1 0;
   min-width: 0;
   padding-right: 5px;
@@ -387,22 +391,23 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-row-bg {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
           flex-direction: row;
-  -ms-flex: 1 0 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
           flex: 1 0 0;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-day-bg {
-  -ms-flex: 1 0 0%;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0%;
           flex: 1 0 0%;
 }
 
@@ -436,17 +441,18 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-agenda-view {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex: 1 0 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
           flex: 1 0 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-agenda-view table.rbc-agenda-table {
@@ -512,38 +518,38 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-time-column {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
   min-height: 100%;
 }
 
 .rbc-time-column .rbc-timeslot-group {
-  -ms-flex: 1;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
           flex: 1;
 }
 
 .rbc-timeslot-group {
   border-bottom: 1px solid #ddd;
   min-height: 40px;
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-flow: column nowrap;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
 }
 
 .rbc-time-gutter,
 .rbc-header-gutter {
-  -ms-flex: none;
-      -webkit-box-flex: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
           flex: none;
 }
 
@@ -570,25 +576,26 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-day-slot .rbc-event {
   border: 1px solid #265985;
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   max-height: 100%;
   min-height: 20px;
-  -ms-flex-flow: column wrap;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
           flex-flow: column wrap;
-  -ms-flex-align: start;
   -webkit-box-align: start;
+      -ms-flex-align: start;
           align-items: flex-start;
   overflow: hidden;
   position: absolute;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-day-slot .rbc-event-label {
-  -ms-flex: none;
-      -webkit-box-flex: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
           flex: none;
   padding-right: 5px;
   width: auto;
@@ -596,8 +603,8 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-day-slot .rbc-event-content {
   width: 100%;
-  -ms-flex: 1 1 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
           flex: 1 1 0;
   word-wrap: break-word;
   line-height: 1;
@@ -610,8 +617,8 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-time-slot {
-  -ms-flex: 1 0 0;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
           flex: 1 0 0;
 }
 
@@ -638,15 +645,15 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-time-view {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex: 1;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
           flex: 1;
   width: 100%;
   border: 1px solid #ddd;
@@ -676,15 +683,15 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-time-header {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex: 0 0 auto;
-      -webkit-box-flex: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  -ms-flex-direction: row;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
           flex-direction: row;
 }
 
@@ -706,13 +713,13 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-time-header-content {
-  -ms-flex: 1;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
           flex: 1;
   min-width: 0;
-  -ms-flex-direction: column;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
           flex-direction: column;
   border-left: 1px solid #ddd;
 }
@@ -723,24 +730,25 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-time-content {
-  display: -ms-flexbox;
   display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex: 1 0 0%;
-      -webkit-box-flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0%;
           flex: 1 0 0%;
-  -ms-flex-align: start;
   -webkit-box-align: start;
+      -ms-flex-align: start;
           align-items: flex-start;
   width: 100%;
   border-top: 2px solid #ddd;
   overflow-y: auto;
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rbc-time-content > .rbc-time-gutter {
-  -ms-flex: none;
-      -webkit-box-flex: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
           flex: none;
 }
 
@@ -955,6 +963,7 @@ button.rbc-input::-moz-focus-inner {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .react-datepicker__navigation {
@@ -1064,6 +1073,7 @@ button.rbc-input::-moz-focus-inner {
   overflow-x: hidden;
   margin: 0 auto;
   text-align: center;
+  -webkit-overflow-scrolling: touch;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
@@ -1075,6 +1085,7 @@ button.rbc-input::-moz-focus-inner {
   width: 100%;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
@@ -1275,6 +1286,7 @@ button.rbc-input::-moz-focus-inner {
 .react-datepicker__month-year-dropdown--scrollable {
   height: 150px;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .react-datepicker__year-option,
@@ -1691,6 +1703,7 @@ img {
 
 svg:not(:root) {
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Forms
@@ -1812,6 +1825,7 @@ progress {
 
 textarea {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /**
@@ -5513,10 +5527,12 @@ button,
 
 .overflow-auto {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overflow-hidden {
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overflow-visible {
@@ -5525,22 +5541,27 @@ button,
 
 .overflow-scroll {
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overflow-x-auto {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overflow-y-auto {
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overflow-x-scroll {
   overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overflow-y-scroll {
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scrolling-touch {
@@ -6876,6 +6897,7 @@ button,
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .w-1 {
@@ -7724,6 +7746,7 @@ button,
 .pretty.p-round.p-icon .state .icon {
   border-radius: 100%;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pretty.p-round.p-icon .state .icon:before {
@@ -8121,6 +8144,7 @@ button,
   max-height: calc(100% - 30px);
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .notification {
@@ -8385,6 +8409,7 @@ button,
   padding: 8px 52px 8px 10px;
   -webkit-transition: all 200ms ease;
   transition: all 200ms ease;
+  -webkit-overflow-scrolling: touch;
 }
 
 .Dropdown-control:hover {
@@ -8611,6 +8636,7 @@ button,
 .richtext .editor {
   padding: .5rem;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .richtext .editor > * > * + * {
@@ -9033,6 +9059,7 @@ a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
 body {
   overflow: hidden;
   font-family: "Museo Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  -webkit-overflow-scrolling: touch;
 }
 
 html {
@@ -9120,6 +9147,7 @@ button:disabled {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .text-justify-word {
@@ -9147,6 +9175,7 @@ button:disabled {
 .layout-main {
   height: 100vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .layout-main .navbar {
@@ -9199,6 +9228,7 @@ button:disabled {
   overflow-x: hidden;
   overflow-y: auto;
   height: 100vh;
+  -webkit-overflow-scrolling: touch;
 }
 
 .layout-admin .topbar .topbar-main {
@@ -9288,8 +9318,8 @@ button:disabled {
   opacity: 1;
   -webkit-transform: translateX(0);
           transform: translateX(0);
-  -webkit-transition: opacity 150ms, -webkit-transform 150ms;
   transition: opacity 150ms, -webkit-transform 150ms;
+  -webkit-transition: opacity 150ms, -webkit-transform 150ms;
   transition: opacity 150ms, transform 150ms;
   transition: opacity 150ms, transform 150ms, -webkit-transform 150ms;
 }
@@ -9304,8 +9334,8 @@ button:disabled {
   opacity: .01;
   -webkit-transform: translateX(-10px);
           transform: translateX(-10px);
-  -webkit-transition: opacity 150ms, -webkit-transform 150ms;
   transition: opacity 150ms, -webkit-transform 150ms;
+  -webkit-transition: opacity 150ms, -webkit-transform 150ms;
   transition: opacity 150ms, transform 150ms;
   transition: opacity 150ms, transform 150ms, -webkit-transform 150ms;
 }
@@ -12522,10 +12552,12 @@ button:disabled {
 
   .sm\:overflow-auto {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:overflow-hidden {
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:overflow-visible {
@@ -12534,22 +12566,27 @@ button:disabled {
 
   .sm\:overflow-scroll {
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:overflow-x-auto {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:overflow-y-auto {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:overflow-x-scroll {
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:overflow-y-scroll {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:scrolling-touch {
@@ -13877,6 +13914,7 @@ button:disabled {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .sm\:w-1 {
@@ -17224,10 +17262,12 @@ button:disabled {
 
   .md\:overflow-auto {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:overflow-hidden {
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:overflow-visible {
@@ -17236,22 +17276,27 @@ button:disabled {
 
   .md\:overflow-scroll {
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:overflow-x-auto {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:overflow-y-auto {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:overflow-x-scroll {
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:overflow-y-scroll {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:scrolling-touch {
@@ -18579,6 +18624,7 @@ button:disabled {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .md\:w-1 {
@@ -21926,10 +21972,12 @@ button:disabled {
 
   .lg\:overflow-auto {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:overflow-hidden {
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:overflow-visible {
@@ -21938,22 +21986,27 @@ button:disabled {
 
   .lg\:overflow-scroll {
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:overflow-x-auto {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:overflow-y-auto {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:overflow-x-scroll {
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:overflow-y-scroll {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:scrolling-touch {
@@ -23281,6 +23334,7 @@ button:disabled {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .lg\:w-1 {
@@ -26628,10 +26682,12 @@ button:disabled {
 
   .xl\:overflow-auto {
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:overflow-hidden {
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:overflow-visible {
@@ -26640,22 +26696,27 @@ button:disabled {
 
   .xl\:overflow-scroll {
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:overflow-x-auto {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:overflow-y-auto {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:overflow-x-scroll {
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:overflow-y-scroll {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:scrolling-touch {
@@ -27983,6 +28044,7 @@ button:disabled {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .xl\:w-1 {

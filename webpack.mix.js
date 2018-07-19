@@ -5,6 +5,8 @@ const tailwindcss = require("tailwindcss");
 const glob = require("glob-all");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
 const colorFunction = require("postcss-color-function");
+const autoprefixer = require("autoprefixer");
+const momentumScrolling = require("postcss-momentum-scrolling");
 
 const PATHS = {
   src    : path.join(__dirname, "imports"),
@@ -26,7 +28,14 @@ mix.sass("imports/assets/scss/tailwind.scss", "client/stylesheets/bundle.css")
   .options({
     postCss: [
       tailwindcss("tailwind.js"),
-      colorFunction()
+      colorFunction(),
+      autoprefixer(),
+      momentumScrolling([
+        "hidden",
+        "scroll",
+        "auto",
+        "inherit"
+      ])
     ],
     processCssUrls: false
   });
