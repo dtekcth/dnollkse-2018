@@ -7,6 +7,7 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import autobind from "autobind-decorator";
 import cx from "classnames";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import AutoForm from "/imports/ui/components/autoform";
 import IconButton from "/imports/ui/components/iconbutton";
@@ -59,10 +60,10 @@ class AdminManagePagePage extends Component {
     url       : "",
     type      : "",
     list      : { items       : [] },
-    form      : { text        : "", url : "", embed : "" },
+    form      : { text        : "", url     : "", embed : "" },
     document  : { text        : "" },
     committee : { committeeId : "" },
-    schedule  : { gcalId      : "" },
+    schedule  : { gcalId      : "", minDate : moment() },
   }
 
   updateInfo() {
@@ -273,9 +274,24 @@ class AdminManagePagePage extends Component {
                 placeholder="Google Calendar ID..."
                 text="Google Calendar ID"
                 onChange={
-                  e => this.setState({ schedule: { gcalId: e.target.value } })
+                  e => this.setState({
+                    schedule: { ...this.state.schedule, gcalId: e.target.value }
+                  })
                 }
               />
+
+              <InputGroup
+                datepicker
+                className="mt-1"
+                text="Minimum date"
+                value={moment(this.state.schedule.minDate)}
+                onChange={
+                  date => this.setState({
+                    schedule: { ...this.state.schedule, minDate: date.toDate() }
+                  })
+                }
+              />
+
             </div>
 
             <div className="flex justify-end mt-2">

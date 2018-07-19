@@ -151,7 +151,10 @@ class DynamicPage extends Component {
             <h2 className="text-center">{page.title}</h2>
 
             <div className="mt-4 mb-4">
-              <SchedulePage gcalId={page.content.gcalId} />
+              <SchedulePage
+                gcalId={page.content.gcalId}
+                minDate={page.content.minDate}
+              />
             </div>
           </F>
         );
