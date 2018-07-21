@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import Loader from "/imports/ui/components/loader";
 import ImageFileContainer from "/imports/ui/containers/imagefile";
 import BaseLayout from "/imports/ui/layouts/base";
+import DynamicLink from "/imports/ui/components/dynamiclink";
 
 const mapStateToProps = (state) => {
   return {
@@ -62,14 +63,14 @@ class MainLayout extends Component {
     const links = _.map(props.settings.navigation, (s, i) => {
       return (
         <li key={i} className="navitem inline-block text-white">
-          <Link
+          <DynamicLink
             to={s.link}
             className={
               cx("navlink inline-block px-2 py-2 xl:px-2 lg:py-3")
             }
           >
             {textFix(s.text)}
-          </Link>
+          </DynamicLink>
         </li>
       );
     });
@@ -89,7 +90,7 @@ class MainLayout extends Component {
     const footerLinks = _.map(listNavs, (s, i) => {
       return (
         <li key={i}>
-          <Link to={s.link}>{s.text}</Link>
+          <DynamicLink to={s.link}>{s.text}</DynamicLink>
         </li>
       );
     });
@@ -97,7 +98,7 @@ class MainLayout extends Component {
     const drawerLinks = _.map(listNavs, (s, i) => {
       return (
         <li key={i} className="drawer-item">
-          <Link
+          <DynamicLink
             to={s.link}
             className={
               cx("drawerlink block px-4 py-2")
@@ -105,7 +106,7 @@ class MainLayout extends Component {
             onClick={() => this.setState({ drawer: false })}
           >
             {textFix(s.text)}
-          </Link>
+          </DynamicLink>
         </li>
       );
     });

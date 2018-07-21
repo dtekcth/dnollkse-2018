@@ -2,12 +2,12 @@ import _ from "lodash";
 import React, { Fragment as F, Component } from "react";
 import { compose } from "react-komposer"
 import { connect } from "react-redux"
-import { Link } from "react-router-dom";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
 import MainLayout from "/imports/ui/layouts/main";
 import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
+import DynamicLink from "/imports/ui/components/dynamiclink";
 import CommitteeContainer from "/imports/ui/containers/committee";
 
 import NewsPage from "/imports/ui/pages/news";
@@ -60,9 +60,9 @@ class DynamicPage extends Component {
     return (
       <div className="bg-white rounded p-2 mb-4">
         <h2 className="text-center">
-          <Link to={page.content.url} className="link-dtek">
+          <DynamicLink to={page.content.url} className="link-dtek">
             {page.title}
-          </Link>
+          </DynamicLink>
         </h2>
 
         <div>
