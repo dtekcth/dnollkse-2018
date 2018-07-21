@@ -3,6 +3,7 @@ import React, { Fragment as F, Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import PropTypes from "prop-types";
+import qs from "query-string";
 
 import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
@@ -26,13 +27,19 @@ class SchedulePage extends Component {
     const date = moment.max(moment(), moment(this.props.minDate));
     const dateStr = date.format("YYYYMMDD");
 
+    const dateUrl = `https://calendar.google.com/calendar/embed?` + qs.stringify({
+      src   : calId,
+      color : "#BE6D00", // predefined google calendar color, orange-ish
+      dates : dateStr + "/" + dateStr,
+      ctz   : "Europe/Stockholm",
+      mode  : "WEEK"
+    });
+
     return (
       <div className="container mx-auto">
         <div className="p-2 bg-white rounded">
           <iframe
-            src={
-              `https://calendar.google.com/calendar/embed?dates=${dateStr}/${dateStr}&src=${calId}&ctz=Europe%2FStockholm&mode=WEEK&`
-            }
+            src={dateUrl}
             style={{ "border": 0}}
             width="100%"
             height="800"
