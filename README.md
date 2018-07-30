@@ -64,5 +64,5 @@ som också kommer att bygga styles vid varje ändring.
 Dessa två kommandon körs vanligtvis sida vid sida.
 
 ## Frågor?
-Om man har frågor kan maila till [mailto:dnollk@dtek.se](dnollk@dtek.se).
+Om man har frågor kan maila till [dnollk@dtek.se](mailto:dnollk@dtek.se).
 Om man hittar buggar eller önskar features osv. är det bara att skapa en issue.
