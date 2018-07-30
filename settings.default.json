@@ -1,0 +1,10 @@
+{
+  "public": {
+    "fileStoragePath": "/path/to/storage",
+    "fileMaxSize": "50mb",
+    "fileExtensions": "png|jpg|jpeg|pdf",
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "tracking_id"}
+    }
+  }
+}
