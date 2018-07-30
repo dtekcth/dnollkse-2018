@@ -25,7 +25,7 @@ const Item = SortableElement(props =>
     <div className="flex items-center">
       <DragHandle />
 
-      <div className="flex-grow overflow-hidden mx-2">
+      <div className="flex-grow min-w-0 mx-2">
         {props.renderItem(props)}
       </div>
 

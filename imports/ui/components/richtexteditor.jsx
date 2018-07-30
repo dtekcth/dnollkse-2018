@@ -109,7 +109,6 @@ class RichTextEditor extends Component {
               ],
               imageInsertButtons: [ "imageBack" ],
               quickInsertButtons: [ "insertMeteorImage", "table", "ul", "ol", "hr" ],
-              quickInsertTags: ['']
             }}
             model={this.props.value}
             onModelChange={props.onChange}
