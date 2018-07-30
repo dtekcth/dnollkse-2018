@@ -58,7 +58,7 @@ Meteor kommer då att läsa av filer som ändras och automatiskt hot-reloada kod
 För att processera stylesheets måste man köra kommandot:
 ```
 meteor npm watch:dev
-``'
+```
 som också kommer att bygga styles vid varje ändring.
 
 Dessa två kommandon körs vanligtvis sida vid sida.
