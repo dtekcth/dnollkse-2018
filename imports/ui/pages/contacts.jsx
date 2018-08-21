@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Fragment as F, Component } from "react";
 import { connect } from "react-redux"
 import { Link } from "react-router-dom";
+import cx from "classnames";
 
 import Loader from "/imports/ui/components/loader";
 import DocumentTitle from "/imports/ui/components/documenttitle";
@@ -23,11 +24,27 @@ class ContactsPage extends Component {
         <div className="p-2 text-grey italic">No committee members</div>
       );
 
+    const count = committee.data.members.length;
     return _.map(committee.data.members, (m, index) => {
       return (
-        <div key={index} className="flex justify-between p-2">
-          <div>{committee.data.fullMemberName(m)}</div>
-          <div className="italic">{m.position}</div>
+        <div
+          key={index}
+          className={
+            cx("flex justify-between p-2",
+               index !== count - 1 && "border-b border-dashed border-grey-light")
+          }
+        >
+          <div className="flex items-center">
+            {committee.data.fullMemberName(m)}
+          </div>
+          <div className="italic text-right">
+            <div>{m.position}</div>
+
+            {
+              !!m.phone &&
+              <div className="mt-1">{m.phone}</div>
+            }
+          </div>
         </div>
       );
     });
@@ -36,9 +53,20 @@ class ContactsPage extends Component {
   getContacts() {
     const { settings } = this.props;
 
-    const list = _.map(settings.data.contacts.list, (i, index) => {
+    const allContacts = [
+      { name: "Jour number", value: settings.data.contacts.jour },
+      ...settings.data.contacts.list
+    ];
+
+    const count = allContacts.length;
+    const list = _.map(allContacts, (i, index) => {
       return (
-        <div key={index} className="flex justify-between p-2">
+        <div
+          key={index}
+          className={
+            cx("flex justify-between p-2",
+               index !== count - 1 && "border-b border-dashed border-grey-light")
+          }>
           <div>{i.name}</div>
           <div className="italic">{i.value}</div>
         </div>
@@ -47,11 +75,6 @@ class ContactsPage extends Component {
 
     return (
       <F>
-        <div className="flex justify-between p-2">
-          <div>Jour number</div>
-          <div className="italic">{settings.data.contacts.jour}</div>
-        </div>
-
         {list}
       </F>
     );

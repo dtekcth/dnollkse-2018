@@ -84,6 +84,16 @@ const MemberItem = SortableElement(({ className, value, onChange, onRemove }) =>
 
           <InputGroup
             className="mt-1"
+            value={value.phone || ""}
+            placeholder="Phone number..."
+            text="Phone number"
+            onChange={
+              e => onChange && onChange({ phone: e.target.value })
+            }
+          />
+
+          <InputGroup
+            className="mt-1"
             value={value.position || ""}
             placeholder="Position..."
             text="Position"
@@ -224,8 +234,9 @@ class AdminManageCommitteePage extends Component {
       firstname   : "",
       lastname    : "",
       nickname    : "",
+      phone       : "",
       description : "",
-      position    : ""
+      position    : "",
     };
 
     this.setState({

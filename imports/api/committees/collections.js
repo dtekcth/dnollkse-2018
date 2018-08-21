@@ -8,18 +8,22 @@ const Committees = new Mongo.Collection("committees");
 export default Committees;
 
 Committees.memberSchema = new SimpleSchema({
-  firstname   : String,
-  lastname    : String,
-  nickname    : {
+  firstname : String,
+  lastname  : String,
+  position  : String,
+  nickname: {
     type: String,
     optional: true
   },
-  position    : String,
-  description : {
+  phone: {
     type: String,
     optional: true
   },
-  image       : {
+  description: {
+    type: String,
+    optional: true
+  },
+  image: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     optional: true

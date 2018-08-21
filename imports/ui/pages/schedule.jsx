@@ -34,7 +34,8 @@ class SchedulePage extends Component {
     try {
       params = JSON.parse(this.props.params);
     }
-    catch {}
+    catch (e) {
+    }
 
     const dateUrl = `https://calendar.google.com/calendar/embed?` + qs.stringify({
       src   : calId,
@@ -50,9 +51,11 @@ class SchedulePage extends Component {
         <div className="p-2 bg-white rounded">
           {
             !!this.props.text &&
-            <FroalaEditorView
-              model={this.props.text}
-            />
+            <div className="mb-3">
+              <FroalaEditorView
+                model={this.props.text}
+              />
+            </div>
           }
 
           <iframe
