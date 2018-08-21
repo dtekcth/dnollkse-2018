@@ -9,6 +9,7 @@ import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 import DynamicLink from "/imports/ui/components/dynamiclink";
 import CommitteeContainer from "/imports/ui/containers/committee";
+/* import CommitteeListContainer from "/imports/ui/containers/committeelist";*/
 
 import NewsPage from "/imports/ui/pages/news";
 import SchedulePage from "/imports/ui/pages/schedule";
@@ -154,6 +155,8 @@ class DynamicPage extends Component {
               <SchedulePage
                 gcalId={page.content.gcalId}
                 minDate={page.content.minDate}
+                text={page.content.text}
+                params={page.content.params}
               />
             </div>
           </F>
@@ -168,6 +171,14 @@ class DynamicPage extends Component {
               <ContactsPage />
             </div>
           </F>
+        );
+
+      case "committeelist":
+        console.log(page);
+        return (
+          <div className="bg-white rounded p-4 mt-3 mb-4">
+            {/* <CommitteeListContainer committeeId={page.content.committeeId} /> */}
+          </div>
         );
     }
   }

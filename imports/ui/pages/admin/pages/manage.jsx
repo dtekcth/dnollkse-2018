@@ -21,6 +21,7 @@ import ForbiddenPage from "/imports/ui/pages/forbidden";
 import ListPage from "./list";
 import FormPage from "./form";
 import CommitteePage from "./committee";
+import CommitteeListPage from "./committeelist";
 
 import composeWithTracker from "/imports/helpers/composetracker";
 
@@ -56,14 +57,15 @@ class AdminManagePagePage extends Component {
   }
 
   state = {
-    title     : "",
-    url       : "",
-    type      : "",
-    list      : { items       : [] },
-    form      : { text        : "", url     : "", embed : "" },
-    document  : { text        : "" },
-    committee : { committeeId : "" },
-    schedule  : { gcalId      : "", minDate : moment() },
+    title         : "",
+    url           : "",
+    type          : "",
+    list          : { items       : [] },
+    form          : { text        : "", url     : "", embed   : "" },
+    document      : { text        : "" },
+    committee     : { committeeId : "" },
+    committeeList : { list        : [] },
+    schedule      : { gcalId      : "", params  : "", minDate : moment(), text : "" },
   }
 
   updateInfo() {
@@ -87,6 +89,10 @@ class AdminManagePagePage extends Component {
 
       case "committee":
         state.committee = page.content;
+        break;
+
+      case "committeeList":
+        state.committeeList = page.content;
         break;
 
       case "schedule":
@@ -130,6 +136,10 @@ class AdminManagePagePage extends Component {
 
       case "committee":
         content = this.state.committee;
+        break;
+
+      case "committeeList":
+        content = this.state.committeeList;
         break;
 
       case "schedule":
@@ -265,6 +275,21 @@ class AdminManagePagePage extends Component {
         );
         break;
 
+      case "committeeList":
+        return (
+          <F>
+            <CommitteeListPage
+              committeeList={this.state.committeeList.list}
+              onChange={data => this.setState({ committeeList: data })}
+            />
+
+            <div className="flex justify-end mt-2">
+              {this.renderSaveButton()}
+            </div>
+          </F>
+        );
+        break;
+
       case "schedule":
         return (
           <F>
@@ -292,6 +317,30 @@ class AdminManagePagePage extends Component {
                 }
               />
 
+              <InputGroup
+                richtext
+                className="mt-1"
+                text="Text"
+                value={this.state.schedule.text}
+                onChange={
+                  text => this.setState({
+                    schedule: { ...this.state.schedule, text }
+                  })
+                }
+              />
+
+              <InputGroup
+                textarea
+                className="mt-1"
+                text="Custom parameters (JSON)"
+                value={this.state.schedule.params}
+                rows={10}
+                onChange={
+                  e => this.setState({
+                    schedule: { ...this.state.schedule, params: e.target.value }
+                  })
+                }
+              />
             </div>
 
             <div className="flex justify-end mt-2">
@@ -316,13 +365,14 @@ class AdminManagePagePage extends Component {
       );
 
     const options = [
-      { value : "list"      , key : "list"      , label : "List" },
-      { value : "form"      , key : "form"      , label : "Form" },
-      { value : "document"  , key : "document"  , label : "Document" },
-      { value : "committee" , key : "committee" , label : "Committee" },
-      { value : "news"      , key : "news"      , label : "News" },
-      { value : "contacts"  , key : "contacts"  , label : "Contacts" },
-      { value : "schedule"  , key : "schedule"  , label : "Schedule" },
+      { value : "list"          , key : "list"          , label : "List" },
+      { value : "form"          , key : "form"          , label : "Form" },
+      { value : "document"      , key : "document"      , label : "Document" },
+      { value : "committee"     , key : "committee"     , label : "Committee" },
+      { value : "committeeList" , key : "committeeList" , label : "Committee List" },
+      { value : "news"          , key : "news"          , label : "News" },
+      { value : "contacts"      , key : "contacts"      , label : "Contacts" },
+      { value : "schedule"      , key : "schedule"      , label : "Schedule" },
     ];
 
     const currentOption = _.find(options, o => o.value == this.state.type);

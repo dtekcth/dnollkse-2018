@@ -19,7 +19,6 @@ shell-server@0.3.1            # Server-side component of the `meteor shell` comm
 
 kadira:dochead
 accounts-base@1.4.2
-accounts-password@1.5.1
 mdg:validated-method
 alanning:roles
 aldeed:collection2@3.0.0
@@ -28,3 +27,4 @@ mikowals:batch-insert
 dburles:collection-helpers
 okgrow:analytics
 underscore@1.0.10
+accounts-password

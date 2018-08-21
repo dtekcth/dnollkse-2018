@@ -163,7 +163,7 @@ class AdminPagesPage extends Component {
                       </th>
                       <th
                         align="left"
-                        className="font-normal border-b border-grey-lighter"
+                        className="font-normal p-2 border-b border-grey-lighter"
                       >
                         Route
                       </th>
