@@ -3,13 +3,14 @@ import React, { Fragment as F, Component } from "react";
 import { compose } from "react-komposer"
 import { connect } from "react-redux"
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
+import cx from "classnames";
 
 import MainLayout from "/imports/ui/layouts/main";
 import DocumentTitle from "/imports/ui/components/documenttitle";
 import Loader from "/imports/ui/components/loader";
 import DynamicLink from "/imports/ui/components/dynamiclink";
 import CommitteeContainer from "/imports/ui/containers/committee";
-/* import CommitteeListContainer from "/imports/ui/containers/committeelist";*/
+import CommitteeListContainer from "/imports/ui/containers/committeelist";
 
 import NewsPage from "/imports/ui/pages/news";
 import SchedulePage from "/imports/ui/pages/schedule";
@@ -29,6 +30,8 @@ const mapStateToProps = (state) => {
   });
 })
 class DynamicPage extends Component {
+  state = {}
+
   getListItems() {
     const { page } = this.props;
 
@@ -119,7 +122,6 @@ class DynamicPage extends Component {
           <F>
             <h2 className="text-center">{page.title}</h2>
 
-
             <div className="bg-white rounded p-4 mt-3 mb-4">
               <FroalaEditorView
                 model={page.content.text}
@@ -133,6 +135,91 @@ class DynamicPage extends Component {
           <div className="bg-white rounded p-4 mt-3 mb-4">
             <CommitteeContainer committeeId={page.content.committeeId} />
           </div>
+        );
+
+      case "studentDivision":
+        const cls = "block p-2 rounded-full text-center transition-all";
+        const clsActive = cx(cls, "bg-dtek text-white hover:box-shadow-dtek");
+        const clsInactive = cx(cls, "bg-white text-black hover:box-shadow-grey");
+        const tab = this.state.tab;
+
+        const listPreds = _.map(page.content.predecessors, c => c.committeeId);
+        const listOthers = _.map(page.content.others, c => c.committeeId);
+
+        return (
+          <F>
+            <div className="flex font-bold -mx-2">
+              <div className="flex-1 px-2">
+                <a
+                  href="#"
+                  className={_.isEmpty(tab) || tab == "committee" ? clsActive : clsInactive}
+                  onClick={
+                    e => {
+                      e.preventDefault();
+                      this.setState({ tab: "committee" });
+                    }
+                  }
+                >
+                  Kommitté
+                </a>
+              </div>
+
+              <div className="flex-1 px-2">
+                <a
+                  href="#"
+                  className={tab == "predecessors" ? clsActive : clsInactive}
+                  onClick={
+                    e => {
+                      e.preventDefault();
+                      this.setState({ tab: "predecessors" });
+                    }
+                  }
+                >
+                  Pateter
+                </a>
+              </div>
+
+              <div className="flex-1 px-2">
+                <a
+                  href="#"
+                  className={tab == "division" ? clsActive : clsInactive}
+                  onClick={
+                    e => {
+                      e.preventDefault();
+                      this.setState({ tab: "division" });
+                    }
+                  }
+                >
+                  Sektionen
+                </a>
+              </div>
+            </div>
+
+            {
+              (_.isEmpty(tab) || tab === "committee") &&
+              <div className="bg-white rounded p-4 mt-3 mb-4">
+                <CommitteeContainer committeeId={page.content.committeeId} />
+              </div>
+            }
+
+            <div className="mb-4">
+              {
+                tab === "predecessors" &&
+                <CommitteeListContainer
+                  itemClassName="bg-white rounded p-4 mt-4"
+                  list={listPreds}
+                />
+              }
+
+              {
+                tab === "division" &&
+                <CommitteeListContainer
+                  itemClassName="bg-white rounded p-4 mt-4"
+                  list={listOthers}
+                />
+              }
+            </div>
+          </F>
         );
 
       case "news":

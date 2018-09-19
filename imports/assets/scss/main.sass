@@ -92,6 +92,21 @@ button:disabled
 .transition-shadows
   transition: box-shadow 0.2s
 
+.transition-all
+  transition: all 0.2s
+
+.box-shadow-grey
+  box-shadow: 0 0 0 4px color(config("colors.grey") a(0.2))
+
+.hover\:box-shadow-grey:hover
+  box-shadow: 0 0 0 4px color(config("colors.grey") a(0.2))
+
+.box-shadow-dtek
+  box-shadow: 0 0 0 4px color(config("colors.dtek") a(0.2))
+
+.hover\:box-shadow-dtek:hover
+  box-shadow: 0 0 0 4px color(config("colors.dtek") a(0.2))
+
 .layout-main
   height: 100vh
   overflow-y: auto

@@ -9172,6 +9172,31 @@ button:disabled {
   transition: box-shadow .2s, -webkit-box-shadow .2s;
 }
 
+.transition-all {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.box-shadow-grey {
+  -webkit-box-shadow: 0 0 0 4px rgba(184, 194, 204, 0.2);
+          box-shadow: 0 0 0 4px rgba(184, 194, 204, 0.2);
+}
+
+.hover\:box-shadow-grey:hover {
+  -webkit-box-shadow: 0 0 0 4px rgba(184, 194, 204, 0.2);
+          box-shadow: 0 0 0 4px rgba(184, 194, 204, 0.2);
+}
+
+.box-shadow-dtek {
+  -webkit-box-shadow: 0 0 0 4px rgba(250, 102, 7, 0.2);
+          box-shadow: 0 0 0 4px rgba(250, 102, 7, 0.2);
+}
+
+.hover\:box-shadow-dtek:hover {
+  -webkit-box-shadow: 0 0 0 4px rgba(250, 102, 7, 0.2);
+          box-shadow: 0 0 0 4px rgba(250, 102, 7, 0.2);
+}
+
 .layout-main {
   height: 100vh;
   overflow-y: auto;

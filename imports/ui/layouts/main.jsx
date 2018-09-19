@@ -189,7 +189,9 @@ class MainLayout extends Component {
                   />
                 </div>
                 <div className="w-full md:w-1/3 p-3 text-center">
-                  <h2 className="text-white font-geomancy tracking-wide">DNollK 2018</h2>
+                  <h2 className="text-white font-geomancy tracking-wide">
+                    {props.committee.name}
+                  </h2>
                   <span className="inline-block text-grey-dark tracking-wide text-base mt-1">
                     Chalmers University of Technology
                   </span>

@@ -38,7 +38,7 @@ class CommitteeContainer extends Component {
 
     if (!props.ready) {
       return (
-        <Loader delay={1000} size="lg" />
+        <Loader classNames={{ loader: "mx-auto" }} delay={1000} size="lg" />
       );
     }
 

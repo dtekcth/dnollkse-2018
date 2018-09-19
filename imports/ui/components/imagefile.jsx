@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
 
 import Loader from "/imports/ui/components/loader";
 
@@ -32,7 +33,7 @@ class ImageFile extends Component {
 
       const img = (
         <img
-          className={this.props.className}
+          className={cx(this.props.className, this.props.imgClassName)}
           alt={this.props.alt}
           src={src}
         />
