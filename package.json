@@ -22,7 +22,6 @@
     "bytes": "^3.0.0",
     "classnames": "^2.2.5",
     "contrast": "^1.0.1",
-    "froala-editor": "^2.8.4",
     "get-form-data": "^2.0.0",
     "highcharts": "^6.1.0",
     "highcharts-react-official": "^1.1.0",

@@ -10,9 +10,9 @@ import "simplemde/dist/simplemde.min.css";
 
 import FroalaEditor from "react-froala-wysiwyg";
 import $ from "jquery";
-import "froala-editor/css/froala_style.min.css";
-import "froala-editor/css/froala_editor.pkgd.min.css";
-require("froala-editor/js/froala_editor.pkgd.min.js")($);
+import "/imports/lib/froala/css/froala_style.min.css";
+import "/imports/lib/froala/css/froala_editor.pkgd.min.css";
+require("/imports/lib/froala/js/froala_editor.pkgd.min.js")($);
 window.$ = $;
 
 $.FroalaEditor.DefineIcon("insertMeteorImage", { NAME: "image" });
