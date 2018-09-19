@@ -102,6 +102,7 @@ class SelectableImage extends Component {
 
           <div className="mt-2">
             <ImageGallery
+              reversed
               cellClassName={
                 cx("p-1 rounded bg-white transition-shadows",
                    "shadow hover:shadow-lg cursor-pointer")

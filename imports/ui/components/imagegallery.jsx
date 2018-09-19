@@ -30,7 +30,9 @@ import { Images } from "/imports/api/images";
 })
 class ImageGallery extends Component {
   static propTypes = {
-    images: PropTypes.array
+    images   : PropTypes.array,
+    reversed : PropTypes.bool,
+    lazyload : PropTypes.bool,
   }
 
   static defaultProps = {
@@ -44,10 +46,15 @@ class ImageGallery extends Component {
     const { cellHeight } = this.props;
 
     if (_.startsWith(img.get("mime"), "image")) {
+      if (this.props.lazyload)
+        return (
+          <LazyLoad height={cellHeight}>
+            <FilePreview className="block max-w-full max-h-full" file={img} />
+          </LazyLoad>
+        );
+
       return (
-        <LazyLoad height={cellHeight}>
-          <FilePreview className="block max-w-full max-h-full" file={img} />
-        </LazyLoad>
+        <FilePreview className="block max-w-full max-h-full" file={img} />
       );
     }
 
@@ -64,9 +71,14 @@ class ImageGallery extends Component {
 
     const CellC = cellComponent || "div";
 
-    return _
+    let res = _
       .chain(images)
-      .filter(filter)
+      .filter(filter);
+
+    if (this.props.reversed)
+      res = res.reverse();
+
+    return res
       .map((img, i) => {
         if (this.props.createCell) {
           return this.props.createCell(img, this.renderInnerCell.bind(this, img),

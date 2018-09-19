@@ -68,6 +68,7 @@ class AdminUploadsPage extends Component {
 
           <div className="flex justify-center mt-2">
             <ImageGallery
+              reversed
               createCell={this.createImageCell}
               cellClassName=""
               gridGap={20}
