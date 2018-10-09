@@ -342,15 +342,17 @@ class AdminManageCommitteePage extends Component {
                 <div className="w-2/3 mx-auto">
                   <h3 className="ml-2 text-grey-dark">Cover</h3>
 
-                  <SelectableImage
-                    className="mt-1 flex justify-center"
-                    placeholder="/static/images/placeholder-cover.png"
-                    imageId={this.state.cover}
-                    onChange={
-                      img =>
-                        this.setState({ cover: img._id })
-                    }
-                  />
+                  <div className="flex justify-center">
+                    <SelectableImage
+                      className="mt-1"
+                      placeholder="/static/images/placeholder-cover.png"
+                      imageId={this.state.cover}
+                      onChange={
+                        img =>
+                          this.setState({ cover: img._id })
+                      }
+                    />
+                  </div>
                 </div>
 
                 <div className="flex -mx-1 mt-2">
