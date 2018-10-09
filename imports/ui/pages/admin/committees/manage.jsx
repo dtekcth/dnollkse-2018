@@ -343,7 +343,7 @@ class AdminManageCommitteePage extends Component {
                   <h3 className="ml-2 text-grey-dark">Cover</h3>
 
                   <SelectableImage
-                    className="mt-1"
+                    className="mt-1 flex justify-center"
                     placeholder="/static/images/placeholder-cover.png"
                     imageId={this.state.cover}
                     onChange={

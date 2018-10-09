@@ -67,7 +67,7 @@ Committees.attachSchema(Committees.schema);
 
 Committees.helpers({
   fullMemberName(member) {
-    if (member.firstname == member.nickname) {
+    if (_.isEmpty(member.nickname) || member.firstname == member.nickname) {
       return `${member.firstname} ${member.lastname}`;
     }
 
