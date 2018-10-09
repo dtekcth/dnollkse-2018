@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import cx from "classnames";
 import qs from "query-string";
 
+import { textFix } from "/imports/helpers/utils";
+
 import AuthorizedLayout from "/imports/ui/layouts/authorized";
 import BaseLayout from "/imports/ui/layouts/base";
 import LoginForm from "/imports/ui/components/loginform";
@@ -21,7 +23,7 @@ class LoginPage extends Component {
             <div className="w-full max-w-xs mt-2">
               <div className="absolute-center">
                 <h1 className="uppercase block tracking-wide text-center text-dtek font-geomancy mb-2">
-                  DNollK
+                  {textFix("Admin")}
                 </h1>
 
                 <LoginForm

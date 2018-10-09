@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import cx from "classnames";
 import { compose } from "react-komposer";
 
+import { textFix } from "/imports/helpers/utils";
+
 import LoginForm from "/imports/ui/components/loginform";
 import DocumentTitle from "/imports/ui/components/documenttitle";
 
@@ -105,8 +107,8 @@ class SetupPage extends Component {
           <div className="flex justify-center">
             <div className="w-full max-w-xs mt-2">
               <div className="absolute-center">
-                <h1 className="uppercase block tracking-wide text-center text-dtek font-geomancy mb-2">
-                  DNollK
+                <h1 className="block tracking-wide text-center text-dtek font-geomancy mb-2">
+                  {textFix("SETUP")}
                 </h1>
 
                 <div className="bg-white shadow rounded-sm p-4 relative loginbox">

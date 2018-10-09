@@ -3,6 +3,8 @@ import React, { Fragment as F, Component } from "react";
 import cx from "classnames";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
+import { textFix } from "/imports/helpers/utils";
+
 import ImageFileContainer from "/imports/ui/containers/imagefile";
 
 class CommitteeListComponent extends Component {
@@ -104,7 +106,7 @@ class CommitteeListComponent extends Component {
           className={cx("mt-2 relative", itemClassName)}
         >
           <h1 className="font-geomancy tracking-wide text-center">
-            {c.name}
+            {textFix(c.name)}
           </h1>
 
           {

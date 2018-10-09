@@ -9,6 +9,7 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 import cx from "classnames";
 import PropTypes from "prop-types";
 
+import { textFix } from "/imports/helpers/utils";
 import Loader from "/imports/ui/components/loader";
 import ImageFileContainer from "/imports/ui/containers/imagefile";
 import BaseLayout from "/imports/ui/layouts/base";
@@ -22,17 +23,6 @@ const mapStateToProps = (state) => {
     ready     : state.committee.ready && state.settings.ready
   };
 };
-
-const textSub = {
-  S : "s",
-  W : "w"
-}
-const textFix = (text) =>
-  _.map(_.toUpper(text), c => {
-    if (textSub[c]) return textSub[c];
-
-    return c;
-  });
 
 @connect(mapStateToProps)
 class MainLayout extends Component {

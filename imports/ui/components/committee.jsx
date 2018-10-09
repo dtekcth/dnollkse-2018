@@ -3,6 +3,8 @@ import React, { Fragment as F, Component } from "react";
 import cx from "classnames";
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 
+import { textFix } from "/imports/helpers/utils";
+
 import ImageFileContainer from "/imports/ui/containers/imagefile";
 
 class CommitteeComponent extends Component {
@@ -77,7 +79,7 @@ class CommitteeComponent extends Component {
     return (
       <F>
         <h1 className="font-geomancy tracking-wide text-center">
-          {committee.name}
+          {textFix(committee.name)}
         </h1>
 
         <div
