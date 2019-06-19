@@ -4,6 +4,7 @@ import { compose } from "react-komposer"
 import { connect } from "react-redux"
 import FroalaEditorView from "react-froala-wysiwyg/FroalaEditorView";
 import cx from "classnames";
+import { withRouter } from "react-router-dom";
 
 import MainLayout from "/imports/ui/layouts/main";
 import DocumentTitle from "/imports/ui/components/documenttitle";
@@ -22,6 +23,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+@withRouter
 @connect(mapStateToProps)
 @compose((props, onData) => {
   const page = _.find(props.pages.list, p => p._id == props.pageId);
@@ -31,6 +33,28 @@ const mapStateToProps = (state) => {
 })
 class DynamicPage extends Component {
   state = {}
+
+  checkRedirect() {
+    const { page, pages, history } = this.props;
+    if (!pages.ready) return;
+    if (page.type !== "redirect") return;
+
+    const reg = /^(?:[a-z]+:)?\/\//i
+    if (reg.test(page.content.url)) {
+      location.replace(page.content.url);
+    }
+    else {
+      history.replace(page.content.url);
+    }
+  }
+
+  componentDidMount() {
+    this.checkRedirect();
+  }
+
+  componentDidUpdate() {
+    this.checkRedirect();
+  }
 
   getListItems() {
     const { page } = this.props;

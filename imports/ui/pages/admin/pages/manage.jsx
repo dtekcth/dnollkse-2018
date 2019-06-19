@@ -63,6 +63,7 @@ class AdminManagePagePage extends Component {
     list            : { items       : [] },
     form            : { text        : "", url     : "", embed   : "" },
     document        : { text        : "" },
+    redirect        : { url         : "" },
     committee       : { committeeId : "" },
     studentDivision : { committeeId : "" },
     schedule        : { gcalId      : "", params  : "", minDate : moment(), text : "" },
@@ -85,6 +86,10 @@ class AdminManagePagePage extends Component {
 
       case "document":
         state.document = page.content;
+        break;
+
+      case "redirect":
+        state.redirect = page.content;
         break;
 
       case "committee":
@@ -132,6 +137,10 @@ class AdminManagePagePage extends Component {
 
       case "document":
         content = this.state.document;
+        break;
+
+      case "redirect":
+        content = this.state.redirect;
         break;
 
       case "committee":
@@ -260,6 +269,28 @@ class AdminManagePagePage extends Component {
           </F>
         );
 
+      case "redirect":
+        return (
+          <F>
+            <div className="p-2 bg-white rounded">
+              <InputGroup
+                value={this.state.redirect.url || ""}
+                placeholder="URL..."
+                text="Redirect URL"
+                onChange={
+                  e => this.setState({
+                    redirect: { url: e.target.value }
+                  })
+                }
+              />
+            </div>
+
+            <div className="flex justify-end mt-2">
+              {this.renderSaveButton()}
+            </div>
+          </F>
+        );
+
       case "committee":
         return (
           <F>
@@ -377,6 +408,7 @@ class AdminManagePagePage extends Component {
       { value : "list"            , key : "list"            , label : "List" },
       { value : "form"            , key : "form"            , label : "Form" },
       { value : "document"        , key : "document"        , label : "Document" },
+      { value : "redirect"        , key : "redirect"        , label : "Redirect" },
       { value : "committee"       , key : "committee"       , label : "Committee" },
       { value : "studentDivision" , key : "studentDivision" , label : "Student Division" },
       { value : "news"            , key : "news"            , label : "News" },
