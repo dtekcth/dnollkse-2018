@@ -17,7 +17,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "0.0.20",
     "autobind-decorator": "^2.1.0",
-    "bcrypt": "^3.0.0",
+    "bcrypt": "^5.0.0",
     "bluebird": "^3.5.1",
     "bytes": "^3.0.0",
     "classnames": "^2.2.5",
