@@ -23,7 +23,7 @@
     "classnames": "^2.2.5",
     "contrast": "^1.0.1",
     "get-form-data": "^2.0.0",
-    "highcharts": "^6.1.0",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^1.1.0",
     "immutability-helper": "^2.7.1",
     "is-url-external": "^1.0.3",
